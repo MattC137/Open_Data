@@ -12,11 +12,12 @@ ids <- ncaaf %>% str_extract_all('(?<=href="/college-football/team/_/id/)(.*?)(?
 ids <- ids %>% str_split("/", simplify = T)
 ids <- as.data.frame(ids)
 names(ids) <- c('ID', 'Name')
+ids$D1 <- 1
 ids$ID <- as.character(ids$ID)
 ids$Name <- as.character(ids$Name)
 
 teams <- ncaaf %>% str_extract_all('(?<=" title=")(.*?)(?=" data-mptype=")') %>% unlist()
-seasons <- c(2020:2018)
+seasons <- c(2020:2000)
 
 Schedule <- as.data.frame(matrix(NA, nrow = 0, ncol = 14))
 names(Schedule) <- c('Date', 'Opponent', 'Result', 'Team', 'Team_ID', 'Season', 'Home', 'Points_For', 'Points_Against', 'Played', 'OT', 'Opp_ID', 'Opp_Name_ID', 'Game_ID')
@@ -59,6 +60,8 @@ while(nrow(ids_temp) > 0){
       
       schedule_ids <- data.frame(ID = schedule_ids_ID, Name = schedule_ids_Name)
     }
+    
+    schedule_ids$D1 <- 0 
   
     ##
     
@@ -68,8 +71,8 @@ while(nrow(ids_temp) > 0){
     if(nrow(game_ids) > 0){
       game_ids <- game_ids[ ,1]
       
-      additional_ids <- as.data.frame(matrix(NA, nrow = 0, ncol = 2))
-      names(additional_ids) <- c("ID", "Name")
+      additional_ids <- as.data.frame(matrix(NA, nrow = 0, ncol = 3))
+      names(additional_ids) <- c("ID", "Name", "D1")
       
       for(i in 1:nrow(schedule_ids)){
         if(!any(schedule_ids[i, "ID"] %in% ids$ID)){
