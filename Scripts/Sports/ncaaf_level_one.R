@@ -314,7 +314,7 @@ Schedule <- Schedule %>% mutate(
   Points_For = ifelse(Played, as.numeric(Points_For), 0),
   Points_Against = ifelse(Played, as.numeric(Points_Against), 0),
   points_for_temp = ifelse(Result == "W", Points_For, Points_Against),
-  points_against_temp = ifelse(Result == "L", Points_For, Points_Against),
+  points_against_temp = ifelse(Result == "L", Points_Against, Points_For),
   Points_For = points_for_temp,
   Points_Against = points_against_temp,
   Spread = Points_For - Points_Against,
