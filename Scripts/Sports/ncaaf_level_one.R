@@ -12,7 +12,7 @@ ids <- ncaaf %>% str_extract_all('(?<=href="/college-football/team/_/id/)(.*?)(?
 ids <- ids %>% str_split("/", simplify = T)
 ids <- as.data.frame(ids)
 names(ids) <- c('ID', 'Name')
-ids$D1 <- 1
+ids$FBS <- 1
 ids$ID <- as.character(ids$ID)
 ids$Name <- as.character(ids$Name)
 
@@ -61,7 +61,7 @@ while(nrow(ids_temp) > 0){
       schedule_ids <- data.frame(ID = schedule_ids_ID, Name = schedule_ids_Name)
     }
     
-    schedule_ids$D1 <- 0 
+    schedule_ids$FBS <- 0 
   
     ##
     
@@ -72,7 +72,7 @@ while(nrow(ids_temp) > 0){
       game_ids <- game_ids[ ,1]
       
       additional_ids <- as.data.frame(matrix(NA, nrow = 0, ncol = 3))
-      names(additional_ids) <- c("ID", "Name", "D1")
+      names(additional_ids) <- c("ID", "Name", "FBS")
       
       for(i in 1:nrow(schedule_ids)){
         if(!any(schedule_ids[i, "ID"] %in% ids$ID)){
@@ -295,7 +295,7 @@ Schedule_Singles <- Schedule %>% group_by(Game_ID) %>% tally() %>% filter(n == 1
 Schedule_Singles <- Schedule_Singles$Game_ID
 
 Schedule_NA <- Schedule %>% filter(Game_ID %in% Schedule_Singles)
-names(Schedule_NA) <- c('Date', 'Season', 'Opponent', 'Team', 'Result', 'Points_Against', 'Points_For', 'Played', 'Home', 'Neutral_Location', 'OT', 'Game_ID', 'Opp_ID', 'Opp_Name_ID', 'Team_ID', 'Name_ID')
+names(Schedule_NA) <- c('Date', 'Season', 'Opponent', 'Team', 'Result', 'Points_For', 'Points_Against', 'Played', 'Home', 'Neutral_Location', 'OT', 'Game_ID', 'Opp_ID', 'Opp_Name_ID', 'Team_ID', 'Name_ID')
 
 Schedule_NA <- Schedule_NA %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Played, Home, Neutral_Location, OT, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID)
 
@@ -314,7 +314,7 @@ Schedule <- Schedule %>% mutate(
   Points_For = ifelse(Played, as.numeric(Points_For), 0),
   Points_Against = ifelse(Played, as.numeric(Points_Against), 0),
   points_for_temp = ifelse(Result == "W", Points_For, Points_Against),
-  points_against_temp = ifelse(Result == "L", Points_Against, Points_For),
+  points_against_temp = ifelse(Result == "L", Points_For, Points_Against),
   Points_For = points_for_temp,
   Points_Against = points_against_temp,
   Spread = Points_For - Points_Against,
