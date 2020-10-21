@@ -27,217 +27,228 @@ ids_temp <- ids
 while(nrow(ids_temp) > 0){
   # i = 58
   id <- ids_temp[1, ]
-  # id <- ids[ids$ID == "2429", ]
+  # id <- ids[ids$ID == "333", ]
   print(id)
   
   for(j in 1:length(seasons)){
-    # j = 1
+    # j = 2
     season <- seasons[j]
     print(season)
     
-    team_games <- read_html(paste0("https://www.espn.com/college-football/team/schedule/_/id/", id[1, 1], "/season/", season))
+    # Add Try
+    team_games <- try({read_html(paste0("https://www.espn.com/college-football/team/schedule/_/id/", id[1, 1], "/season/", season))})
     
-    schedule_ids <- team_games %>% str_extract_all('(?<=team/_/id/)(.*?)(?="><img alt=")') %>% unlist()
-    
-    schedule_ids <- as.data.frame(schedule_ids) %>% separate(schedule_ids, c("ID", "Name"), sep = "/")
-    
-    schedule_ids_ID <- schedule_ids$ID
-    schedule_ids_Name <- schedule_ids$Name
-    
-    ## Handle Teams without an ID on ESPN
-    
-    #schedule_ids_blank_teams <- team_games %>% str_extract_all('(?<=height:20px)(.*?)(?="><img alt=")') %>% unlist()
-    schedule_ids_blank_teams <- team_games %>% str_extract_all('(?<=height:20px)(.*?)(?=<span)') %>% unlist()
-    schedule_ids_blank_teams <- which(!str_detect(schedule_ids_blank_teams, "/id/"))
-    
-    if(length(schedule_ids_blank_teams) > 0){
-      for(i in 1:length(schedule_ids_blank_teams)){
-        schedule_ids_ID <- append(schedule_ids_ID, NA, schedule_ids_blank_teams[i]-1)
-        schedule_ids_Name <- append(schedule_ids_Name, NA, schedule_ids_blank_teams[i]-1)
+    if(class(team_games) != "try-error"){
+      schedule_ids <- team_games %>% str_extract_all('(?<=team/_/id/)(.*?)(?="><img alt=")') %>% unlist()
+      
+      schedule_ids <- as.data.frame(schedule_ids) %>% separate(schedule_ids, c("ID", "Name"), sep = "/")
+      
+      schedule_ids_ID <- schedule_ids$ID
+      schedule_ids_Name <- schedule_ids$Name
+      
+      ## Handle Teams without an ID on ESPN
+      
+      #schedule_ids_blank_teams <- team_games %>% str_extract_all('(?<=height:20px)(.*?)(?="><img alt=")') %>% unlist()
+      schedule_ids_blank_teams <- team_games %>% str_extract_all('(?<=height:20px)(.*?)(?=<span)') %>% unlist()
+      schedule_ids_blank_teams <- which(!str_detect(schedule_ids_blank_teams, "/id/"))
+      
+      if(length(schedule_ids_blank_teams) > 0){
+        for(i in 1:length(schedule_ids_blank_teams)){
+          schedule_ids_ID <- append(schedule_ids_ID, NA, schedule_ids_blank_teams[i]-1)
+          schedule_ids_Name <- append(schedule_ids_Name, NA, schedule_ids_blank_teams[i]-1)
+        }
+        
+        nrow(team_games)
+        
+        schedule_ids <- data.frame(ID = schedule_ids_ID, Name = schedule_ids_Name)
+        schedule_ids$FBS <- 0 
       }
       
-      nrow(team_games)
-      
-      schedule_ids <- data.frame(ID = schedule_ids_ID, Name = schedule_ids_Name)
-    }
-    
-    schedule_ids$FBS <- 0 
+      if(nrow(schedule_ids) == 0){
+        schedule_ids <- as.data.frame(matrix(NA, ncol = 3, nrow = 0))
+        names(schedule_ids) <- c("ID", "Name", "FBS")
+      }else(
+        schedule_ids$FBS <- 0
+      )
   
-    ##
+  
     
-    game_ids <- team_games %>% str_extract_all('(?<=gameId/)(.*?)(?=<!-- -->)') %>% unlist() %>% str_split('"', simplify = T)
-    
-    #### If no games in the current season for the current team go to next sesason ####
-    if(nrow(game_ids) > 0){
-      game_ids <- game_ids[ ,1]
+      ##
       
-      additional_ids <- as.data.frame(matrix(NA, nrow = 0, ncol = 3))
-      names(additional_ids) <- c("ID", "Name", "FBS")
+      game_ids <- team_games %>% str_extract_all('(?<=gameId/)(.*?)(?=<!-- -->)') %>% unlist() %>% str_split('"', simplify = T)
       
-      for(i in 1:nrow(schedule_ids)){
-        if(!any(schedule_ids[i, "ID"] %in% ids$ID)){
-          ids <- rbind(ids, schedule_ids[i, ])
-          ids_temp <- rbind(ids_temp, schedule_ids[i, ])
+      #### If no games in the current season for the current team go to next sesason ####
+      if(length(game_ids) > 0 & !is.null(game_ids)){
+        game_ids <- game_ids[ ,1]
+        
+        additional_ids <- as.data.frame(matrix(NA, nrow = 0, ncol = 3))
+        names(additional_ids) <- c("ID", "Name", "FBS")
+        
+        for(i in 1:nrow(schedule_ids)){
+          if(!any(schedule_ids[i, "ID"] %in% ids$ID)){
+            ids <- rbind(ids, schedule_ids[i, ])
+            ids_temp <- rbind(ids_temp, schedule_ids[i, ])
+          }
         }
-      }
-      
-      team_games <- team_games %>% html_nodes('table') %>% html_table(fill = T)
-      
-      team_games <- team_games[[1]]
-      
-      team_games <- team_games[, c(1:3)]
-      
-      names(team_games) <- c("Date", "Opponent", "Result")
-      
-      team_games <- team_games[!(team_games$Date %in% c("Regular Season", "DATE")), ]
-      
-      team_games <- team_games[str_detect(team_games$Date, ", "), ]
-      
-      team_games <- team_games %>% 
-        mutate(
-          Team = id[1, 2],
-          Team_ID = id[1, 1],
-          Season = season,
-          Home = ifelse(str_detect(Opponent, "vs"), TRUE, FALSE),
-          Result_Delete = Result,
-          Result = case_when(
-            str_detect(Result, "W") & str_detect(Result, "-") ~ "W",
-            str_detect(Result, "L") & str_detect(Result, "-") ~ "L",
-            str_detect(Result, "D") & str_detect(Result, "-") ~ "D",
-            TRUE ~ "TBD"
-          ),
-          Played = ifelse(Result %in% c("W", "L", "D"), "TRUE", "FALSE"),
-          Neutral_Location = ifelse(str_detect(Opponent, "\\*"), TRUE, FALSE),
-          Opponent = str_replace(Opponent, " \\*", ""),
-          Opponent = str_replace(Opponent, "\\*", ""),
-          Opponent = str_replace(Opponent, "vs", ""),
-          Opponent = str_replace(Opponent, "@", ""),
-          Opponent = str_replace(Opponent, "1 ", ""),
-          Opponent = str_replace(Opponent, "2 ", ""),
-          Opponent = str_replace(Opponent, "3 ", ""),
-          Opponent = str_replace(Opponent, "4 ", ""),
-          Opponent = str_replace(Opponent, "5 ", ""),
-          Opponent = str_replace(Opponent, "6 ", ""),
-          Opponent = str_replace(Opponent, "7 ", ""),
-          Opponent = str_replace(Opponent, "8 ", ""),
-          Opponent = str_replace(Opponent, "9 ", ""),
-          Opponent = str_replace(Opponent, "10 ", ""),
-          Opponent = str_replace(Opponent, "11 ", ""),
-          Opponent = str_replace(Opponent, "12 ", ""),
-          Opponent = str_replace(Opponent, "13 ", ""),
-          Opponent = str_replace(Opponent, "14 ", ""),
-          Opponent = str_replace(Opponent, "15 ", ""),
-          Opponent = str_replace(Opponent, "16 ", ""),
-          Opponent = str_replace(Opponent, "17 ", ""),
-          Opponent = str_replace(Opponent, "18 ", ""),
-          Opponent = str_replace(Opponent, "19 ", ""),
-          Opponent = str_replace(Opponent, "20 ", ""),
-          Opponent = str_replace(Opponent, "21 ", ""),
-          Opponent = str_replace(Opponent, "22 ", ""),
-          Opponent = str_replace(Opponent, "23 ", ""),
-          Opponent = str_replace(Opponent, "24 ", ""),
-          Opponent = str_replace(Opponent, "25 ", ""),
-          Opponent = str_replace(Opponent, "1", ""),
-          Opponent = str_replace(Opponent, "2", ""),
-          Opponent = str_replace(Opponent, "3", ""),
-          Opponent = str_replace(Opponent, "4", ""),
-          Opponent = str_replace(Opponent, "5", ""),
-          Opponent = str_replace(Opponent, "6", ""),
-          Opponent = str_replace(Opponent, "7", ""),
-          Opponent = str_replace(Opponent, "8", ""),
-          Opponent = str_replace(Opponent, "9", ""),
-          Opponent = str_replace(Opponent, "10", ""),
-          Opponent = str_replace(Opponent, "11", ""),
-          Opponent = str_replace(Opponent, "12", ""),
-          Opponent = str_replace(Opponent, "13", ""),
-          Opponent = str_replace(Opponent, "14", ""),
-          Opponent = str_replace(Opponent, "15", ""),
-          Opponent = str_replace(Opponent, "16", ""),
-          Opponent = str_replace(Opponent, "17", ""),
-          Opponent = str_replace(Opponent, "18", ""),
-          Opponent = str_replace(Opponent, "19", ""),
-          Opponent = str_replace(Opponent, "20", ""),
-          Opponent = str_replace(Opponent, "21", ""),
-          Opponent = str_replace(Opponent, "22", ""),
-          Opponent = str_replace(Opponent, "23", ""),
-          Opponent = str_replace(Opponent, "24", ""),
-          Opponent = str_replace(Opponent, "25", ""),
-          Result_Delete = ifelse(Played, str_replace(Result_Delete, Result, ""), Result_Delete),
-          OT = ifelse(str_detect(Result_Delete, " OT"), TRUE, FALSE),
-          Result_Delete = str_replace(Result_Delete, " OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 2OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 3OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 4OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 5OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 6OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 7OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 8OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 9OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 10OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 11OT", ""),
-          Result_Delete = str_replace(Result_Delete, " 12OT", ""),
-          Result_Delete = case_when(
-            Result_Delete == "Postponed" ~ "Postponed",
-            Result_Delete == "Canceled" ~ "Canceled",
-            Result_Delete == "LIVE" ~ "LIVE",
-            !str_detect(Result_Delete, "-") ~ "TBD",
-            TRUE ~ Result_Delete
-          ),
-          Result_Delete = str_replace(Result_Delete, "Postponed", "Postponed-Postponed"),
-          Result_Delete = str_replace(Result_Delete, "Canceled", "Canceled-Canceled"),
-          Result_Delete = str_replace(Result_Delete, "LIVE", "LIVE-LIVE"),
-          Result_Delete = str_replace(Result_Delete, "TBD", "TBD-TBD"),
-          Date = str_replace(Date, "Sat, ", ""),
-          Date = str_replace(Date, "Sun, ", ""),
-          Date = str_replace(Date, "Mon, ", ""),
-          Date = str_replace(Date, "Tue, ", ""),
-          Date = str_replace(Date, "Wed, ", ""),
-          Date = str_replace(Date, "Thu, ", ""),
-          Date = str_replace(Date, "Fri, ", ""),
-          Date = paste0(Date, ", ", season),
-          Date = as.Date(Date, format = "%b %d, %Y"),
-          Date = ifelse(month(Date) == 1 | month(Date) == 2 | month(Date) == 3, as.Date(Date + years(1)), as.Date(Date))
-      
-          # Opp_ID = ifelse(length(ids[str_detect(ids$Name, str_replace_all(str_to_lower(Opponent), " ", "-")), 1]) == 0, NA, ids[str_detect(ids$Name, str_replace_all(str_to_lower(Opponent), " ", "-")), 1])
-        )
-      
-      team_games <- team_games %>% separate(Result_Delete, sep = "-", into = c("Points_For", "Points_Against"))
-      
-      team_games <- team_games %>% cbind(schedule_ids) %>% rename(Opp_ID = ID, Opp_Name_ID = Name)
-      
-      postponed_ids <- which(team_games$Points_For == "Postponed")
-      canceled_ids <- which(team_games$Points_For == "Canceled")
-      live_ids <- which(team_games$Points_For == "LIVE")
-      
-      insert_ids <- sort(c(postponed_ids, canceled_ids, live_ids))
-      
-      if(length(insert_ids)){
-        for(i in 1:length(insert_ids)){
-          game_ids <- append(game_ids, values = "Postponed/Canceled/Live", after = insert_ids[i]-1)
+        
+        team_games <- team_games %>% html_nodes('table') %>% html_table(fill = T)
+        
+        team_games <- team_games[[1]]
+        
+        team_games <- team_games[, c(1:3)]
+        
+        names(team_games) <- c("Date", "Opponent", "Result")
+        
+        team_games <- team_games[!(team_games$Date %in% c("Regular Season", "DATE")), ]
+        
+        team_games <- team_games[str_detect(team_games$Date, ", "), ]
+        
+        team_games <- team_games %>% 
+          mutate(
+            Team = id[1, 2],
+            Team_ID = id[1, 1],
+            Season = season,
+            Home = ifelse(str_detect(Opponent, "vs"), TRUE, FALSE),
+            Result_Delete = Result,
+            Result = case_when(
+              str_detect(Result, "W") & str_detect(Result, "-") ~ "W",
+              str_detect(Result, "L") & str_detect(Result, "-") ~ "L",
+              str_detect(Result, "D") & str_detect(Result, "-") ~ "D",
+              TRUE ~ "TBD"
+            ),
+            Played = ifelse(Result %in% c("W", "L", "D"), "TRUE", "FALSE"),
+            Neutral_Location = ifelse(str_detect(Opponent, "\\*"), TRUE, FALSE),
+            Opponent = str_replace(Opponent, " \\*", ""),
+            Opponent = str_replace(Opponent, "\\*", ""),
+            Opponent = str_replace(Opponent, "vs", ""),
+            Opponent = str_replace(Opponent, "@", ""),
+            Opponent = str_replace(Opponent, "1 ", ""),
+            Opponent = str_replace(Opponent, "2 ", ""),
+            Opponent = str_replace(Opponent, "3 ", ""),
+            Opponent = str_replace(Opponent, "4 ", ""),
+            Opponent = str_replace(Opponent, "5 ", ""),
+            Opponent = str_replace(Opponent, "6 ", ""),
+            Opponent = str_replace(Opponent, "7 ", ""),
+            Opponent = str_replace(Opponent, "8 ", ""),
+            Opponent = str_replace(Opponent, "9 ", ""),
+            Opponent = str_replace(Opponent, "10 ", ""),
+            Opponent = str_replace(Opponent, "11 ", ""),
+            Opponent = str_replace(Opponent, "12 ", ""),
+            Opponent = str_replace(Opponent, "13 ", ""),
+            Opponent = str_replace(Opponent, "14 ", ""),
+            Opponent = str_replace(Opponent, "15 ", ""),
+            Opponent = str_replace(Opponent, "16 ", ""),
+            Opponent = str_replace(Opponent, "17 ", ""),
+            Opponent = str_replace(Opponent, "18 ", ""),
+            Opponent = str_replace(Opponent, "19 ", ""),
+            Opponent = str_replace(Opponent, "20 ", ""),
+            Opponent = str_replace(Opponent, "21 ", ""),
+            Opponent = str_replace(Opponent, "22 ", ""),
+            Opponent = str_replace(Opponent, "23 ", ""),
+            Opponent = str_replace(Opponent, "24 ", ""),
+            Opponent = str_replace(Opponent, "25 ", ""),
+            Opponent = str_replace(Opponent, "1", ""),
+            Opponent = str_replace(Opponent, "2", ""),
+            Opponent = str_replace(Opponent, "3", ""),
+            Opponent = str_replace(Opponent, "4", ""),
+            Opponent = str_replace(Opponent, "5", ""),
+            Opponent = str_replace(Opponent, "6", ""),
+            Opponent = str_replace(Opponent, "7", ""),
+            Opponent = str_replace(Opponent, "8", ""),
+            Opponent = str_replace(Opponent, "9", ""),
+            Opponent = str_replace(Opponent, "10", ""),
+            Opponent = str_replace(Opponent, "11", ""),
+            Opponent = str_replace(Opponent, "12", ""),
+            Opponent = str_replace(Opponent, "13", ""),
+            Opponent = str_replace(Opponent, "14", ""),
+            Opponent = str_replace(Opponent, "15", ""),
+            Opponent = str_replace(Opponent, "16", ""),
+            Opponent = str_replace(Opponent, "17", ""),
+            Opponent = str_replace(Opponent, "18", ""),
+            Opponent = str_replace(Opponent, "19", ""),
+            Opponent = str_replace(Opponent, "20", ""),
+            Opponent = str_replace(Opponent, "21", ""),
+            Opponent = str_replace(Opponent, "22", ""),
+            Opponent = str_replace(Opponent, "23", ""),
+            Opponent = str_replace(Opponent, "24", ""),
+            Opponent = str_replace(Opponent, "25", ""),
+            Result_Delete = ifelse(Played, str_replace(Result_Delete, Result, ""), Result_Delete),
+            OT = ifelse(str_detect(Result_Delete, " OT"), TRUE, FALSE),
+            Result_Delete = str_replace(Result_Delete, " OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 2OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 3OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 4OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 5OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 6OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 7OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 8OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 9OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 10OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 11OT", ""),
+            Result_Delete = str_replace(Result_Delete, " 12OT", ""),
+            Result_Delete = case_when(
+              Result_Delete == "Postponed" ~ "Postponed",
+              Result_Delete == "Canceled" ~ "Canceled",
+              Result_Delete == "LIVE" ~ "LIVE",
+              !str_detect(Result_Delete, "-") ~ "TBD",
+              TRUE ~ Result_Delete
+            ),
+            Result_Delete = str_replace(Result_Delete, "Postponed", "Postponed-Postponed"),
+            Result_Delete = str_replace(Result_Delete, "Canceled", "Canceled-Canceled"),
+            Result_Delete = str_replace(Result_Delete, "LIVE", "LIVE-LIVE"),
+            Result_Delete = str_replace(Result_Delete, "TBD", "TBD-TBD"),
+            Date = str_replace(Date, "Sat, ", ""),
+            Date = str_replace(Date, "Sun, ", ""),
+            Date = str_replace(Date, "Mon, ", ""),
+            Date = str_replace(Date, "Tue, ", ""),
+            Date = str_replace(Date, "Wed, ", ""),
+            Date = str_replace(Date, "Thu, ", ""),
+            Date = str_replace(Date, "Fri, ", ""),
+            Date = paste0(Date, ", ", season),
+            Date = as.Date(Date, format = "%b %d, %Y"),
+            Date = ifelse(month(Date) == 1 | month(Date) == 2 | month(Date) == 3, as.Date(Date + years(1)), as.Date(Date))
+        
+            # Opp_ID = ifelse(length(ids[str_detect(ids$Name, str_replace_all(str_to_lower(Opponent), " ", "-")), 1]) == 0, NA, ids[str_detect(ids$Name, str_replace_all(str_to_lower(Opponent), " ", "-")), 1])
+          )
+        
+        team_games <- team_games %>% separate(Result_Delete, sep = "-", into = c("Points_For", "Points_Against"))
+        
+        team_games <- team_games %>% cbind(schedule_ids) %>% rename(Opp_ID = ID, Opp_Name_ID = Name)
+        
+        postponed_ids <- which(team_games$Points_For == "Postponed")
+        canceled_ids <- which(team_games$Points_For == "Canceled")
+        live_ids <- which(team_games$Points_For == "LIVE")
+        
+        insert_ids <- sort(c(postponed_ids, canceled_ids, live_ids))
+        
+        if(length(insert_ids)){
+          for(i in 1:length(insert_ids)){
+            game_ids <- append(game_ids, values = "Postponed/Canceled/Live", after = insert_ids[i]-1)
+          }
         }
-      }
-      
-      if(length(postponed_ids)){
-        for(i in 1:length(postponed_ids)){
-          game_ids[postponed_ids[i]] <- "Postponed"
+        
+        if(length(postponed_ids)){
+          for(i in 1:length(postponed_ids)){
+            game_ids[postponed_ids[i]] <- "Postponed"
+          }
         }
-      }
-      
-      if(length(canceled_ids)){
-        for(i in 1:length(canceled_ids)){
-          game_ids[canceled_ids[i]] <- "Canceled"
+        
+        if(length(canceled_ids)){
+          for(i in 1:length(canceled_ids)){
+            game_ids[canceled_ids[i]] <- "Canceled"
+          }
         }
-      }
-      
-      if(length(live_ids)){
-        for(i in 1:length(live_ids)){
-          game_ids[live_ids[i]] <- "Live"
+        
+        if(length(live_ids)){
+          for(i in 1:length(live_ids)){
+            game_ids[live_ids[i]] <- "Live"
+          }
         }
+        
+        team_games$Game_ID <- game_ids
+        
+        Schedule <- rbind(Schedule, team_games)
       }
-      
-      team_games$Game_ID <- game_ids
-      
-      Schedule <- rbind(Schedule, team_games)
     }
   }
   
@@ -247,6 +258,8 @@ while(nrow(ids_temp) > 0){
   
 }
 
+ids <- ids %>% filter(!is.na(ID))
+
 ###
 
 Schedule_raw <- Schedule
@@ -255,7 +268,7 @@ Schedule_raw <- Schedule
 
 Schedule <- Schedule_raw
 
-Schedule$Date <- as.Date(Schedule$Date, origin = "1970-01-01")
+# Schedule$Date <- as.Date(Schedule$Date, origin = "1970-01-01")
 
 Name_Mapping <- Schedule %>% select(Name = Opponent, Team_ID = Opp_ID, Name_ID = Opp_Name_ID) %>% arrange(Name)
 Name_Mapping <- Name_Mapping %>% mutate(
@@ -328,6 +341,7 @@ Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For
 NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Game_ID) 
 
 write.csv(NCAAF_Level_One, "NCAAF_Level_One.csv")
+write.csv(ids, "Team_IDs.csv")
 
 Played <- Schedule %>% filter(Played == TRUE)
 length(unique(Played$Game_ID)) * 2 == nrow(Played)
