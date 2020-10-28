@@ -279,6 +279,18 @@ Name_Mapping$dup[1] <- FALSE
 
 Name_Mapping <- Name_Mapping %>% filter(dup == FALSE) %>% select(-dup)
 
+Name_Mapping[Name_Mapping$Name == "ucf", "Name"] <- "UCF"
+
+Name_Mapping[Name_Mapping$Name == "UTSA", "Name"] <- "UT San Antonio"
+
+Name_Mapping[Name_Mapping$Name == "Smu", "Name"] <- "SMU"
+
+Name_Mapping[Name_Mapping$Name == "Unlv", "Name"] <- "UNLV"
+
+Name_Mapping[Name_Mapping$Name == "Louisiana-Monroe", "Name"] <- "UL Monroe"
+
+Name_Mapping[Name_Mapping$Team_ID == "23" & !is.na(Name_Mapping$Team_ID), "Name"] <- "San Jose St"
+
 Name_Mapping_NA <- Name_Mapping %>% filter(is.na(Team_ID))
 Name_Mapping <- Name_Mapping %>% filter(!is.na(Team_ID))
 
@@ -292,15 +304,39 @@ Name_Mapping <- Name_Mapping %>% filter(dup == FALSE) %>% select(-dup)
 
 Name_Mapping <- rbind(Name_Mapping, Name_Mapping_NA)
 
-Schedule <- Schedule %>% left_join(Name_Mapping %>% select(Name, Team_ID), by = c("Team_ID" = "Team_ID"))
+Name_Mapping <- Name_Mapping %>% left_join(ids %>% select(ID, FBS), by = c("Team_ID" = "ID"))
+
+# Update Team Name
+Schedule <- Schedule %>% left_join(Name_Mapping %>% filter(!is.na(Team_ID)) %>% select(Name, Team_FBS = FBS, Team_ID), by = c("Team_ID" = "Team_ID"))
 
 Schedule$Team <- Schedule$Name
 
 Schedule$Name <- NULL
 
-Schedule <- Schedule %>% left_join(Name_Mapping %>% select(Name, Name_ID), by = c("Team" = "Name"))
+Schedule <- Schedule %>% left_join(Name_Mapping %>% filter(!is.na(Team_ID)) %>% select(Name, Name_ID), by = c("Team" = "Name"))
 
-Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Played, Home, Neutral_Location, OT, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID)
+# Update Opp Team Name
+Schedule <- Schedule %>% left_join(Name_Mapping %>% filter(!is.na(Team_ID)) %>% select(Name, Opp_FBS = FBS, Team_ID), by = c("Opp_ID" = "Team_ID"))
+
+Schedule$Opponent <- Schedule$Name
+
+Schedule$Name <- NULL
+
+# Correct FBS for teams with no ID
+Schedule <- Schedule %>% mutate(
+  Opp_FBS = ifelse(is.na(Opp_ID), 0, Opp_FBS),
+  Team_FBS = ifelse(is.na(Team_ID), 0, Team_FBS)
+) 
+
+Schedule$FBS <- NULL
+
+# Check for team names
+length(unique(Schedule$Team))
+length(unique(Name_Mapping$Team_ID))
+length(unique(Schedule$Opponent))
+length(unique(Name_Mapping$Name))
+
+Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Played, Home, Neutral_Location, OT, Game_ID, Team_FBS, Opp_FBS, Team_ID, Name_ID, Opp_ID, Opp_Name_ID)
 
 #### Duplicate games with NA in Opp_ID ####
 
@@ -308,9 +344,9 @@ Schedule_Singles <- Schedule %>% group_by(Game_ID) %>% tally() %>% filter(n == 1
 Schedule_Singles <- Schedule_Singles$Game_ID
 
 Schedule_NA <- Schedule %>% filter(Game_ID %in% Schedule_Singles)
-names(Schedule_NA) <- c('Date', 'Season', 'Opponent', 'Team', 'Result', 'Points_For', 'Points_Against', 'Played', 'Home', 'Neutral_Location', 'OT', 'Game_ID', 'Opp_ID', 'Opp_Name_ID', 'Team_ID', 'Name_ID')
+names(Schedule_NA) <- c('Date', 'Season', 'Opponent', 'Team', 'Result', 'Points_For', 'Points_Against', 'Played', 'Home', 'Neutral_Location', 'OT', 'Game_ID', 'Opp_FBS', 'Team_FBS', 'Opp_ID', 'Opp_Name_ID', 'Team_ID', 'Name_ID')
 
-Schedule_NA <- Schedule_NA %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Played, Home, Neutral_Location, OT, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID)
+Schedule_NA <- Schedule_NA %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Played, Home, Neutral_Location, OT, Game_ID, Team_FBS, Opp_FBS, Team_ID, Name_ID, Opp_ID, Opp_Name_ID)
 
 Schedule_NA <- Schedule_NA %>% mutate(
   Result = case_when(
@@ -324,6 +360,7 @@ Schedule_NA <- Schedule_NA %>% mutate(
 Schedule <- rbind(Schedule, Schedule_NA)
 
 Schedule <- Schedule %>% mutate(
+  Date = as.Date(Date, origin = "1970-01-01"),
   Points_For = ifelse(Played, as.numeric(Points_For), 0),
   Points_Against = ifelse(Played, as.numeric(Points_Against), 0),
   points_for_temp = ifelse(Result == "W", Points_For, Points_Against),
@@ -335,13 +372,13 @@ Schedule <- Schedule %>% mutate(
   Home = ifelse(Neutral_Location == TRUE, 0.5, Home)
 )
 
-Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID) %>% 
+Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID) %>% 
   arrange(desc(Played), desc(Date), Game_ID)
 
-NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Game_ID) 
+NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID) 
 
-write.csv(NCAAF_Level_One, "NCAAF_Level_One.csv")
-write.csv(ids, "Team_IDs.csv")
+write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF_Level_One.csv")
+write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/Team_List.csv")
 
 Played <- Schedule %>% filter(Played == TRUE)
 length(unique(Played$Game_ID)) * 2 == nrow(Played)
