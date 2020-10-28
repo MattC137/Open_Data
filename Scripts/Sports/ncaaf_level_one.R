@@ -306,6 +306,10 @@ Name_Mapping <- rbind(Name_Mapping, Name_Mapping_NA)
 
 Name_Mapping <- Name_Mapping %>% left_join(ids %>% select(ID, FBS), by = c("Team_ID" = "ID"))
 
+Name_Mapping <- Name_Mapping %>% mutate(
+  FBS = ifelse(is.na(FBS), 0, FBS)
+)
+
 # Update Team Name
 Schedule <- Schedule %>% left_join(Name_Mapping %>% filter(!is.na(Team_ID)) %>% select(Name, Team_FBS = FBS, Team_ID), by = c("Team_ID" = "Team_ID"))
 
