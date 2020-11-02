@@ -377,12 +377,12 @@ Schedule <- Schedule %>% mutate(
 )
 
 Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID) %>% 
-  arrange(desc(Played), desc(Date), Game_ID)
+  arrange(desc(Played), desc(Date), Game_ID) %>% filter(complete.cases(.))
 
 NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID) 
 
-write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF_Level_One.csv")
-write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/Team_List.csv")
+write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF_Level_One.csv", row.names = F)
+write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/Team_List.csv", row.names = F)
 
 Played <- Schedule %>% filter(Played == TRUE)
 length(unique(Played$Game_ID)) * 2 == nrow(Played)
