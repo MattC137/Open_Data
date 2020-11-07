@@ -68,8 +68,6 @@ while(nrow(ids_temp) > 0){
       }else(
         schedule_ids$FBS <- 0
       )
-  
-  
     
       ##
       
@@ -111,10 +109,10 @@ while(nrow(ids_temp) > 0){
             Result = case_when(
               str_detect(Result, "W") & str_detect(Result, "-") ~ "W",
               str_detect(Result, "L") & str_detect(Result, "-") ~ "L",
-              str_detect(Result, "D") & str_detect(Result, "-") ~ "D",
+              str_detect(Result, "T") & str_detect(Result, "-") ~ "T",
               TRUE ~ "TBD"
             ),
-            Played = ifelse(Result %in% c("W", "L", "D"), "TRUE", "FALSE"),
+            Played = ifelse(Result %in% c("W", "L", "T"), "TRUE", "FALSE"),
             Neutral_Location = ifelse(str_detect(Opponent, "\\*"), TRUE, FALSE),
             Opponent = str_replace(Opponent, " \\*", ""),
             Opponent = str_replace(Opponent, "\\*", ""),
@@ -378,6 +376,23 @@ Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For
   arrange(desc(Played), desc(Date), Game_ID) %>% filter(complete.cases(.))
 
 NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID) 
+
+# Rename again....
+
+NCAAF_Level_One[NCAAF_Level_One$Team == "ucf", "Team"] <- "UCF"
+NCAAF_Level_One[NCAAF_Level_One$Opponent == "ucf", "Opponent"] <- "UCF"
+
+NCAAF_Level_One[NCAAF_Level_One$Team == "UTSA", "Team"] <- "UT San Antonio"
+NCAAF_Level_One[NCAAF_Level_One$Opponent == "UTSA", "Opponent"] <- "UT San Antonio"
+
+NCAAF_Level_One[NCAAF_Level_One$Team == "Smu", "Team"] <- "SMU"
+NCAAF_Level_One[NCAAF_Level_One$Opponent == "Smu", "Opponent"] <- "SMU"
+
+NCAAF_Level_One[NCAAF_Level_One$Team == "Unlv", "Team"] <- "UNLV"
+NCAAF_Level_One[NCAAF_Level_One$Opponent == "Unlv", "Opponent"] <- "UNLV"
+
+NCAAF_Level_One[NCAAF_Level_One$Team == "Louisiana-Monroe", "Team"] <- "UL Monroe"
+NCAAF_Level_One[NCAAF_Level_One$Opponent == "Louisiana-Monroe", "Opponent"] <- "UL Monroe"
 
 write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Level_One.csv", row.names = F)
 write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Team_List.csv", row.names = F)
