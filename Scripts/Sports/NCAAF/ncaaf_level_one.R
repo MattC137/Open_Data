@@ -4,8 +4,6 @@ library(stringr)
 library(rvest)
 library(lubridate)
 
-setwd("~/GitHub/Open_Data/Scripts/Sports")
-
 ncaaf <- read_html("https://www.espn.com/college-football/teams")
 
 ids <- ncaaf %>% str_extract_all('(?<=href="/college-football/team/_/id/)(.*?)(?="><img class=")') %>% unlist()
@@ -381,8 +379,8 @@ Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For
 
 NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID) 
 
-write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF_Level_One.csv", row.names = F)
-write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/Team_List.csv", row.names = F)
+write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Level_One.csv", row.names = F)
+write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Team_List.csv", row.names = F)
 
 Played <- Schedule %>% filter(Played == TRUE)
 length(unique(Played$Game_ID)) * 2 == nrow(Played)
