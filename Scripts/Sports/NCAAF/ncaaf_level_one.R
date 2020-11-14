@@ -275,7 +275,7 @@ Name_Mapping$dup[1] <- FALSE
 
 Name_Mapping <- Name_Mapping %>% filter(dup == FALSE) %>% select(-dup)
 
-Name_Mapping[Name_Mapping$Name == "ucf", "Name"] <- "UCF"
+Name_Mapping[Name_Mapping$Name == "Ucf", "Name"] <- "UCF"
 
 Name_Mapping[Name_Mapping$Name == "UTSA", "Name"] <- "UT San Antonio"
 
@@ -369,7 +369,7 @@ Schedule <- Schedule %>% mutate(
   Points_Against = points_against_temp,
   Spread = Points_For - Points_Against,
   Home = ifelse(Home, 1, 0),
-  Home = ifelse(Neutral_Location == TRUE, 0.5, Home)
+  # Home = ifelse(Neutral_Location == TRUE, 0.5, Home)
 )
 
 Schedule <- Schedule %>% select(Date, Season, Team, Opponent, Result, Points_For, Points_Against, Spread, Played, Home, Neutral_Location, OT, Team_FBS, Opp_FBS, Game_ID, Team_ID, Name_ID, Opp_ID, Opp_Name_ID) %>% 
@@ -379,8 +379,8 @@ NCAAF_Level_One <- Schedule %>% select(Date, Season, Team, Opponent, Result, Poi
 
 # Rename again....
 
-NCAAF_Level_One[NCAAF_Level_One$Team == "ucf", "Team"] <- "UCF"
-NCAAF_Level_One[NCAAF_Level_One$Opponent == "ucf", "Opponent"] <- "UCF"
+NCAAF_Level_One[NCAAF_Level_One$Team == "Ucf", "Team"] <- "UCF"
+NCAAF_Level_One[NCAAF_Level_One$Opponent == "Ucf", "Opponent"] <- "UCF"
 
 NCAAF_Level_One[NCAAF_Level_One$Team == "UTSA", "Team"] <- "UT San Antonio"
 NCAAF_Level_One[NCAAF_Level_One$Opponent == "UTSA", "Opponent"] <- "UT San Antonio"
@@ -394,13 +394,15 @@ NCAAF_Level_One[NCAAF_Level_One$Opponent == "Unlv", "Opponent"] <- "UNLV"
 NCAAF_Level_One[NCAAF_Level_One$Team == "Louisiana-Monroe", "Team"] <- "UL Monroe"
 NCAAF_Level_One[NCAAF_Level_One$Opponent == "Louisiana-Monroe", "Opponent"] <- "UL Monroe"
 
+NCAAF_Level_One <- NCAAF_Level_One %>% filter(Game_ID != "Postponed", Game_ID != "Canceled", )
+
 write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Level_One.csv", row.names = F)
 write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Team_List.csv", row.names = F)
 
 Played <- Schedule %>% filter(Played == TRUE)
 length(unique(Played$Game_ID)) * 2 == nrow(Played)
 
-
+# cd GitHub/Open_Data/Data/Sports/NCAAF
 # git add .
 # git commit -m "NCAAF Update"
 # git push origin master
