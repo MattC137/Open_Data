@@ -25,7 +25,7 @@ ncaaf_l1 <- ncaaf_l1 %>% mutate(
   Pass_Att = 0,
   Yards_Per_Pass = 0,
   Interceptions_Thrown = 0,
-  Rushing = 0,
+  Rushing_Yards = 0,
   Rushing_Att = 0,
   Yards_Per_Rush = 0,
   Penalties = 0,
@@ -48,7 +48,7 @@ ncaaf_l1 <- ncaaf_l1 %>% mutate(
   Pass_Att_Against = 0,
   Yards_Per_Pass_Against = 0,
   Interceptions_Thrown_Against = 0,
-  Rushing_Against = 0,
+  Rushing_Yards_Against = 0,
   Rushing_Att_Against = 0,
   Yards_Per_Rush_Against = 0,
   Penalties_Against = 0,
@@ -56,7 +56,7 @@ ncaaf_l1 <- ncaaf_l1 %>% mutate(
   Turnovers_Against = 0,
   Fumbles_Lost_Against = 0,
   Possession_Against = 0,
-  Possession_Percent_Against = 0,
+  Possession_Percent_Against = 0
 )
 
 # ncaaf_l1 <- ncaaf_l1 %>% filter(Game_ID %in% c(401249405, 401249012, 401212545, 401249861, 401207218, 401207200, 401135295))
@@ -210,8 +210,8 @@ for(i in 1:length(unique(ncaaf_l1$Game_ID))){
     Interceptions_Thrown_Home <- game_stats[game_stats$Stat == "Interceptions thrown", 3] %>% as.numeric()
     Interceptions_Thrown_Away <- game_stats[game_stats$Stat == "Interceptions thrown", 2] %>% as.numeric()
     
-    Rushing_Home <- game_stats[game_stats$Stat == "Rushing", 3] %>% as.numeric()
-    Rushing_Away <- game_stats[game_stats$Stat == "Rushing", 2] %>% as.numeric()
+    Rushing_Yards_Home <- game_stats[game_stats$Stat == "Rushing", 3] %>% as.numeric()
+    Rushing_Yards_Away <- game_stats[game_stats$Stat == "Rushing", 2] %>% as.numeric()
     
     Rushing_Att_Home <- game_stats[game_stats$Stat == "Rushing Attempts", 3] %>% as.numeric()
     Rushing_Att_Away <- game_stats[game_stats$Stat == "Rushing Attempts", 2] %>% as.numeric()
@@ -262,7 +262,7 @@ for(i in 1:length(unique(ncaaf_l1$Game_ID))){
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Pass_Att"] <- ifelse(length(Pass_Att_Home) == 0, 0, Pass_Att_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Yards_Per_Pass"] <- ifelse(length(Yards_Per_Pass_Home) == 0, 0, Yards_Per_Pass_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Interceptions_Thrown"] <- ifelse(length(Interceptions_Thrown_Home[1]) == 0, 0, Interceptions_Thrown_Home[1])
-    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Rushing"] <- ifelse(length(Rushing_Home) == 0, 0, Rushing_Home)
+    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Rushing_Yards"] <- ifelse(length(Rushing_Yards_Home) == 0, 0, Rushing_Yards_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Rushing_Att"] <- ifelse(length(Rushing_Att_Home) == 0, 0, Rushing_Att_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Yards_Per_Rush"] <- ifelse(length(Yards_Per_Rush_Home) == 0, 0, Yards_Per_Rush_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Penalties"] <- ifelse(length(Penalties_Home) == 0, 0, Penalties_Home)
@@ -283,7 +283,7 @@ for(i in 1:length(unique(ncaaf_l1$Game_ID))){
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Pass_Att_Against"] <- ifelse(length(Pass_Att_Away) == 0, 0, Pass_Att_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Yards_Per_Pass_Against"] <- ifelse(length(Yards_Per_Pass_Away) == 0, 0, Yards_Per_Pass_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Interceptions_Thrown_Against"] <- ifelse(length(Interceptions_Thrown_Away[1]) == 0, 0, Interceptions_Thrown_Away[1])
-    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Rushing_Against"] <- ifelse(length(Rushing_Away) == 0, 0, Rushing_Away)
+    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Rushing_Yards_Against"] <- ifelse(length(Rushing_Yards_Away) == 0, 0, Rushing_Yards_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Rushing_Att_Against"] <- ifelse(length(Rushing_Att_Away) == 0, 0, Rushing_Att_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Yards_Per_Rush_Against"] <- ifelse(length(Yards_Per_Rush_Away) == 0, 0, Yards_Per_Rush_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == TRUE, "Penalties_Against"] <- ifelse(length(Penalties_Away) == 0, 0, Penalties_Away)
@@ -306,7 +306,7 @@ for(i in 1:length(unique(ncaaf_l1$Game_ID))){
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Pass_Att"] <- ifelse(length(Pass_Att_Away) == 0, 0, Pass_Att_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Yards_Per_Pass"] <- ifelse(length(Yards_Per_Pass_Away) == 0, 0, Yards_Per_Pass_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Interceptions_Thrown"] <- ifelse(length(Interceptions_Thrown_Away[1]) == 0, 0, Interceptions_Thrown_Away[1])
-    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Rushing"] <- ifelse(length(Rushing_Away) == 0, 0, Rushing_Away)
+    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Rushing_Yards"] <- ifelse(length(Rushing_Yards_Away) == 0, 0, Rushing_Yards_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Rushing_Att"] <- ifelse(length(Rushing_Att_Away) == 0, 0, Rushing_Att_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Yards_Per_Rush"] <- ifelse(length(Yards_Per_Rush_Away) == 0, 0, Yards_Per_Rush_Away)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Penalties"] <- ifelse(length(Penalties_Away) == 0, 0, Penalties_Away)
@@ -327,7 +327,7 @@ for(i in 1:length(unique(ncaaf_l1$Game_ID))){
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Pass_Att_Against"] <- ifelse(length(Pass_Att_Home) == 0, 0, Pass_Att_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Yards_Per_Pass_Against"] <- ifelse(length(Yards_Per_Pass_Home) == 0, 0, Yards_Per_Pass_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Interceptions_Thrown_Against"] <- ifelse(length(Interceptions_Thrown_Home[1]) == 0, 0, Interceptions_Thrown_Home[1])
-    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Rushing_Against"] <- ifelse(length(Rushing_Home) == 0, 0, Rushing_Home)
+    ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Rushing_Yards_Against"] <- ifelse(length(Rushing_Yards_Home) == 0, 0, Rushing_Yards_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Rushing_Att_Against"] <- ifelse(length(Rushing_Att_Home) == 0, 0, Rushing_Att_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Yards_Per_Rush_Against"] <- ifelse(length(Yards_Per_Rush_Home) == 0, 0, Yards_Per_Rush_Home)
     ncaaf_l1[ncaaf_l1$Game_ID == game_id & ncaaf_l1$Home == FALSE, "Penalties_Against"] <- ifelse(length(Penalties_Home) == 0, 0, Penalties_Home)
@@ -376,3 +376,12 @@ sum(Season_2019$Vegas_Result)/nrow(Season_2019)
 View(Season_2019 %>% select())
 
 write.csv(ncaaf_l2, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Level_Two.csv", row.names = F)
+
+termId <- rstudioapi::terminalCreate()
+rstudioapi::terminalSend(termId, paste0('
+                         cd GitHub/Open_Data
+                         git add .
+                         git commit -m "NCAAF Update ', Sys.Date(), '
+                         git push origin master
+                         '))
+
