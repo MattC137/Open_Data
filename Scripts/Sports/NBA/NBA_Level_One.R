@@ -231,4 +231,74 @@ names(opp_team_ids) <- paste0("Opp_", names(opp_team_ids))
 
 Schedule <- Schedule %>% 
   left_join(team_ids, by = c("Team" = "City")) %>% 
-  left_join(opp_team_ids, by = c("Opponent" = "Opp_City"))
+  left_join(opp_team_ids, by = c("Opponent" = "Opp_City")) %>% 
+  filter(complete.cases(.))
+  arrange(Game_Id, Date)
+
+#### Update Level Two Data ####
+
+Schedule <- Schedule %>% mutate(
+  Q1_Points_For = 0,
+  Q2_Points_For = 0,
+  Q3_Points_For = 0,
+  Q4_Points_For = 0,
+  OT_Points_For = 0,
+  Q1_Points_Against = 0,
+  Q2_Points_Against = 0,
+  Q3_Points_Against = 0,
+  Q4_Points_Against = 0,
+  OT_Points_Against = 0
+)
+
+for(i in 1:nrow(Schedule)){
+  # i = 1
+  if(i %% 2 != 0){
+    game_id <- Schedule$Game_Id[i]
+    team_stats_url <- read_html(paste0("https://www.espn.com/nba/matchup?gameId=", game_id))
+    team_stats <- team_stats_url %>% html_nodes("table") %>% html_table()
+    
+    #### Quarter Points ####
+    
+    quarters <- team_stats[[1]]
+    home_team <- quarters[2, 1]
+    away_team <- quarters[1, 1]
+    
+    # First solve which team is home on Neutral games
+    
+    if(Schedule$Neutral[i] == TRUE){
+      Schedule$Home[i] <- ifelse(Schedule$Short_Name[i] == tolower(home_team), 1, 0)
+      Schedule$Home[i+1] <- ifelse(Schedule$Short_Name[i+1] == tolower(home_team), 1, 0)
+    }
+    
+    quarters <- quarters[ , -ncol(quarters)]
+    
+    Schedule$Q1_Points_For[i] <- ifelse(Schedule$Home[i] == TRUE, quarters[2, 2], quarters[1, 2])
+    Schedule$Q2_Points_For[i] <- ifelse(Schedule$Home[i] == TRUE, quarters[2, 3], quarters[1, 3])
+    Schedule$Q3_Points_For[i] <- ifelse(Schedule$Home[i] == TRUE, quarters[2, 4], quarters[1, 4])
+    Schedule$Q4_Points_For[i] <- ifelse(Schedule$Home[i] == TRUE, quarters[2, 5], quarters[1, 5])
+    Schedule$Q1_Points_Against[i] <- ifelse(Schedule$Home[i] == FALSE, quarters[2, 2], quarters[1, 2])
+    Schedule$Q2_Points_Against[i] <- ifelse(Schedule$Home[i] == FALSE, quarters[2, 3], quarters[1, 3])
+    Schedule$Q3_Points_Against[i] <- ifelse(Schedule$Home[i] == FALSE, quarters[2, 4], quarters[1, 4])
+    Schedule$Q4_Points_Against[i] <- ifelse(Schedule$Home[i] == FALSE, quarters[2, 5], quarters[1, 5])
+    
+    if(ncol(quarters) > 5){
+      Schedule$OT_Points_For[i] <- ifelse(Schedule$Home[i] == TRUE, sum(quarters[2, c(6:ncol(quarters))]), sum(quarters[1, c(6:ncol(quarters))]))
+      Schedule$OT_Points_Against[i] <- ifelse(Schedule$Home[i] == FALSE, sum(quarters[2, c(6:ncol(quarters))]), sum(quarters[1, c(6:ncol(quarters))]))
+    }
+
+    Schedule$Q1_Points_For[i+1] <- ifelse(Schedule$Home[i+1] == TRUE, quarters[2, 2], quarters[1, 2])
+    Schedule$Q2_Points_For[i+1] <- ifelse(Schedule$Home[i+1] == TRUE, quarters[2, 3], quarters[1, 3])
+    Schedule$Q3_Points_For[i+1] <- ifelse(Schedule$Home[i+1] == TRUE, quarters[2, 4], quarters[1, 4])
+    Schedule$Q4_Points_For[i+1] <- ifelse(Schedule$Home[i+1] == TRUE, quarters[2, 5], quarters[1, 5])
+    Schedule$Q1_Points_Against[i+1] <- ifelse(Schedule$Home[i+1] == FALSE, quarters[2, 2], quarters[1, 2])
+    Schedule$Q2_Points_Against[i+1] <- ifelse(Schedule$Home[i+1] == FALSE, quarters[2, 3], quarters[1, 3])
+    Schedule$Q3_Points_Against[i+1] <- ifelse(Schedule$Home[i+1] == FALSE, quarters[2, 4], quarters[1, 4])
+    Schedule$Q4_Points_Against[i+1] <- ifelse(Schedule$Home[i+1] == FALSE, quarters[2, 5], quarters[1, 5])
+    
+    if(ncol(quarters) > 5){
+      Schedule$OT_Points_For[i+1] <- ifelse(Schedule$Home[i+1] == TRUE, sum(quarters[2, c(6:ncol(quarters))]), sum(quarters[1, c(6:ncol(quarters))]))
+      Schedule$OT_Points_Against[i+1] <- ifelse(Schedule$Home[i+1] == FALSE, sum(quarters[2, c(6:ncol(quarters))]), sum(quarters[1, c(6:ncol(quarters))]))
+    }
+    
+  }
+}
