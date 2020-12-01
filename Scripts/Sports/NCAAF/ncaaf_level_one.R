@@ -402,7 +402,3 @@ write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documen
 Played <- Schedule %>% filter(Played == TRUE)
 length(unique(Played$Game_ID)) * 2 == nrow(Played)
 
-# cd GitHub/Open_Data
-# git add .
-# git commit -m "NCAAF Update 2020-11-15"
-# git push origin master

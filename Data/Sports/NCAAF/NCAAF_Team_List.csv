@@ -1,37 +1,21 @@
 "Team","FBS"
 "Boston College",1
-"Holy Cross",0
-"Harvard",0
-"Northeastern",0
-"Long Island University",0
 "UMass",1
-"Towson",0
 "Arizona",1
 "Maryland",1
 "Michigan State",1
-"Cal Poly",0
 "Michigan",1
 "Minnesota",1
 "Missouri",1
 "Ole Miss",1
-"Montana State",0
-"Montana",0
 "Duke",1
 "East Carolina",1
 "NC State",1
 "North Carolina",1
 "Wake Forest",1
-"North Dakota",0
 "Nebraska",1
-"Dartmouth",0
-"Sacramento State",0
-"New Hampshire",0
-"Princeton",0
 "Rutgers",1
-"New Mexico State",1
 "New Mexico",1
-"Columbia",0
-"Cornell",0
 "Syracuse",1
 "Bowling Green",1
 "Miami (OH)",1
@@ -43,214 +27,105 @@
 "Air Force",1
 "Akron",1
 "Oklahoma",1
-"Alabama A&M",0
-"Alabama State",0
-"Alcorn State",0
 "Tulsa",1
 "Appalachian State",1
-"Arkansas-Pine Bluff",0
 "Arkansas State",1
 "Oregon State",1
 "Austin Peay",0
 "Ball State",1
-"Bethune-Cookman",0
-"Bucknell",0
 "Buffalo",1
-"Butler",0
 "Campbell",0
-"Canisius",0
 "San Diego State",1
-"Carroll (MT)",0
 "Central Arkansas",0
-"Central Connecticut",0
 "UCF",1
 "Central Michigan",1
-"Charleston Southern",0
 "Penn State",1
 "Cincinnati",1
-"Colgate",0
-"Davidson",0
-"Dayton",0
-"Delaware State",0
 "Temple",1
-"Drake",0
-"Duquesne",0
-"Penn",0
-"East Tenn. St.",0
-"Eastern Illinois",0
 "Eastern Kentucky",0
 "Eastern Michigan",1
 "Pittsburgh",1
-"Elon",0
-"Fairfield",0
-"Villanova",0
 "Florida Atlantic",1
 "Florida International",1
-"Fordham",0
 "Gardner-Webb",0
-"Georgetown (KY)",0
 "Georgia State",1
-"Brown",0
-"Hampton",0
-"Rhode Island",0
-"Hofstra",0
 "Houston Baptist",0
 "Clemson",1
-"Illinois State",0
 "Iowa",1
-"Jackson State",0
 "San Jose St",1
 "Kansas",1
 "Kansas State",1
 "Kent State",1
-"Furman",0
-"Lamar",0
-"La Salle",0
-"Lehigh",0
-"South Dakota",0
 "Liberty",1
 "Louisiana Tech",1
 "Memphis",1
 "Chattanooga",0
-"Marist",0
-"McNeese",0
 "Vanderbilt",1
 "Mercer",0
 "Baylor",1
 "Miami",1
 "Middle Tennessee",1
 "Stanford",1
-"Mississippi Valley State",0
-"Monmouth",0
-"Morehead State",0
-"Morgan State",0
 "Rice",1
 "Navy",1
-"NC Central",0
 "Charlotte",1
 "UL Monroe",1
 "UNLV",1
 "Nevada",1
-"Nicholls",0
-"North Carolina A&T",0
 "North Dakota State",0
 "Texas A&M",1
-"Norfolk State",0
 "North Alabama",0
-"Northern Colorado",0
 "Northern Illinois",1
-"Northern Iowa",0
-"CS-Northridge",0
-"Northern Arizona",0
-"Northwestern State",0
 "Houston",1
 "Oregon",1
 "North Texas",1
 "California",1
-"Portland State",0
-"Prairie View",0
-"Presbyterian",0
 "Purdue",1
 "Texas",1
 "BYU",1
-"Robert Morris",0
-"Sacred Heart",0
-"Southern Utah",0
-"Sam Houston State",0
-"Samford",0
 "Utah",1
-"SE Louisiana",0
-"Southeast Missouri State",0
-"James Madison",0
-"Siena",0
 "SMU",1
-"South Carolina State",0
-"Richmond",0
-"South Dakota State",0
 "Southern Mississippi",1
 "South Carolina",1
 "Virginia",1
-"Southern",0
 "Virginia Tech",1
-"St. Cloud State",0
-"St Francis (PA)",0
-"St. John's",0
 "UCLA",1
-"St. Mary's (CA)",0
-"Stephen F Austin",0
-"Stony Brook",0
+"Stephen F. Austin",0
 "Missouri State",0
 "TCU",1
-"Tennessee-Martin",0
 "Tennessee",1
-"Tennessee State",0
-"Tennessee Tech",0
 "UT San Antonio",1
 "UTEP",1
 "Washington",1
-"Texas Southern",0
 "Texas Tech",1
-"Citadel",0
+"The Citadel",0
 "Toledo",1
 "Washington State",1
 "Troy",1
 "Tulane",1
-"Valparaiso",0
-"Virginia Military Institute",0
-"Wagner",0
-"Weber State",0
-"Montana-Western",0
-"Western Illinois",0
 "Western Michigan",1
 "Western Carolina",0
-"William & Mary",0
-"Wofford",0
 "Wisconsin",1
 "Wyoming",1
-"Youngstown State",0
-"Grambling",0
 "Marshall",1
 "West Virginia",1
-"Merrimack",0
 "Fresno State",1
-"Bryant",0
-"Indiana State",0
 "Georgia Southern",1
 "Incarnate Word",0
-"Jacksonville",0
-"Old Dominion",1
 "USC",1
-"San Diego",0
-"UC Davis",0
-"Idaho State",0
 "Louisiana",1
-"Maine",0
-"Iona",0
-"Lafayette",0
 "Coastal Carolina",1
 "Texas State",1
 "Utah State",1
-"Eastern Washington",0
 "Alabama",1
-"Kennesaw State",0
 "Mississippi State",1
 "Army",1
 "Illinois",1
 "Colorado State",1
 "Colorado",1
-"Albany",0
-"Connecticut",1
-"Yale",0
-"Georgetown",0
-"Howard",0
-"Delaware",0
 "UAB",1
-"Florida A&M",0
 "Florida State",1
-"Florida Tech",0
 "Jacksonville State",0
-"Stetson",0
-"Montana State-Northern",0
 "Florida",1
 "South Florida",1
 "Georgia Tech",1
@@ -259,324 +134,18 @@
 "Hawai'i",1
 "Iowa State",1
 "Boise State",1
-"Idaho",0
 "Northwestern",1
-"Southern Illinois",0
 "Arkansas",1
 "Indiana",1
 "Notre Dame",1
 "Arizona State",1
-"Murray State",0
 "Kentucky",1
 "Louisville",1
 "Western Kentucky",1
 "LSU",1
-"Adams State",0
-"Albany State (GA)",0
-"Albion",0
-"Alderson-Broaddus",0
-"Allen",0
-"American International",0
 "Angelo State",0
-"Apprentice School",0
 "Arizona Christian",0
-"Arkansas-Monticello",0
-"Arkansas Tech",0
-"Assumption",0
-"Augustana (SD)",0
-"Augustana University (SD)",0
-"Aurora",0
-"Ave Maria",0
-"Azusa Pacific",0
-"Bacone College",0
-"Baker University",0
-"Belhaven University",0
-"Bemidji State",0
-"Benedict College",0
-"Bentley",0
-"Berry College",0
-"Bethany (KS)",0
-"Bethel (TN)",0
-"Birmingham-Southern",0
-"Black Hills State",0
-"Bloomsburg",0
-"Bluefield College",0
-"Bowie State",0
-"Brevard College",0
-"Buffalo State",0
-"California (PA)",0
-"Campbellsville",0
-"Carnegie Mellon",0
-"Carson-Newman",0
-"Carthage",0
-"Catawba",0
-"Catholic University",0
-"Central Methodist",0
-"Central Missouri State",0
-"Central Oklahoma",0
-"Central State",0
-"Central State (OH)",0
-"Central Washington",0
-"Centre",0
-"Chadron State",0
-"Chapman University",0
-"Charleston (WV)",0
-"Cheyney",0
-"Chowan",0
-"Clarion",0
-"Clark Atlanta",0
-"College of Faith",0
-"College of Faith - Charlotte",0
-"College of Idaho",0
-"College of New Jersey",0
-"Colorado Mesa",0
-"Colorado School of Mines",0
-"Colorado State-Pueblo",0
-"Concord",0
-"Concordia-St. Paul",0
-"Concordia (AL)",0
-"Concordia (WI)",0
-"Concordia College (MI)",0
-"Culver-Stockton",0
-"Cumberland",0
-"Cumberland College",0
-"Delaware Valley",0
-"Delta State",0
-"Dixie State",0
-"East Central",0
-"East Stroudsburg",0
-"Eastern New Mexico",0
-"Eastern Oregon",0
-"Edinboro",0
-"Edward Waters",0
-"Elizabeth City State",0
-"Emory & Henry",0
-"Emporia State",0
-"Evangel",0
-"Fairmont State",0
-"Faulkner",0
-"Fayetteville State",0
-"Ferris State",0
-"Fort Lewis",0
-"Fort Valley State",0
-"Franklin",0
-"Franklin Pierce",0
-"Frostburg State",0
-"Gannon",0
-"Geneva College",0
-"Glenville State",0
-"Grand Valley State",0
-"Grand View",0
-"Greensboro College",0
-"Guilford",0
-"Hampden-Sydney",0
-"Hanover",0
-"Harding",0
-"Hartwick",0
-"Henderson State",0
-"Hillsdale",0
-"Hope",0
-"Humboldt State",0
-"Huntingdon",0
-"Husson",0
-"Indiana Wesleyan",0
-"Indianapolis",0
-"Iowa Wesleyan",0
-"Johnson C Smith",0
-"Johnson Smith",0
-"Kalamazoo",0
-"Kean University",0
-"Kentucky Christian",0
-"Kentucky State",0
-"Kentucky Wesleyan",0
-"La Verne",0
-"Lambuth",0
-"Lane",0
-"Lane College",0
-"Langston",0
-"Lenoir-Rhyne",0
-"Limestone",0
-"Lincoln (MO)",0
-"Lincoln (PA)",0
-"Lindenwood",0
-"Lindsey Wilson",0
-"Linfield",0
-"LIU Post",0
-"Livingstone",0
-"Lock Haven",0
-"Louisiana College",0
-"Lynchburg",0
-"Malone",0
-"Mansfield",0
-"Marian",0
-"Mars Hill",0
-"Maryville TN",0
-"Mayville State",0
-"McDaniel College",0
-"McKendree",0
-"McMurry",0
-"Menlo",0
-"Menlo College",0
-"Mercyhurst",0
-"Methodist",0
-"Mid-America Nazarene",0
-"Midwestern State",0
-"Miles",0
-"Miles College",0
-"Millersville",0
-"Millersville University",0
-"Minnesota-Crookston",0
-"Minnesota-Duluth",0
-"Minnesota St-Moorhead",0
-"Minnesota State",0
-"Minot State",0
-"Mississippi College",0
-"Missouri Baptist",0
-"Missouri S&T",0
 "Missouri Western",0
-"Montana Tech",0
-"Montclair State",0
-"Monterrey Tech",0
-"Morehouse",0
-"Morehouse College",0
-"Morris Brown",0
-"Mount St. Joseph",0
-"NC Wesleyan",0
-"Nebraska-Kearney",0
-"Nebraska-Omaha",0
-"New Haven",0
-"New Mexico Highlands",0
-"Newberry",0
-"North Greenville",0
-"Northeastern State",0
-"Northern Michigan",0
-"Northern State",0
-"Northwest Missouri State",0
-"Northwestern Oklahoma State",0
-"Notre Dame College",0
-"Ohio Dominican",0
-"Ohio Northern",0
-"OK Panhandle St",0
-"Oklahoma Baptist",0
-"Oklahoma Panhandle State",0
-"Ouachita Baptist",0
-"Pace",0
-"Paul Quinn",0
-"Pikeville",0
 "Pittsburg State",0
-"Point University",0
-"Quincy",0
-"Randolph-Macon",0
-"Redlands",0
-"Reinhardt",0
-"Rhodes",0
-"Rhodes College",0
-"Rocky Mountain",0
-"Rowan",0
-"Salve Regina",0
-"Savannah State",0
-"Shaw",0
-"Shepherd",0
-"Shippensburg",0
-"Shorter",0
-"Simon Fraser",0
-"Sioux Falls",0
-"Slippery Rock",0
-"South Dakota Mines",0
-"Southeastern Oklahoma",0
-"Southern Arkansas",0
-"Southern Connecticut State",0
-"Southern Oregon",0
-"Southern Virginia",0
-"Southwest Baptist",0
-"Southwest Minnesota State",0
-"Southwestern Assemblies of God",0
-"Southwestern College",0
-"Southwestern Oklahoma",0
-"St. Ambrose",0
-"St. Andrews",0
-"St. Anselm",0
-"St. Augustine's",0
-"St. Francis (IL)",0
-"St. Francis (IN)",0
-"St. Joseph's (IN)",0
-"St. Paul's College",0
-"St. Peter's",0
-"St. Xavier (IL)",0
-"Stillman",0
-"Stonehill",0
-"Stonehill College",0
-"SUNY Maritime",0
-"Tarleton State",0
-"Taylor",0
-"Texas A&M-Commerce",0
-"Texas A&M-Kingsville",0
-"Texas College",0
-"Texas Lutheran",0
-"Texas Wesleyan",0
-"Tiffin",0
-"Tiffin University",0
-"Trinity International (IL)",0
-"Truman State",0
-"Tusculum",0
-"Tuskegee",0
-"UNC Pembroke",0
-"Union College",0
-"University of Faith",0
-"University of Mary",0
-"University of Texas of the Permian Basin",0
-"Upper Iowa",0
-"Urbana",0
-"Ursinus",0
-"Ursinus College",0
-"UVA-Wise",0
-"UVA Wise",0
-"UW-Oshkosh",0
-"UW-Whitewater",0
-"Valdosta State",0
-"Virginia-Wise",0
-"Virginia Lynchburg",0
-"Virginia State",0
-"Virginia Union",0
-"Waldorf",0
-"Walsh",0
-"Warner",0
-"Washburn",0
-"Wayland Baptist",0
-"Wayne State (MI)",0
-"Wayne State (NE)",0
-"Webber International",0
-"Wesley College",0
-"West Alabama",0
-"West Chester",0
-"West Florida",0
-"West Georgia",0
-"West Liberty",0
 "West Texas A&M",0
-"West Virginia State",0
-"West Virginia Tech",0
-"West Virginia Wesleyan",0
 "Western Colorado",0
-"Western Connecticut State",0
-"Western New England",0
-"Western New Mexico",0
-"Western Oregon",0
-"Western State",0
-"Western State Colorado",0
-"Western Washington",0
-"Willamette",0
-"William Jewell College",0
-"William Penn",0
-"Wingate",0
-"Winona State",0
-"Winston-Salem",0
-"Wisconsin-Eau Claire",0
-"Wisconsin-La Crosse",0
-"Wisconsin-Platteville",0
-"Wisconsin-Stevens Point",0
-"Wisconsin Lutheran",0
-"Wittenberg",0
-"Wittenberg University",0
-"Worcester Polytechnic",0
-"WV State",0
-"WV Wesleyan",0
