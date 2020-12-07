@@ -1,31 +1,31 @@
 Short_Name,Team_ID,Conference,City,Team_Name
-atl,atlanta-hawks,Southeast,Atlanta,Hawks
-bkn,brooklyn-nets,Atlantic,Brooklyn,Nets
-bos,boston-celtics,Atlantic,Boston,Celtics
-cha,charlotte-hornets,Southeast,Charlotte,Hornets
-chi,chicago-bulls,Central,Chicago,Bulls
-cle,cleveland-cavaliers,Central,Cleveland,Cavaliers
-dal,dallas-mavericks,Southwest,Dallas,Mavericks
-den,denver-nuggets,Northwest,Denver,Nuggets
-det,detroit-pistons,Central,Detroit,Pistons
-gs,golden-state-warriors,Pacific,Golden State,Warriors
-hou,houston-rockets,Southwest,Houston,Rockets
-ind,indiana-pacers,Central,Indiana,Pacers
-lac,la-clippers,Pacific,LA,Clippers
-lal,los-angeles-lakers,Pacific,Los Angeles,Lakers
-mem,memphis-grizzlies,Southwest,Memphis,Grizzlies
-mia,miami-heat,Southeast,Miami,Heat
-mil,milwaukee-bucks,Central,Milwaukee,Bucks
-min,minnesota-timberwolves,Northwest,Minnesota,Timberwolves
-no,new-orleans-pelicans,Southwest,New Orleans,Pelicans
-ny,new-york-knicks,Atlantic,New York,Knicks
-okc,oklahoma-city-thunder,Northwest,Oklahoma City,Thunder
-orl,orlando-magic,Southeast,Orlando,Magic
-phi,philadelphia-76ers,Atlantic,Philadelphia,76ers
-phx,phoenix-suns,Pacific,Phoenix,Suns
-por,portland-trail-blazers,Northwest,Portland Trail,Blazers
-sa,san-antonio-spurs,Southwest,San Antonio,Spurs
-sac,sacramento-kings,Pacific,Sacramento,Kings
-tor,toronto-raptors,Atlantic,Toronto,Raptors
-utah,utah-jazz,Northwest,Utah,Jazz
-wsh,washington-wizards,Southeast,Washington,Wizards
+ATL,atlanta-hawks,Southeast,Atlanta,Hawks
+BKN,brooklyn-nets,Atlantic,Brooklyn,Nets
+BOS,boston-celtics,Atlantic,Boston,Celtics
+CHA,charlotte-hornets,Southeast,Charlotte,Hornets
+CHI,chicago-bulls,Central,Chicago,Bulls
+CLE,cleveland-cavaliers,Central,Cleveland,Cavaliers
+DAL,dallas-mavericks,Southwest,Dallas,Mavericks
+DEN,denver-nuggets,Northwest,Denver,Nuggets
+DET,detroit-pistons,Central,Detroit,Pistons
+GS,golden-state-warriors,Pacific,Golden State,Warriors
+HOU,houston-rockets,Southwest,Houston,Rockets
+IND,indiana-pacers,Central,Indiana,Pacers
+LAC,la-clippers,Pacific,LA,Clippers
+LAL,los-angeles-lakers,Pacific,Los Angeles,Lakers
+MEM,memphis-grizzlies,Southwest,Memphis,Grizzlies
+MIA,miami-heat,Southeast,Miami,Heat
+MIL,milwaukee-bucks,Central,Milwaukee,Bucks
+MIN,minnesota-timberwolves,Northwest,Minnesota,Timberwolves
+NO,new-orleans-pelicans,Southwest,New Orleans,Pelicans
+NY,new-york-knicks,Atlantic,New York,Knicks
+OKC,oklahoma-city-thunder,Northwest,Oklahoma City,Thunder
+ORL,orlando-magic,Southeast,Orlando,Magic
+PHI,philadelphia-76ers,Atlantic,Philadelphia,76ers
+PHX,phoenix-suns,Pacific,Phoenix,Suns
+POR,portland-trail-blazers,Northwest,Portland,Trail Blazers
+SA,san-antonio-spurs,Southwest,San Antonio,Spurs
+SAC,sacramento-kings,Pacific,Sacramento,Kings
+TOR,toronto-raptors,Atlantic,Toronto,Raptors
+UTAH,utah-jazz,Northwest,Utah,Jazz
+WSH,washington-wizards,Southeast,Washington,Wizards
