@@ -120,7 +120,7 @@ for(i in 1:nrow(team_ids)){
           while(!end_while){
             
             if(j > 2){
-              # Sys.sleep(100)
+              Sys.sleep(100)
             }
             
             team_schedule_url <- try({read_html(paste0("https://www.espn.com/nba/team/schedule/_/name/", short_name, "/season/", season, "/seasontype/", season_type))})
@@ -297,7 +297,7 @@ names(opp_team_ids) <- paste0("Opp_", names(opp_team_ids))
 Schedule <- Schedule %>% 
   left_join(team_ids, by = c("Team" = "City")) %>% 
   left_join(opp_team_ids, by = c("Opponent" = "Opp_City")) %>% 
-  filter(!complete.cases(.)) %>% 
+  filter(complete.cases(.)) %>% 
   arrange(Game_Id, Date)
 
 #### Update Level Two Data ####
@@ -426,8 +426,8 @@ for(i in 1:nrow(Schedule)){
       # First solve which team is home on Neutral games
       
       if(Schedule$Neutral[i] == TRUE){
-        Schedule$Home[i] <- ifelse(Schedule$Short_Name[i] == tolower(home_team), 1, 0)
-        Schedule$Home[i+1] <- ifelse(Schedule$Short_Name[i+1] == tolower(home_team), 1, 0)
+        Schedule$Home[i] <- ifelse(Schedule$Short_Name[i] == home_team, 1, 0)
+        Schedule$Home[i+1] <- ifelse(Schedule$Short_Name[i+1] == home_team, 1, 0)
       }
       
       quarters <- quarters[ , -ncol(quarters)]
@@ -461,6 +461,8 @@ for(i in 1:nrow(Schedule)){
       }
       
       #### Team Stats ####
+      
+      print("Team Stats")
       
       # cols 32:51/52:71
       
@@ -511,8 +513,8 @@ for(i in 1:nrow(Schedule)){
       Schedule[i, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
       Schedule[i+1, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
       
-      Schedule[i, "Correct_Line"] <- ifelse((Schedule[i, "Short_Name"] == tolower(line_favored) & Schedule[i, "Result"] == "W") | (Schedule[i, "Short_Name"] != tolower(line_favored) & Schedule[i, "Result"] == "L"), 1, 0)
-      Schedule[i+1, "Correct_Line"] <- ifelse((Schedule[i+1, "Short_Name"] == tolower(line_favored) & Schedule[i+1, "Result"] == "W") | (Schedule[i+1, "Short_Name"] != tolower(line_favored) & Schedule[i+1, "Result"] == "L"), 1, 0)
+      Schedule[i, "Correct_Line"] <- ifelse((Schedule[i, "Short_Name"] == line_favored & Schedule[i, "Result"] == "W") | (Schedule[i, "Short_Name"] != line_favored & Schedule[i, "Result"] == "L"), 1, 0)
+      Schedule[i+1, "Correct_Line"] <- ifelse((Schedule[i+1, "Short_Name"] == line_favored & Schedule[i+1, "Result"] == "W") | (Schedule[i+1, "Short_Name"] != line_favored & Schedule[i+1, "Result"] == "L"), 1, 0)
       
       # Schedule[i, "Spread_Winner"] <- ifelse((Schedule[i, "Short_Name"] == tolower(line_favored) & Schedule[i, "Result"] == "W") | (Schedule[i, "Short_Name"] != tolower(line_favored) & Schedule[i, "Result"] == "L"), 1, 0)
       # Schedule[i+1, "Spread_Winner"] <- line_amount
@@ -524,6 +526,8 @@ for(i in 1:nrow(Schedule)){
   }
   
   #### Box Scores ####
+  
+  print("Box Scores")
   
   ### TRY 3 TIMES
   end_while <- FALSE
