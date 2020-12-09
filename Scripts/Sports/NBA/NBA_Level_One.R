@@ -61,7 +61,7 @@ for(i in 1:nrow(team_ids)){
         while(!end_while){
           
           if(j > 2){
-            Sys.sleep(100)
+            Sys.sleep(300)
           }
           
           team_schedule_url <- try({read_html(paste0("https://www.espn.com/nba/team/schedule/_/name/", short_name, "/season/", season, "/seasontype/", season_type))})
@@ -120,13 +120,13 @@ for(i in 1:nrow(team_ids)){
           while(!end_while){
             
             if(j > 2){
-              Sys.sleep(100)
+              Sys.sleep(300)
             }
             
             team_schedule_url <- try({read_html(paste0("https://www.espn.com/nba/team/schedule/_/name/", short_name, "/season/", season, "/seasontype/", season_type))})
             schedule <- try({team_schedule_url %>% html_node("table") %>% html_table()}, silent = T)
             
-            if(is.data.frame(schedule)){
+            if(class(schedule) != "try-error"){
               if(nrow(schedule) > 0){
                 update_data <- TRUE
               }else{
@@ -138,7 +138,7 @@ for(i in 1:nrow(team_ids)){
               update_data <- FALSE
             }
             
-            end_while <- ifelse(is.data.frame(schedule) | j == 3, TRUE, FALSE)
+            end_while <- ifelse(class(schedule) != "try-error" | j == 3, TRUE, FALSE)
             j <- j + 1
             
           }
@@ -372,6 +372,9 @@ names(Box_Scores) <- c("Players", "MIN", "FG", "THREES", "FT", "OREB", "DREB", "
                        "PLUS_MINUS", "PTS", "Position", "Reason_For_Benching", "Played", "Player_Ids","Team", "Opponent", 
                        "Game_Id", "Date", "Home", "Neutral", "OT_Rounds", "Season", "Season_Type", "Result", "Playoff_Round")
 
+Play_by_Play <- as.data.frame(matrix(nrow = 0, ncol = 5))
+names(Play_by_Play) <- c("Time", "Team", "Play", "Score", "Game_Id")
+
 for(i in 1:nrow(Schedule)){
   # i = 1
   
@@ -388,7 +391,7 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        # Sys.sleep(100)
+        Sys.sleep(300)
       }
       
       team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/matchup?gameId=", game_id))})
@@ -523,150 +526,246 @@ for(i in 1:nrow(Schedule)){
       # Schedule[i+1, "Over_Under_Winner"] <- over_under
       
     }
-  }
+
   
-  #### Box Scores ####
+    #### Box Scores ####
   
-  print("Box Scores")
-  
-  ### TRY 3 TIMES
-  end_while <- FALSE
-  
-  j <- 1
-  while(!end_while){
+    print("Box Scores TEST")
     
-    if(j > 2){
-      Sys.sleep(100)
-    }
+    ### TRY 3 TIMES
+    end_while <- FALSE
     
-    box_score_url <- try({read_html(paste0("https://www.espn.com/nba/boxscore?gameId=", game_id))})
-    box_score <- try({box_score_url %>% html_nodes("table") %>% html_table()})
-    
-    if(is.data.frame(box_score[[2]])){
-      if(nrow(box_score[[2]]) > 0){
-        update_data <- TRUE
+    j <- 1
+    while(!end_while){
+      
+      if(j > 2){
+        Sys.sleep(300)
+        print("sleep")
+      }
+      
+      box_score_url <- try({read_html(paste0("https://www.espn.com/nba/boxscore?gameId=", game_id))})
+      box_score <- try({box_score_url %>% html_nodes("table") %>% html_table()})
+      
+      if(class(box_score) != "try-error"){
+        if(nrow(box_score[[2]]) > 0){
+          update_data <- TRUE
+        }else{
+          ## I'll leave this as true for now. Change to false to avoid looping through games that haven't been played. Currently working this way but code isn't clean.
+          update_data <- FALSE
+        }
+        
       }else{
-        ## I'll leave this as true for now. Change to false to avoid looping through games that haven't been played. Currently working this way but code isn't clean.
         update_data <- FALSE
       }
       
-    }else{
-      update_data <- FALSE
+      end_while <- ifelse(class(box_score) != "try-error" | j == 3, TRUE, FALSE)
+      j <- j + 1
+      
     }
+    ###
     
-    end_while <- ifelse(nrow(box_score[[2]]) > 0 | j == 3, TRUE, FALSE)
-    j <- j + 1
-    
-  }
-  ###
-  
-  if(update_data){
-    Player_Ids <- box_score_url %>% str_extract_all('(?<=nba/player/_/id/)(.*?)(?=")') %>% unlist()
-    
-    away_stats <- box_score[[2]]
-    home_stats <- box_score[[3]]
-    
-    away_stats <- away_stats %>% 
-      rename(Players = Starters, PLUS_MINUS = `+/-`, THREES = `3PT`) %>% 
-      filter(Players != "Bench", Players != "TEAM", Players != "") %>% 
-      mutate(
-        Position = substr(Players, nchar(Players), nchar(Players)),
-        Players = str_replace(Players, Position, ""),
-        Players = substr(Players, 1, nchar(Players)/2),
-        Reason_For_Benching = case_when(
-          str_detect(MIN, "DNP") ~ MIN,
-          TRUE ~ "Played"
-        ),
-        Played = case_when(
-          str_detect(MIN, "DNP") ~ FALSE,
-          TRUE ~ TRUE
-        ),
-        MIN = ifelse(Played == F, "0", MIN),  
-        FG = ifelse(Played == F, "0-0", FG), 
-        THREES = ifelse(Played == F, "0-0", THREES), 
-        FT = ifelse(Played == F, "0-0", FT), 
-        OREB = ifelse(Played == F, "0", OREB), 
-        DREB = ifelse(Played == F, "0", DREB), 
-        REB = ifelse(Played == F, "0", REB), 
-        AST = ifelse(Played == F, "0", AST), 
-        STL = ifelse(Played == F, "0", STL), 
-        BLK = ifelse(Played == F, "0", BLK), 
-        TO = ifelse(Played == F, "0", TO), 
-        PF = ifelse(Played == F, "0", PF), 
-        PLUS_MINUS = ifelse(Played == F, "0", PLUS_MINUS), 
-        PTS = ifelse(Played == F, "0", PTS)
+    if(update_data){
+      Player_Ids <- box_score_url %>% str_extract_all('(?<=nba/player/_/id/)(.*?)(?=")') %>% unlist()
+      
+      away_stats <- box_score[[2]]
+      home_stats <- box_score[[3]]
+      
+      away_stats <- away_stats %>% 
+        rename(Players = Starters, PLUS_MINUS = `+/-`, THREES = `3PT`) %>% 
+        filter(Players != "Bench", Players != "TEAM", Players != "") %>% 
+        mutate(
+          Position = substr(Players, nchar(Players), nchar(Players)),
+          Players = substr(Players, 1, nchar(Players)-1),
+          Players = substr(Players, 1, nchar(Players)/2),
+          Reason_For_Benching = case_when(
+            str_detect(MIN, "DNP") ~ MIN,
+            TRUE ~ "Played"
+          ),
+          Played = case_when(
+            str_detect(MIN, "DNP") ~ FALSE,
+            TRUE ~ TRUE
+          ),
+          MIN = ifelse(Played == F, "0", MIN),  
+          FG = ifelse(Played == F, "0-0", FG), 
+          THREES = ifelse(Played == F, "0-0", THREES), 
+          FT = ifelse(Played == F, "0-0", FT), 
+          OREB = ifelse(Played == F, "0", OREB), 
+          DREB = ifelse(Played == F, "0", DREB), 
+          REB = ifelse(Played == F, "0", REB), 
+          AST = ifelse(Played == F, "0", AST), 
+          STL = ifelse(Played == F, "0", STL), 
+          BLK = ifelse(Played == F, "0", BLK), 
+          TO = ifelse(Played == F, "0", TO), 
+          PF = ifelse(Played == F, "0", PF), 
+          PLUS_MINUS = ifelse(Played == F, "0", PLUS_MINUS), 
+          PTS = ifelse(Played == F, "0", PTS)
+        )
+      
+      home_stats <- home_stats %>% 
+        rename(Players = Starters, PLUS_MINUS = `+/-`, THREES = `3PT`) %>% 
+        filter(Players != "Bench", Players != "TEAM", Players != "") %>% 
+        mutate(
+          Position = substr(Players, nchar(Players), nchar(Players)),
+          Players = substr(Players, 1, nchar(Players)-1),
+          Players = substr(Players, 1, nchar(Players)/2),
+          Reason_For_Benching = case_when(
+            str_detect(MIN, "DNP") ~ MIN,
+            TRUE ~ "Played"
+          ),
+          Played = case_when(
+            str_detect(MIN, "DNP") ~ FALSE,
+            TRUE ~ TRUE
+          ),
+          MIN = ifelse(Played == F, "0", MIN),  
+          FG = ifelse(Played == F, "0-0", FG), 
+          THREES = ifelse(Played == F, "0-0", THREES), 
+          FT = ifelse(Played == F, "0-0", FT), 
+          OREB = ifelse(Played == F, "0", OREB), 
+          DREB = ifelse(Played == F, "0", DREB), 
+          REB = ifelse(Played == F, "0", REB), 
+          AST = ifelse(Played == F, "0", AST), 
+          STL = ifelse(Played == F, "0", STL), 
+          BLK = ifelse(Played == F, "0", BLK), 
+          TO = ifelse(Played == F, "0", TO), 
+          PF = ifelse(Played == F, "0", PF), 
+          PLUS_MINUS = ifelse(Played == F, "0", PLUS_MINUS), 
+          PTS = ifelse(Played == F, "0", PTS)
+        )
+      
+      # Player_Ids <- box_score_url %>% str_extract_all('(?<=nba/player/_/id/)(.*?)(?=")') %>% unlist()
+      
+      away_stats$Player_Ids <- Player_Ids[(1:nrow(away_stats))]
+      home_stats$Player_Ids <- Player_Ids[-(1:nrow(away_stats))]
+      
+      home_result <- Schedule[Schedule$Home == T & Schedule$Game_Id == game_id, "Result"]
+      away_result <- Schedule[Schedule$Home == F & Schedule$Game_Id == game_id, "Result"]
+      
+      away_stats <- away_stats %>% mutate(
+        Team = away_team,
+        Opponent = home_team,
+        Game_Id = game_id,
+        Date = Schedule$Date[i],
+        Home = FALSE,
+        Neutral = Schedule$Neutral[i],
+        OT_Rounds = Schedule$OT_Rounds[i],
+        Season = Schedule$Season[i],
+        Season_Type = Schedule$Season_Type[i],
+        Result = away_result,
+        Playoff_Round = Schedule$Playoff_Round[i]
       )
-    
-    home_stats <- home_stats %>% 
-      rename(Players = Starters, PLUS_MINUS = `+/-`, THREES = `3PT`) %>% 
-      filter(Players != "Bench", Players != "TEAM", Players != "") %>% 
-      mutate(
-        Position = substr(Players, nchar(Players), nchar(Players)),
-        Players = str_replace(Players, Position, ""),
-        Players = substr(Players, 1, nchar(Players)/2),
-        Reason_For_Benching = case_when(
-          str_detect(MIN, "DNP") ~ MIN,
-          TRUE ~ "Played"
-        ),
-        Played = case_when(
-          str_detect(MIN, "DNP") ~ FALSE,
-          TRUE ~ TRUE
-        ),
-        MIN = ifelse(Played == F, "0", MIN),  
-        FG = ifelse(Played == F, "0-0", FG), 
-        THREES = ifelse(Played == F, "0-0", THREES), 
-        FT = ifelse(Played == F, "0-0", FT), 
-        OREB = ifelse(Played == F, "0", OREB), 
-        DREB = ifelse(Played == F, "0", DREB), 
-        REB = ifelse(Played == F, "0", REB), 
-        AST = ifelse(Played == F, "0", AST), 
-        STL = ifelse(Played == F, "0", STL), 
-        BLK = ifelse(Played == F, "0", BLK), 
-        TO = ifelse(Played == F, "0", TO), 
-        PF = ifelse(Played == F, "0", PF), 
-        PLUS_MINUS = ifelse(Played == F, "0", PLUS_MINUS), 
-        PTS = ifelse(Played == F, "0", PTS)
+      
+      home_stats <- home_stats %>% mutate(
+        Team = home_team,
+        Opponent = away_team,
+        Game_Id = game_id,
+        Date = Schedule$Date[i],
+        Home = TRUE,
+        Neutral = Schedule$Neutral[i],
+        OT_Rounds = Schedule$OT_Rounds[i],
+        Season = Schedule$Season[i],
+        Season_Type = Schedule$Season_Type[i],
+        Result = home_result,
+        Playoff_Round = Schedule$Playoff_Round[i]
       )
-    
-    # Player_Ids <- box_score_url %>% str_extract_all('(?<=nba/player/_/id/)(.*?)(?=")') %>% unlist()
-    
-    away_stats$Player_Ids <- Player_Ids[(1:nrow(away_stats))]
-    home_stats$Player_Ids <- Player_Ids[-(1:nrow(away_stats))]
-    
-    home_result <- Schedule[Schedule$Home == T & Schedule$Game_Id == game_id, "Result"]
-    away_result <- Schedule[Schedule$Home == F & Schedule$Game_Id == game_id, "Result"]
-    
-    away_stats <- away_stats %>% mutate(
-      Team = away_team,
-      Opponent = home_team,
-      Game_Id = game_id,
-      Date = Schedule$Date[i],
-      Home = FALSE,
-      Neutral = Schedule$Neutral[i],
-      OT_Rounds = Schedule$OT_Rounds[i],
-      Season = Schedule$Season[i],
-      Season_Type = Schedule$Season_Type[i],
-      Result = away_result,
-      Playoff_Round = Schedule$Playoff_Round[i]
-    )
-    
-    home_stats <- home_stats %>% mutate(
-      Team = home_team,
-      Opponent = away_team,
-      Game_Id = game_id,
-      Date = Schedule$Date[i],
-      Home = TRUE,
-      Neutral = Schedule$Neutral[i],
-      OT_Rounds = Schedule$OT_Rounds[i],
-      Season = Schedule$Season[i],
-      Season_Type = Schedule$Season_Type[i],
-      Result = home_result,
-      Playoff_Round = Schedule$Playoff_Round[i]
-    )
-    
-    Box_Scores <- rbind(Box_Scores, home_stats, away_stats)
-    
-  }
-  #### Play-by-play ####
+      
+      Box_Scores <- rbind(Box_Scores, home_stats, away_stats)
+      
+    }
+
   
+    #### Play-by-play ####
+  
+    print("Play-by-play")
+    
+    ### TRY 3 TIMES
+    end_while <- FALSE
+    
+    j <- 1
+    while(!end_while){
+      
+      if(j > 2){
+        Sys.sleep(300)
+        print("sleep")
+      }
+      
+      play_by_play_url <- try({read_html(paste0("https://www.espn.com/nba/playbyplay?gameId=", game_id))})
+      play_by_play <- try({play_by_play_url %>% html_nodes("table") %>% html_table(fill = TRUE)})
+      
+      if(class(play_by_play) != "try-error"){
+        if(nrow(box_score[[2]]) > 0){
+          update_data <- TRUE
+        }else{
+          ## I'll leave this as true for now. Change to false to avoid looping through games that haven't been played. Currently working this way but code isn't clean.
+          update_data <- FALSE
+        }
+        
+      }else{
+        update_data <- FALSE
+      }
+      
+      end_while <- ifelse(class(play_by_play) != "try-error" | j == 3, TRUE, FALSE)
+      j <- j + 1
+      
+    }
+    ###
+    
+    if(update_data){
+    
+      # play_by_play_url <- read_html("https://www.espn.com/nba/playbyplay?gameId=401160630")
+      # play_by_play <- play_by_play_url %>% html_nodes("table") %>% html_table(fill = TRUE)
+      
+      ot_rounds <- Schedule$OT_Rounds[i]
+      
+      if(ot_rounds == 0){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]])
+        
+      }else if(ot_rounds == 1){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]])
+        
+      }else if(ot_rounds == 2){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]])
+      }else if(ot_rounds == 3){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]])
+      }else if(ot_rounds == 4){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]])
+      }else if(ot_rounds == 5){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
+                              play_by_play[[10]])
+      }else if(ot_rounds == 6){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
+                              play_by_play[[10]], play_by_play[[11]])
+      }else if(ot_rounds == 7){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]], 
+                              play_by_play[[10]], play_by_play[[11]], play_by_play[[12]])
+      }else if(ot_rounds == 8){
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
+                              play_by_play[[10]], play_by_play[[11]], play_by_play[[12]], play_by_play[[13]])
+      }
+
+      
+      start <- play_by_play[1,1]
+      end <- play_by_play[nrow(play_by_play),4]
+      
+      play_by_play_logos <- play_by_play_url %>% 
+        str_extract_all('(?<=<td class="logo">)(.*?)(?=</td>)') %>% unlist() %>% 
+        str_extract_all('(?<=teamlogos/nba/500/)(.*?)(?=\\.png.*?100.*?100)') %>% unlist() %>% toupper()
+      
+      play_by_play$team <- play_by_play_logos
+      
+      play_by_play <- play_by_play[ ,-5]
+      names(play_by_play) <- c("Time", "Team", "Play", "Score")
+      
+      play_by_play$Game_Id <- game_id
+      
+      Play_by_Play <- rbind(Play_by_Play, play_by_play)
+    }
+  }
 }
