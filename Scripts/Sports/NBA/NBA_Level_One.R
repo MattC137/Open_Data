@@ -5,27 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-#### Get Teams ####
-
-## Only run to update and generate .csv the rest need to be complete by hand 
-
-# team_html <- read_html("https://www.espn.com/nba/teams")
-# team_ids <- team_html %>% str_extract_all('(?<=nba/team/_/name/)(.*?)(?=")') %>% unlist() %>% data.frame()
-# names(team_ids) <- c("ids_raw")
-# team_ids <- team_ids %>%
-#   separate("ids_raw", c("Short_Name", "Team_ID") ,sep = "/") %>%
-#   arrange(Short_Name) %>%
-#   mutate(
-#     dup = ifelse(Short_Name == lag(Short_Name, 1), 1, 0)
-#   )
-# 
-# team_ids[1, "dup"] <- 0
-# 
-# team_ids <- team_ids %>% filter(dup == 0) %>% select(-dup)
-# 
-# write.csv(team_ids, "~/GitHub/Open_Data/Scripts/Sports/NBA/team_ids_TO_UPDATE.csv", row.names = F)
-
-## End .csv Update
+Season <- 2020
 
 team_ids <- read_csv("~/GitHub/Open_Data/Scripts/Sports/NBA/team_ids.csv")
 
@@ -42,7 +22,7 @@ for(i in 1:nrow(team_ids)){
   #### Update Seasons ####
   # current_year <- year(Sys.Date())
   
-  for(season in 2020:2020){
+  for(season in Season:Season){
     # season = 2020
     
     Schedule_Season <- as.data.frame(matrix(nrow = 0, ncol = 9))
@@ -317,7 +297,7 @@ Schedule <- Schedule %>% mutate(
   FG_For = "0",
   FG_Per_For = "0",
   Threes_For = "0",
-  Three_Per_For = "0",
+  Threes_Per_For = "0",
   FT_For = "0",
   FT_Per_For = "0",
   Rebounds_For = "0",
@@ -338,7 +318,7 @@ Schedule <- Schedule %>% mutate(
   FG_Against = "0",
   FG_Per_Against = "0",
   Threes_Against = "0",
-  Three_Per_Against = "0",
+  Threes_Per_Against = "0",
   FT_Against = "0",
   FT_Per_Against = "0",
   Rebounds_Against = "0",
@@ -375,8 +355,14 @@ names(Box_Scores) <- c("Players", "MIN", "FG", "THREES", "FT", "OREB", "DREB", "
 Play_by_Play <- as.data.frame(matrix(nrow = 0, ncol = 5))
 names(Play_by_Play) <- c("Time", "Team", "Play", "Score", "Game_Id")
 
+Game_Summary <- as.data.frame(matrix(nrow = 0, ncol = 2))
+names(Game_Summary) <- c("Summary", "Game_Id")
+
+Shots <- as.data.frame(matrix(nrow = 0, ncol = 9))
+names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left", "Top", "Made", "Game_Id")
+
 for(i in 1:nrow(Schedule)){
-  # i = 1
+  # i = 1293
   
   
   if(i %% 2 != 0){
@@ -634,6 +620,8 @@ for(i in 1:nrow(Schedule)){
       
       # Player_Ids <- box_score_url %>% str_extract_all('(?<=nba/player/_/id/)(.*?)(?=")') %>% unlist()
       
+      Player_Ids <- Player_Ids[1:(nrow(away_stats) + nrow(home_stats))]
+      
       away_stats$Player_Ids <- Player_Ids[(1:nrow(away_stats))]
       home_stats$Player_Ids <- Player_Ids[-(1:nrow(away_stats))]
       
@@ -690,8 +678,9 @@ for(i in 1:nrow(Schedule)){
       
       play_by_play_url <- try({read_html(paste0("https://www.espn.com/nba/playbyplay?gameId=", game_id))})
       play_by_play <- try({play_by_play_url %>% html_nodes("table") %>% html_table(fill = TRUE)})
+      shots <- try({play_by_play_url %>% str_extract_all('(?<=<li id="shot)(.*?)(?=</li>)')})
       
-      if(class(play_by_play) != "try-error"){
+      if(class(play_by_play) != "try-error" & class(shots) != "try-error"){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
@@ -703,7 +692,7 @@ for(i in 1:nrow(Schedule)){
         update_data <- FALSE
       }
       
-      end_while <- ifelse(class(play_by_play) != "try-error" | j == 3, TRUE, FALSE)
+      end_while <- ifelse((class(play_by_play) != "try-error" & class(shots) != "try-error") | j == 3, TRUE, FALSE)
       j <- j + 1
       
     }
@@ -766,6 +755,272 @@ for(i in 1:nrow(Schedule)){
       play_by_play$Game_Id <- game_id
       
       Play_by_Play <- rbind(Play_by_Play, play_by_play)
+      
+      #### Shots ####
+      
+      shots <- data.frame(shots = shots[[1]])
+      shots <- shots %>% separate(col = shots, into = c('Shot', 'delete'), sep = "data-text")
+      
+      shots <- shots %>% mutate(
+        Description = str_extract(delete, '(?<=\")(.*?)(?=\")'),
+        Home = str_extract(delete, '(?<=data-homeaway=\")(.*?)(?=\")'),
+        Quarter = str_extract(delete, '(?<=data-period=\")(.*?)(?=\")'),
+        Player_Id = str_extract(delete, '(?<=data-shooter=\")(.*?)(?=\")'),
+        Left = str_extract(delete, '(?<=left:)(.*?)(?=%)'),
+        Top = str_extract(delete, '(?<=top:)(.*?)(?=%)'),
+        Made = ifelse(str_detect(delete, "background-color:"), 1, 0),
+        Game_Id = game_id
+      ) %>% select(-delete)
+      
+    }
+    
+    #### Game Summaries ####
+    
+    print("Game Summaries")
+    
+    ### TRY 3 TIMES
+    end_while <- FALSE
+    
+    j <- 1
+    while(!end_while){
+      
+      if(j > 2){
+        Sys.sleep(300)
+        print("sleep")
+      }
+      
+      summary_url <- try({read_html(paste0("https://www.espn.com/nba/recap?gameId=", game_id))})
+      
+      if(class(summary_url) != "try-error"){
+        update_data <- TRUE
+      }else{
+        update_data <- FALSE
+      }
+      
+      end_while <- ifelse(class(summary_url) != "try-error" | j == 3, TRUE, FALSE)
+      j <- j + 1
+      
+    }
+    ###
+    
+    if(update_data){
+      game_recap <- summary_url %>% str_extract_all('(?<=<p>)(.*?)(?=</p>)') %>% unlist()
+      cut_off <- which(str_detect(game_recap, "UP NEXT"))
+      # cut_off <- ifelse(length(cut_off) == 0, which(game_recap == "UP NEXT:"), cut_off)
+      # cut_off <- ifelse(is.na(cut_off), which(game_recap == "<strong>UP NEXT</strong>"), cut_off)
+      # cut_off <- ifelse(is.na(cut_off), which(game_recap == "<b>UP NEXT</b>"), cut_off)
+      # cut_off <- ifelse(is.na(cut_off), which(str_detect(game_recap, "UP NEXT")), cut_off)
+      cut_off <- ifelse(length(cut_off) == 0, which(str_detect(game_recap, "---")), cut_off)
+      #cut_off <- ifelse(is.na(cut_off), which(game_recap == "<strong>---</strong>"), cut_off)
+      cut_off <- ifelse(is.na(cut_off), length(game_recap), cut_off)
+      
+      game_recap <- paste(game_recap[1:(cut_off-1)], collapse = " ")
+      game_recap <- str_replace_all(game_recap, "<.*?>", "")
+      
+      game_summary <- as.data.frame(matrix(NA, nrow = 1, ncol = 2))
+      names(game_summary) <- c("Summary", "Game_Id")
+      
+      game_summary$Summary[1] <- game_recap
+      game_summary$Game_Id[1] <- game_id
+      
+      Game_Summary <- rbind(Game_Summary, game_summary)
+      
+      Shots <- rbind(Shots, shots)
     }
   }
+  
+
 }
+
+#### Salaries ####
+
+Salaries <- as.data.frame(matrix(nrow = 0, ncol = 8))
+names(Salaries) <- c("Player_Id", "Player_Id_Str", "Player", "Short_Name", "Team_Id", "Team", "Salary", "Season")
+
+salary_url <- read_html(paste0('http://www.espn.com/nba/salaries/_/year/', Season, '/page/1/seasontype/1'))
+
+Pages <- salary_url %>% str_extract('(?<=1 of )(.*?)(?=<)') %>% as.numeric()
+
+for(i in 1:Pages){
+  print(i)
+  # i = 11
+  
+  salary_url <- read_html(paste0('http://www.espn.com/nba/salaries/_/year/', Season, '/page/', i,'/seasontype/1'))
+  
+  player <- salary_url %>% str_extract_all('(?<=player/_/id/)(.*?)(?=</td>)') %>% unlist()
+  team <- salary_url %>% str_extract_all('(?<=team/_/name/)(.*?)(?=</a>)') %>% unlist()
+  salary <- salary_url %>% str_extract_all('(?<=right;">)(.*?)(?=</td>)') %>% unlist()
+  salary <- salary[salary != "SALARY"]
+  
+  # Correct for players traded out of the NBA
+  if(!(length(player) == length(team) & length(team) == length(salary))){
+    Salary_table <- salary_url %>% html_nodes("table") %>% html_table()
+    Salary_table <- as.data.frame(Salary_table[[1]]) %>% filter(X1 != "RK")
+    
+    missing_id = NA
+    missing_team = NA
+    
+    for(j in 1:length(team)){
+      # j = 1
+      team_cleaned <- data.frame(teams = team)
+      team_cleaned$teams <- as.character(team_cleaned$teams)
+      team_cleaned <- team_cleaned %>% separate(teams, into = c("delete", "teams"), sep = ">") %>% select(-delete)
+      
+      missing_id <- ifelse(Salary_table$X3[j] != team_cleaned$teams[j], j, missing_id)
+      missing_team <- ifelse(Salary_table$X3[j] != team_cleaned$teams[j], Salary_table$X3[j], missing_team)
+      
+      if(Salary_table$X3[j] != team_cleaned$teams[j]) break
+      
+    }
+    
+    team <- append(team, values = paste0('xxx/NO ID">', missing_team), after = missing_id - 1)
+    
+  }
+  
+  salaries <- data.frame(Player = player, Team = team, Salary = salary, Season = 2020)
+  
+  salaries <- salaries %>% mutate(
+    Player = str_replace(Player, "</a>", "SPLIT_HERE")
+  )
+  
+  salaries <- salaries %>% separate(Player, c("Player_Id", "Player"), sep = "/")
+  salaries <- salaries %>% separate(Player, c("Player_Id_Str", "Player"), sep = '">')
+  salaries <- salaries %>% separate(Player, c("Player", "Position"), sep = 'SPLIT_HERE, ')
+  salaries <- salaries %>% separate(Team, c("Short_Name", "Team"), sep = '/')
+  salaries <- salaries %>% separate(Team, c("Team_Id", "Team"), sep = '">')
+  
+  salaries <- salaries %>% mutate(
+    Salary = substr(Salary, 2, nchar(as.vector(Salary))),
+    Salary = str_replace_all(Salary, ",", ""),
+    Player = str_replace(Player, "<", ""),
+    Short_Name = toupper(Short_Name)
+  )
+  
+  Salaries <- rbind(Salaries, salaries)
+}
+
+#### Data testing ####
+
+length(unique(Schedule$Game_Id))*2 == nrow(Schedule)
+
+length(unique(Schedule$Game_Id))
+length(unique(Box_Scores$Game_Id))
+length(unique(Play_by_Play$Game_Id))
+
+View(Schedule %>% filter(Season_Type == "Regular-Season") %>% 
+       group_by(Team) %>% 
+       summarize(W = sum(Result == "W"), L = sum(Result == "L"), ppg = mean(as.numeric(Points_For)), opp_ppg = mean(as.numeric(Points_Against))) %>% 
+       arrange(desc(W))
+)
+
+#### Clean Objects ####
+
+rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries"))])
+
+#### Clean Schedule
+
+Schedule <- Schedule %>% separate(FG_For, into = c("FG_Made_For", "FG_Att_For"), sep = "-")
+Schedule <- Schedule %>% separate(FG_Against, into = c("FG_Made_Against", "FG_Att_Against"), sep = "-")
+
+Schedule <- Schedule %>% separate(Threes_For, into = c("Threes_Made_For", "Threes_Att_For"), sep = "-")
+Schedule <- Schedule %>% separate(Threes_Against, into = c("Threes_Made_Against", "Threes_Att_Against"), sep = "-")
+
+Schedule <- Schedule %>% separate(FT_For, into = c("FT_Made_For", "FT_Att_For"), sep = "-")
+Schedule <- Schedule %>% separate(FT_Against, into = c("FT_Made_Against", "FT_Att_Against"), sep = "-")
+
+Schedule <- Schedule %>% mutate(
+  FG_Per_For = as.numeric(FG_Per_For)/100,
+  FG_Per_Against = as.numeric(FG_Per_Against)/100,
+  
+  Threes_Per_For = as.numeric(Threes_Per_For)/100,
+  Threes_Per_Against = as.numeric(Threes_Per_Against)/100,
+  
+  FT_Per_For = as.numeric(FT_Per_For)/100,
+  FT_Per_Against = as.numeric(FT_Per_Against)/100
+  
+)
+
+#### Clean Box_Score ####
+
+Box_Scores[Box_Scores$FG == "-----", "FG"] <- "0-0"
+Box_Scores[Box_Scores$THREES == "-----", "THREES"] <- "0-0"
+Box_Scores[Box_Scores$FT == "-----", "FT"] <- "0-0"
+
+Box_Scores[is.na(Box_Scores)] <- 0
+Box_Scores <- Box_Scores %>% separate(FG, into = c("FG_Made", "FG_Att"), sep = "-")
+Box_Scores <- Box_Scores %>% separate(THREES, into = c("THREES_Made", "THREES_Att"), sep = "-")
+Box_Scores <- Box_Scores %>% separate(FT, into = c("FT_Made", "FT_Att"), sep = "-")
+Box_Scores <- Box_Scores %>% separate(Player_Ids, into = c("Player_Id", "Player_Id_Str"), sep = "/")
+
+Box_Scores <- Box_Scores %>% mutate(
+  PLUS_MINUS = str_replace_all(PLUS_MINUS, "\\+", "")
+)
+
+#### Play by Play ####
+
+Play_by_Play_Copy <- Play_by_Play
+
+play_by_play <- Play_by_Play
+
+play_by_play <- play_by_play %>% mutate(
+  Quarter = 1,
+  Total_Minutes = 0,
+  Away_Player_1 = NA,
+  Away_Player_2 = NA,
+  Away_Player_3 = NA,
+  Away_Player_4 = NA,
+  Away_Player_5 = NA,
+  Home_Player_1 = NA,
+  Home_Player_2 = NA,
+  Home_Player_3 = NA,
+  Home_Player_4 = NA,
+  Home_Player_5 = NA,
+) %>% separate(Score, into = c("Away_Score", "Home_Score"), sep = " - ")
+
+for(i in 1:length(unique(play_by_play$Game_Id))){
+  # pbp_game_id <- pbp_game_id <- unique(Play_by_Play$Game_Id)[1]
+  # i = 1
+  
+  pbp_game_id <- unique(play_by_play$Game_Id)[i]
+  pbp <- play_by_play %>% filter(Game_Id == pbp_game_id)
+  
+  players <- Box_Scores %>% 
+    filter(Game_Id == pbp_game_id) %>% 
+    select(Player_Id, Players, Player_Id_Str, Team, Position) %>% 
+    left_join(Salaries %>% select(Player_Id, Player), by = c("Player_Id" = "Player_Id"))
+  
+  print(pbp_game_id)
+  
+}
+
+#### Write Data ####
+
+write.csv(Schedule, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Schedule_", Season,".csv"), row.names = F)
+write.csv(Box_Scores, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Box_Score_", Season,".csv"), row.names = F)
+write.csv(Play_by_Play, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Play_by_Play_", Season,".csv"), row.names = F)
+write.csv(Game_Summary, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Game_Recaps_", Season,".csv"), row.names = F)
+write.csv(Shots, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Shots_", Season,".csv"), row.names = F)
+write.csv(Salaries, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Salaries_", Season,".csv"), row.names = F)
+
+#### Get Teams ####
+
+## Only run to update and generate .csv the rest need to be complete by hand 
+
+# team_html <- read_html("https://www.espn.com/nba/teams")
+# team_ids <- team_html %>% str_extract_all('(?<=nba/team/_/name/)(.*?)(?=")') %>% unlist() %>% data.frame()
+# names(team_ids) <- c("ids_raw")
+# team_ids <- team_ids %>%
+#   separate("ids_raw", c("Short_Name", "Team_ID") ,sep = "/") %>%
+#   arrange(Short_Name) %>%
+#   mutate(
+#     dup = ifelse(Short_Name == lag(Short_Name, 1), 1, 0)
+#   )
+# 
+# team_ids[1, "dup"] <- 0
+# 
+# team_ids <- team_ids %>% filter(dup == 0) %>% select(-dup)
+# 
+# write.csv(team_ids, "~/GitHub/Open_Data/Scripts/Sports/NBA/team_ids_TO_UPDATE.csv", row.names = F)
+
+## End .csv Update
+
