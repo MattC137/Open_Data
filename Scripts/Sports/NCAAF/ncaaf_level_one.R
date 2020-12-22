@@ -59,10 +59,10 @@ while(nrow(ids_temp) > 0){
     # Add Try
     team_games <- try({read_html(paste0("https://www.espn.com/college-football/team/schedule/_/id/", id[1, 1], "/season/", season))})
     
-    if(class(team_games)[1] == "try-error"){
+    if(class(team_games)[1] != "try-error"){
       schedule_ids <- team_games %>% str_extract_all('(?<=team/_/id/)(.*?)(?="><img alt=")') %>% unlist()
       
-      schedule_ids <- as.data.frame(schedule_ids) %>% separate(schedule_ids, c("ID", "Name"), sep = "/")
+      schedule_ids <- as.data.frame(schedule_ids) %>% separate(schedule_ids, c("ID", "Name"), sep = "/") %>% filter(ID != id[1, 1])
       
       schedule_ids_ID <- schedule_ids$ID
       schedule_ids_Name <- schedule_ids$Name
@@ -104,6 +104,7 @@ while(nrow(ids_temp) > 0){
         names(additional_ids) <- c("ID", "Name", "FBS")
         
         for(i in 1:nrow(schedule_ids)){
+          # i = 1
           if(!any(schedule_ids[i, "ID"] %in% ids$ID)){
             ids <- rbind(ids, schedule_ids[i, ])
             ids_temp <- rbind(ids_temp, schedule_ids[i, ])
