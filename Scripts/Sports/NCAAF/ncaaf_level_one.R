@@ -6,10 +6,33 @@ library(lubridate)
 
 ncaaf <- read_html("https://www.espn.com/college-football/teams")
 
-ids <- ncaaf %>% str_extract_all('(?<=href="/college-football/team/_/id/)(.*?)(?="><img class=")') %>% unlist()
+ids <- ncaaf %>% str_extract_all('(?<=college-football/team/_/id/)(.*?)(?=")') %>% unlist()
+ids <- ids[str_detect(ids, "/")]
 ids <- ids %>% str_split("/", simplify = T)
 ids <- as.data.frame(ids)
 names(ids) <- c('ID', 'Name')
+
+ids <- ids %>% 
+  filter(Name != "", ID != "") %>% 
+  mutate(UID = paste0(Name, ID)) %>% 
+  arrange(UID) %>% 
+  mutate(DUP = ifelse(UID == lag(UID), 1, 0))
+
+ids[1, "DUP"] <- 0
+
+ids <- ids %>% filter(DUP == 0)
+
+
+nrow(ids)
+length(unique(ids$ID))
+length(unique(ids$Name))
+
+
+id_vector <- unique(ids$ID) %>% as.character()
+str_vector <- unique(ids$Name) %>% as.character()
+
+ids <- data.frame(ID = ids$ID, Name = ids$Name)
+
 ids$FBS <- 1
 ids$ID <- as.character(ids$ID)
 ids$Name <- as.character(ids$Name)
@@ -23,20 +46,20 @@ names(Schedule) <- c('Date', 'Opponent', 'Result', 'Team', 'Team_ID', 'Season', 
 ids_temp <- ids
 
 while(nrow(ids_temp) > 0){
-  # i = 58
+  # i = 1
   id <- ids_temp[1, ]
   # id <- ids[ids$ID == "333", ]
   print(id)
   
   for(j in 1:length(seasons)){
-    # j = 2
+    # j = 1
     season <- seasons[j]
     print(season)
     
     # Add Try
     team_games <- try({read_html(paste0("https://www.espn.com/college-football/team/schedule/_/id/", id[1, 1], "/season/", season))})
     
-    if(class(team_games) != "try-error"){
+    if(class(team_games)[1] == "try-error"){
       schedule_ids <- team_games %>% str_extract_all('(?<=team/_/id/)(.*?)(?="><img alt=")') %>% unlist()
       
       schedule_ids <- as.data.frame(schedule_ids) %>% separate(schedule_ids, c("ID", "Name"), sep = "/")
