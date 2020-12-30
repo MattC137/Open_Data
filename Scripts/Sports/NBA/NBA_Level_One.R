@@ -4,8 +4,46 @@ library(readr)
 library(tidyr)
 library(stringr)
 library(lubridate)
+library(purrr)
 
-Season <- 2020
+Season <- 2018
+
+#### Clean Player Id Str ####
+
+# pid = "kentavious-caldwell-pope"
+# pid = "troy-daniels"
+# pid = "zach-norvell-jr"
+# pid = "terence-davis-ii"
+
+Clean_Player_Id_Str <- function(pid){
+  
+  isJr <- ifelse(substr(pid, nchar(pid) - 2, nchar(pid)) == "-jr", 1, 0)
+  pid <- ifelse(isJr, substr(pid, 1, nchar(pid) - 3), pid)
+  pid <- str_remove(pid, "-ii")
+  
+  hypen_locations <- str_locate_all(pid, "-")
+  hypen_locations <- hypen_locations[[1]][, 1]
+  
+  if(length(hypen_locations) == 1){
+    names <- str_split(pid, "-")
+    names <- names[[1]]
+    names <- str_to_title(names)
+    
+    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], " ", "Jr."), paste0(names[1], " ", names[2]))
+  }
+  
+  if(length(hypen_locations) == 2){
+    names <- str_split(pid, "-")
+    names <- names[[1]]
+    names <- str_to_title(names)
+    
+    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], "-", names[3], " ", "Jr."), paste0(names[1], " ", names[2], "-", names[3]))
+  }
+  
+  return(as.vector(rtn_name))
+}
+
+#### Get Schedule ####
 
 team_ids <- read_csv("~/GitHub/Open_Data/Scripts/Sports/NBA/team_ids.csv")
 
@@ -517,6 +555,7 @@ for(i in 1:nrow(Schedule)){
     #### Box Scores ####
   
     print("Box Scores TEST")
+    # game_id = 401160623
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -915,7 +954,7 @@ View(Schedule %>% filter(Season_Type == "Regular-Season") %>%
 
 #### Clean Objects ####
 
-rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries"))])
+rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries", "Season"))])
 
 #### Clean Schedule
 
@@ -942,6 +981,8 @@ Schedule <- Schedule %>% mutate(
 
 #### Clean Box_Score ####
 
+Box_Scores_Raw <- Box_Scores
+
 Box_Scores[Box_Scores$FG == "-----", "FG"] <- "0-0"
 Box_Scores[Box_Scores$THREES == "-----", "THREES"] <- "0-0"
 Box_Scores[Box_Scores$FT == "-----", "FT"] <- "0-0"
@@ -960,38 +1001,7 @@ Box_Scores <- Box_Scores %>% mutate(
 
 Play_by_Play_Copy <- Play_by_Play
 
-play_by_play <- Play_by_Play
-
-play_by_play <- play_by_play %>% mutate(
-  Quarter = 1,
-  Total_Minutes = 0,
-  Away_Player_1 = NA,
-  Away_Player_2 = NA,
-  Away_Player_3 = NA,
-  Away_Player_4 = NA,
-  Away_Player_5 = NA,
-  Home_Player_1 = NA,
-  Home_Player_2 = NA,
-  Home_Player_3 = NA,
-  Home_Player_4 = NA,
-  Home_Player_5 = NA,
-) %>% separate(Score, into = c("Away_Score", "Home_Score"), sep = " - ")
-
-for(i in 1:length(unique(play_by_play$Game_Id))){
-  # pbp_game_id <- pbp_game_id <- unique(Play_by_Play$Game_Id)[1]
-  # i = 1
-  
-  pbp_game_id <- unique(play_by_play$Game_Id)[i]
-  pbp <- play_by_play %>% filter(Game_Id == pbp_game_id)
-  
-  players <- Box_Scores %>% 
-    filter(Game_Id == pbp_game_id) %>% 
-    select(Player_Id, Players, Player_Id_Str, Team, Position) %>% 
-    left_join(Salaries %>% select(Player_Id, Player), by = c("Player_Id" = "Player_Id"))
-  
-  print(pbp_game_id)
-  
-}
+play_by_play <- Play_by_Play_Copy
 
 #### Write Data ####
 
