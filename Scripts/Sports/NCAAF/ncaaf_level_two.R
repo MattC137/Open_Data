@@ -63,7 +63,7 @@ ncaaf_l1 <- ncaaf_l1 %>% mutate(
 # ncaaf_l1 <- ncaaf_l1 %>% filter(Result == "TBD" & Played == "FALSE")
 
 for(i in 1:length(unique(ncaaf_l1$Game_ID))){
-   
+   # i = 1
   # game_id <- 401261245
   
   # This makes games that haven't been played first

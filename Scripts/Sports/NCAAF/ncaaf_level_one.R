@@ -418,7 +418,7 @@ NCAAF_Level_One[NCAAF_Level_One$Opponent == "Unlv", "Opponent"] <- "UNLV"
 NCAAF_Level_One[NCAAF_Level_One$Team == "Louisiana-Monroe", "Team"] <- "UL Monroe"
 NCAAF_Level_One[NCAAF_Level_One$Opponent == "Louisiana-Monroe", "Opponent"] <- "UL Monroe"
 
-NCAAF_Level_One <- NCAAF_Level_One %>% filter(Game_ID != "Postponed", Game_ID != "Canceled", )
+NCAAF_Level_One <- NCAAF_Level_One %>% filter(Game_ID != "Postponed", Game_ID != "Canceled", Game_ID != "Live")
 
 write.csv(NCAAF_Level_One, "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Level_One.csv", row.names = F)
 write.csv(Name_Mapping %>% select(Team = Name, FBS), "C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NCAAF/NCAAF_Team_List.csv", row.names = F)
