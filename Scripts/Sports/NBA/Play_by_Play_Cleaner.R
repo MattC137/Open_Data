@@ -1,3 +1,48 @@
+library(dplyr)
+library(rvest)
+library(readr)
+library(tidyr)
+library(stringr)
+library(lubridate)
+
+Season <- 2021
+
+#### Clean Player Id Str ####
+
+# pid = "kentavious-caldwell-pope"
+# pid = "troy-daniels"
+# pid = "zach-norvell-jr"
+# pid = "terence-davis-ii"
+
+Clean_Player_Id_Str <- function(pid){
+  
+  isJr <- ifelse(substr(pid, nchar(pid) - 2, nchar(pid)) == "-jr", 1, 0)
+  pid <- ifelse(isJr, substr(pid, 1, nchar(pid) - 3), pid)
+  pid <- str_remove(pid, "-ii")
+  
+  hypen_locations <- str_locate_all(pid, "-")
+  hypen_locations <- hypen_locations[[1]][, 1]
+  
+  if(length(hypen_locations) == 1){
+    names <- str_split(pid, "-")
+    names <- names[[1]]
+    names <- str_to_title(names)
+    
+    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], " ", "Jr."), paste0(names[1], " ", names[2]))
+  }
+  
+  if(length(hypen_locations) == 2){
+    names <- str_split(pid, "-")
+    names <- names[[1]]
+    names <- str_to_title(names)
+    
+    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], "-", names[3], " ", "Jr."), paste0(names[1], " ", names[2], "-", names[3]))
+  }
+  
+  return(as.vector(rtn_name))
+}
+
+
 play_by_play <- play_by_play %>% mutate(
   Quarter = 1,
   Total_Minutes = 0,

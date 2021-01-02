@@ -507,8 +507,8 @@ for(i in 1:nrow(Schedule)){
         Schedule[i, c(which(names(Schedule) == "FG_For"):which(names(Schedule) == "Largest_Lead_For"))] <- team_stats$Away_Stats
         Schedule[i, c(which(names(Schedule) == "FG_Against"):which(names(Schedule) == "Largest_Lead_Against"))] <- team_stats$Home_Stats
         
-        Schedule[i+1, c(32:51)] <- team_stats$Home_Stats
-        Schedule[i+1, c(52:71)] <- team_stats$Away_Stats
+        Schedule[i+1, c(which(names(Schedule) == "FG_For"):which(names(Schedule) == "Largest_Lead_For"))] <- team_stats$Home_Stats
+        Schedule[i+1, c(which(names(Schedule) == "FG_Against"):which(names(Schedule) == "Largest_Lead_Against"))] <- team_stats$Away_Stats
         
       }
       

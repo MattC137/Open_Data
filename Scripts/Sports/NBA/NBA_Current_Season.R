@@ -4,44 +4,8 @@ library(readr)
 library(tidyr)
 library(stringr)
 library(lubridate)
-library(purrr)
 
 Season <- 2021
-
-#### Clean Player Id Str ####
-
-# pid = "kentavious-caldwell-pope"
-# pid = "troy-daniels"
-# pid = "zach-norvell-jr"
-# pid = "terence-davis-ii"
-
-Clean_Player_Id_Str <- function(pid){
-  
-  isJr <- ifelse(substr(pid, nchar(pid) - 2, nchar(pid)) == "-jr", 1, 0)
-  pid <- ifelse(isJr, substr(pid, 1, nchar(pid) - 3), pid)
-  pid <- str_remove(pid, "-ii")
-  
-  hypen_locations <- str_locate_all(pid, "-")
-  hypen_locations <- hypen_locations[[1]][, 1]
-  
-  if(length(hypen_locations) == 1){
-    names <- str_split(pid, "-")
-    names <- names[[1]]
-    names <- str_to_title(names)
-    
-    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], " ", "Jr."), paste0(names[1], " ", names[2]))
-  }
-  
-  if(length(hypen_locations) == 2){
-    names <- str_split(pid, "-")
-    names <- names[[1]]
-    names <- str_to_title(names)
-    
-    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], "-", names[3], " ", "Jr."), paste0(names[1], " ", names[2], "-", names[3]))
-  }
-  
-  return(as.vector(rtn_name))
-}
 
 #### Get Schedule ####
 
@@ -51,7 +15,7 @@ Schedule <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Schedule) <- c("Date", "Team", "Opponent", "Result", "W_L", "Season", "Season_Type", "Playoff_Round", "Game_Id")
 
 for(i in 1:nrow(team_ids)){
-  # i = 1
+  # i = 21
   team_name <- as.character(team_ids[i, "Team_Name"])
   short_name <- as.character(team_ids[i, "Short_Name"])
   team_id <- as.character(team_ids[i, "Team_ID"])
@@ -120,8 +84,8 @@ for(i in 1:nrow(team_ids)){
                   season_type == 3 ~ "Post-Season"
                 ),
                 Playoff_Round = "Non-Playoff",
-                Result = ifelse(!str_detect(W_L, "-"), "TBD", Result),
-                W_L = ifelse(!str_detect(W_L, "-"), "TBD", W_L)
+                Result = ifelse(!str_detect(W_L, "-")& W_L != "Postponed", "TBD", Result),
+                W_L = ifelse(!str_detect(W_L, "-") & W_L != "Postponed", "TBD", W_L)
               )
             
             schedule <- schedule %>% filter(Result != "Postponed")
@@ -382,6 +346,12 @@ Schedule <- Schedule %>% mutate(
   Correct_Line = NA,
   Spread_Winner = NA,
   Over_Under_Winner = NA,
+  
+  Money_Line = NA,
+  Money_Line_Opp = NA,
+  
+  Implied_Odds = NA,
+  Implied_Odds_Opp = NA
 )
 
 Future_Schedule <- Schedule %>% 
@@ -413,7 +383,7 @@ Shots <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left", "Top", "Made", "Game_Id")
 
 for(i in 1:nrow(Schedule)){
-  # i = 1293
+  # i = 49
   
   
   if(i %% 2 != 0){
@@ -520,8 +490,8 @@ for(i in 1:nrow(Schedule)){
         Schedule[i, c(which(names(Schedule) == "FG_For"):which(names(Schedule) == "Largest_Lead_For"))] <- team_stats$Away_Stats
         Schedule[i, c(which(names(Schedule) == "FG_Against"):which(names(Schedule) == "Largest_Lead_Against"))] <- team_stats$Home_Stats
         
-        Schedule[i+1, c(32:51)] <- team_stats$Home_Stats
-        Schedule[i+1, c(52:71)] <- team_stats$Away_Stats
+        Schedule[i+1, c(which(names(Schedule) == "FG_For"):which(names(Schedule) == "Largest_Lead_For"))] <- team_stats$Home_Stats
+        Schedule[i+1, c(which(names(Schedule) == "FG_Against"):which(names(Schedule) == "Largest_Lead_Against"))] <- team_stats$Away_Stats
         
       }
       
@@ -568,7 +538,7 @@ for(i in 1:nrow(Schedule)){
     #### Box Scores ####
     
     print("Box Scores TEST")
-    # game_id = 401160623
+    # game_id = 401265848
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -676,6 +646,12 @@ for(i in 1:nrow(Schedule)){
       
       away_stats$Player_Ids <- Player_Ids[(1:nrow(away_stats))]
       home_stats$Player_Ids <- Player_Ids[-(1:nrow(away_stats))]
+      
+      Schedule$Game_Id <- str_trim(as.character(Schedule$Game_Id))
+      
+      # if Game_Id isn't matching because there are some strange characters
+      # Schedule[i, "Game_Id"] <- game_id
+      # Schedule[i+1, "Game_Id"] <- game_id
       
       home_result <- Schedule[Schedule$Home == T & Schedule$Game_Id == game_id, "Result"]
       away_result <- Schedule[Schedule$Home == F & Schedule$Game_Id == game_id, "Result"]
@@ -824,6 +800,8 @@ for(i in 1:nrow(Schedule)){
         Game_Id = game_id
       ) %>% select(-delete)
       
+      Shots <- rbind(Shots, shots)
+      
     }
     
     #### Game Summaries ####
@@ -872,12 +850,11 @@ for(i in 1:nrow(Schedule)){
       game_summary <- as.data.frame(matrix(NA, nrow = 1, ncol = 2))
       names(game_summary) <- c("Summary", "Game_Id")
       
-      game_summary$Summary[1] <- game_recap
+      game_summary$Summary[1] <- ifelse(str_detect(summary_url, "No Recap Available"), "No Recap Available", game_recap)
       game_summary$Game_Id[1] <- game_id
-      
+
       Game_Summary <- rbind(Game_Summary, game_summary)
       
-      Shots <- rbind(Shots, shots)
     }
   }
   
@@ -895,7 +872,7 @@ Pages <- salary_url %>% str_extract('(?<=1 of )(.*?)(?=<)') %>% as.numeric()
 
 for(i in 1:Pages){
   print(i)
-  # i = 11
+  # i = 13
   
   salary_url <- read_html(paste0('http://www.espn.com/nba/salaries/_/year/', Season, '/page/', i,'/seasontype/1'))
   
@@ -909,23 +886,28 @@ for(i in 1:Pages){
     Salary_table <- salary_url %>% html_nodes("table") %>% html_table()
     Salary_table <- as.data.frame(Salary_table[[1]]) %>% filter(X1 != "RK")
     
-    missing_id = NA
-    missing_team = NA
+    missing_id = c()
+    missing_team = c()
     
-    for(j in 1:length(team)){
-      # j = 1
-      team_cleaned <- data.frame(teams = team)
-      team_cleaned$teams <- as.character(team_cleaned$teams)
-      team_cleaned <- team_cleaned %>% separate(teams, into = c("delete", "teams"), sep = ">") %>% select(-delete)
-      
-      missing_id <- ifelse(Salary_table$X3[j] != team_cleaned$teams[j], j, missing_id)
-      missing_team <- ifelse(Salary_table$X3[j] != team_cleaned$teams[j], Salary_table$X3[j], missing_team)
-      
-      if(Salary_table$X3[j] != team_cleaned$teams[j]) break
-      
+    team_cleaned <- data.frame(teams = team)
+    team_cleaned$teams <- as.character(team_cleaned$teams)
+    team_cleaned <- team_cleaned %>% separate(teams, into = c("delete", "teams"), sep = ">") %>% select(-delete)
+    team_cleaned <- team_cleaned$teams
+    
+    for(k in 1:(length(player)-length(team))){
+      for(j in 1:length(player)){
+        # j = 1
+
+        if(Salary_table$X3[j] != team_cleaned[j]){
+          missing_id <- c(missing_id, j)
+          missing_team <- c(missing_team, Salary_table$X3[j])
+          team_cleaned <- append(team_cleaned, Salary_table$X3[j], j-1)
+          team <- append(team, values = paste0('xxx/NO ID">', Salary_table$X3[j]), j-1)
+        }
+
+        if(Salary_table$X3[j] != team_cleaned[j]) break
+      }
     }
-    
-    team <- append(team, values = paste0('xxx/NO ID">', missing_team), after = missing_id - 1)
     
   }
   
@@ -951,23 +933,9 @@ for(i in 1:Pages){
   Salaries <- rbind(Salaries, salaries)
 }
 
-#### Data testing ####
-
-length(unique(Schedule$Game_Id))*2 == nrow(Schedule)
-
-length(unique(Schedule$Game_Id))
-length(unique(Box_Scores$Game_Id))
-length(unique(Play_by_Play$Game_Id))
-
-View(Schedule %>% filter(Season_Type == "Regular-Season") %>% 
-       group_by(Team) %>% 
-       summarize(W = sum(Result == "W"), L = sum(Result == "L"), ppg = mean(as.numeric(Points_For)), opp_ppg = mean(as.numeric(Points_Against))) %>% 
-       arrange(desc(W))
-)
-
 #### Clean Objects ####
 
-rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries", "Season"))])
+rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries", "Season", "Future_Schedule", "team_ids"))])
 
 #### Clean Schedule
 
@@ -1016,6 +984,198 @@ Play_by_Play_Copy <- Play_by_Play
 
 play_by_play <- Play_by_Play_Copy
 
+Play_by_Play <- as.data.frame(matrix(ncol = 8, nrow = 0))
+names(Play_by_Play) <- c("Quarter", "Time", "Quarter_Time", "Team", "Play", "Home_Points", "Away_Points", "Game_Id")
+
+for(i in 1:length(unique(play_by_play$Game_Id))){
+  # i = 1
+  
+  pbp_game_id <- unique(play_by_play$Game_Id)[i]
+  
+  # pbp_game_id <- 401160666
+  pbp <- play_by_play %>% filter(Game_Id == pbp_game_id)
+  
+  pbp <- pbp %>% separate(Score, c("Home_Points", "Away_Points"), sep = "-")
+  pbp <- pbp %>% mutate(
+    Time = ifelse(str_detect(Time, ":"), Time, paste0("0:", Time))
+  )
+  pbp <- pbp %>% separate(Time, c("Minutes", "Seconds_Percent"), sep = ":")
+  pbp <- pbp %>% mutate(
+    Quarter = 1,
+    Seconds_Percent = as.numeric(Seconds_Percent)/60,
+    Quarter_Time = as.numeric(Minutes) + Seconds_Percent,
+    Time = 0
+  ) %>% select(-Minutes, -Seconds_Percent)
+  
+  pbp$Time <- as.numeric(pbp$Time)
+  
+  for(j in 2:nrow(pbp)){
+    # j = 2
+    if(pbp$Quarter_Time[j] <= pbp$Quarter_Time[j-1]){
+      pbp$Quarter[j] = pbp$Quarter[j-1]
+      pbp$Time[j] = pbp$Time[j-1] + (pbp$Quarter_Time[j-1] - pbp$Quarter_Time[j])
+      
+    }else{
+      pbp$Quarter[j] = pbp$Quarter[j-1] + 1
+      pbp$Time[j] = pbp$Time[j-1]
+      
+    }
+    
+    if(pbp$Home_Points[j] < pbp$Home_Points[j-1]){
+      pbp$Home_Points[j] = pbp$Home_Points[j-1]
+    }
+    
+    if(pbp$Away_Points[j] < pbp$Away_Points[j-1]){
+      pbp$Away_Points[j] = pbp$Away_Points[j-1]
+    }
+    
+  }
+  
+  pbp <- pbp %>% select(Quarter, Time, Quarter_Time, Team, Play, Home_Points, Away_Points, Game_Id)
+  Play_by_Play <- rbind(Play_by_Play, pbp)
+}
+
+rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries", "Season", "Future_Schedule", "team_ids"))])
+
+#### Get Future Game Lines ####
+
+for(i in 1:nrow(Future_Schedule)){
+  # i = 21
+  
+  
+  if(i %% 2 != 0){
+    print(i)
+    
+    game_id <- Future_Schedule$Game_Id[i]
+    
+    ### TRY 3 TIMES
+    end_while <- FALSE
+    
+    j <- 1
+    while(!end_while){
+      
+      if(j > 2){
+        Sys.sleep(300)
+      }
+      
+      team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/game/_/gameId/", game_id))})
+      team_stats_tables <- try({team_stats_url %>% html_nodes("table") %>% html_table()})
+      
+      t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
+      t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
+      
+      if(t1 & t2){
+        if(nrow(team_stats_tables[[1]]) > 0 & nrow(team_stats_tables[[2]]) > 0){
+          update_data <- TRUE
+        }else{
+          ## I'll leave this as true for now. Change to false to avoid looping through games that haven't been played. Currently working this way but code isn't clean.
+          update_data <- FALSE
+        }
+        
+      }else{
+        update_data <- FALSE
+      }
+      
+      end_while <- ifelse(t1 & t2 | j == 3, TRUE, FALSE)
+      j <- j + 1
+      
+    }
+    ###
+    
+    if(update_data){
+      
+      Upcoming_Tables <- team_stats_url %>% 
+        html_nodes("table") %>% 
+        html_table()
+      
+      if(any(str_detect(names(Upcoming_Tables[[1]]), "Money Line"))){
+        Line_Table <- Upcoming_Tables[[1]]
+        names(Line_Table) <- c("Team", "TeamRankings", "numberFire", "Spread_Consensus_Pick", "Spread", "Money_Line", "Over_Under")
+        Line_Table <- Line_Table %>% select(Team, Spread, Money_Line, Over_Under)
+        Line_Table <- Line_Table %>% separate(Team, c("Team", "Delete"), "\n") %>% select(-Delete)
+        
+        line_favored <- ifelse(Line_Table$Spread[1] < 0 | Line_Table$Spread[2] < 0, "Not Even", "Even")
+        line_favored <- ifelse(line_favored == "Not Even" & Line_Table$Spread[1] < 0, Line_Table$Team[1], Line_Table$Team[2])
+        line_favored <- ifelse(line_favored == "Even", "Even", as.character(team_ids[team_ids$Team_Name == line_favored, "Short_Name"]))
+  
+        line_amount <- ifelse(line_favored == "Even", 0, as.numeric(-abs(Line_Table$Spread[1])))
+  
+        over_under <- Line_Table$Over_Under[1]
+        
+        away_ml <- Line_Table$Money_Line[1]
+        home_ml <- Line_Table$Money_Line[2]
+        
+        implied_odds_away <- ifelse(away_ml < 0, away_ml/(away_ml+100), 100/(away_ml+100))
+        implied_odds_home <- ifelse(home_ml < 0, -home_ml/(-home_ml+100), 100/(home_ml+100))
+        
+        Future_Schedule[i, "Line_Favored"] <- ifelse(is.null(line_favored), "No Line", line_favored)
+        Future_Schedule[i+1, "Line_Favored"] <- ifelse(is.null(line_favored), "No Line", line_favored)
+        
+        Future_Schedule[i, "Line_Amount"] <- ifelse(is.null(line_amount) | is.na(line_amount), "No Line", line_amount)
+        Future_Schedule[i+1, "Line_Amount"] <- ifelse(is.null(line_amount) | is.na(line_amount), "No Line", line_amount)
+        
+        Future_Schedule[i, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
+        Future_Schedule[i+1, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
+        
+        Future_Schedule[i, "Money_Line"] <- ifelse(Future_Schedule$Home[i], home_ml, away_ml)
+        Future_Schedule[i+1, "Money_Line_Opp"] <- ifelse(Future_Schedule$Home[i+1], away_ml, home_ml)
+        
+        Future_Schedule[i+1, "Money_Line"] <- ifelse(Future_Schedule$Home[i+1], home_ml, away_ml)
+        Future_Schedule[i, "Money_Line_Opp"] <- ifelse(Future_Schedule$Home[i], away_ml, home_ml)
+        
+        Future_Schedule[i, "Implied_Odds"] <-  ifelse(Future_Schedule$Home[i], implied_odds_home, implied_odds_away)
+        Future_Schedule[i+1, "Implied_Odds_Opp"] <- ifelse(Future_Schedule$Home[i+1], implied_odds_away, implied_odds_home)
+        
+        Future_Schedule[i+1, "Implied_Odds"] <- ifelse(Future_Schedule$Home[i+1], implied_odds_home, implied_odds_away)
+        Future_Schedule[i, "Implied_Odds_Opp"] <- ifelse(Future_Schedule$Home[i], implied_odds_away, implied_odds_home)
+      }
+    }
+    
+  }
+  
+}
+
+#### Data testing ####
+
+length(unique(Schedule$Game_Id))*2 == nrow(Schedule)
+
+length(unique(Schedule$Game_Id))
+length(unique(Box_Scores$Game_Id))
+length(unique(Play_by_Play$Game_Id))
+
+View(Schedule %>% filter(Season_Type == "Regular-Season") %>% 
+       group_by(Team) %>% 
+       summarize(W = sum(Result == "W"), L = sum(Result == "L"), ppg = mean(as.numeric(Points_For)), opp_ppg = mean(as.numeric(Points_Against))) %>% 
+       arrange(desc(W))
+)
+
+View(Box_Scores %>%
+       filter(Season_Type == "Regular-Season") %>% 
+       group_by(Player_Id_Str) %>% 
+       summarize(
+          Games = sum(Played), 
+          Points = sum(as.numeric(PTS)), 
+          Assists = sum(as.numeric(AST)), 
+          Rebounds = sum(as.numeric(REB)), 
+          Blocks = sum(as.numeric(BLK)),
+          Threes_Made = sum(as.numeric(THREES_Made)),
+          Steals = sum(as.numeric(STL))
+          ) %>% 
+       ungroup() %>% 
+       mutate(
+         Points = Points/Games,
+         Assists = Assists/Games,
+         Rebounds = Rebounds/Games,
+         Blocks = Blocks/Games,
+         Threes_Made = Threes_Made/Games,
+         Steals = Steals/Games
+         ) %>% 
+       arrange(desc(Points))
+     
+     )
+
+
+
 #### Write Data ####
 
 write.csv(Schedule, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Schedule_", Season,".csv"), row.names = F)
@@ -1047,3 +1207,4 @@ write.csv(Salaries, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Salaries_", S
 
 ## End .csv Update
 
+# -e "C:/Users/Matt C137/Documents/GitHub/Open_Data/Scripts/Sports/NBA/NBA_Current_Season.R"
