@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2020
+Season <- 2019
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -1389,8 +1389,8 @@ write.csv(Line_Log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_L
 termId <- rstudioapi::terminalCreate()
 rstudioapi::terminalSend(termId, paste0('
                          cd GitHub/Open_Data\n
-                         git add .\n
-                         git commit -m "NBA Update ', Sys.Date(), '"\n
+                         git add --all\n
+                         git commit -m "NBA Update ', Sys.time(), '"\n
                          git push origin master\n
                          '))
 
