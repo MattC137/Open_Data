@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2019
+Season <- 2018
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -1328,6 +1328,7 @@ line_log <- Future_Schedule %>%
 if(nrow(Future_Schedule) > 0){
   Line_Log <- read_csv(paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"))
   Line_Log <- rbind(Line_Log, line_log)
+  write.csv(Line_Log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_LIne_Log.csv"), row.names = F)
 }
 
 
@@ -1376,13 +1377,12 @@ Games <- Schedule
 
 #### Write Data ####
 
-write.csv(Games, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Games_", Season,".csv"), row.names = F)
-write.csv(Box_Scores, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Box_Score_", Season,".csv"), row.names = F)
-write.csv(Play_by_Play, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Play_by_Play_", Season,".csv"), row.names = F)
-write.csv(Game_Summary, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Game_Recaps_", Season,".csv"), row.names = F)
-write.csv(Shots, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Shots_", Season,".csv"), row.names = F)
-write.csv(Players, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Players_", Season,".csv"), row.names = F)
-write.csv(Line_Log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"), row.names = F)
+write.csv(Games, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Games.csv"), row.names = F)
+write.csv(Box_Scores, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Box_Score.csv"), row.names = F)
+write.csv(Play_by_Play, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Play_by_Play.csv"), row.names = F)
+write.csv(Game_Summary, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Game_Recaps.csv"), row.names = F)
+write.csv(Shots, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Shots.csv"), row.names = F)
+write.csv(Players, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Players.csv"), row.names = F)
 
 #### GitHub Push ####
 
@@ -1417,4 +1417,4 @@ rstudioapi::terminalSend(termId, paste0('
 
 ## End .csv Update
 
-# -e "C:/Users/Matt C137/Documents/GitHub/Open_Data/Scripts/Sports/NBA/NBA_Current_Season.R"
+# -e "C:/Users/Matt C137/Documents/GitHub/Open_Data/Scripts/Sports/NBA/Get_NBA_Data.R"
