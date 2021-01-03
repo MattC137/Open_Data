@@ -1073,6 +1073,10 @@ for(i in 1:nrow(Salaries)){
 
 Players <- Salaries
 
+Players <- Players %>% mutate(
+  DOB = as.Date(DOB, origin = "1970-01-01")
+)
+
 #### Clean Objects ####
 
 rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Players", "Season", "Future_Schedule", "team_ids"))])
@@ -1098,6 +1102,21 @@ Schedule <- Schedule %>% mutate(
   FT_Per_For = as.numeric(FT_Per_For)/100,
   FT_Per_Against = as.numeric(FT_Per_Against)/100
   
+)
+
+Future_Schedule <- Future_Schedule %>% select(-FG_For, -FG_Against, -Threes_For, -Threes_Against, -FT_For, -FT_Against) %>% mutate(
+  FG_Made_For = NA,
+  FG_Att_For = NA,
+  FG_Made_Against = NA,
+  FG_Att_Against = NA,
+  Threes_Made_For = NA,
+  Threes_Att_For = NA,
+  Threes_Made_Against = NA,
+  Threes_Att_Against = NA,
+  FT_Made_For = NA,
+  FT_Att_For = NA,
+  FT_Made_Against = NA,
+  FT_Att_Against = NA
 )
 
 #### Clean Box_Score ####
@@ -1175,18 +1194,20 @@ for(i in 1:length(unique(play_by_play$Game_Id))){
   Play_by_Play <- rbind(Play_by_Play, pbp)
 }
 
-rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries", "Season", "Future_Schedule", "team_ids"))])
+rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Players", "Season", "Future_Schedule", "team_ids"))])
 
 #### Get Future Game Lines ####
 
 for(i in 1:nrow(Future_Schedule)){
-  # i = 21
+  # i = 1
   
   
   if(i %% 2 != 0){
     print(i)
     
     game_id <- Future_Schedule$Game_Id[i]
+    
+    # game_id <- 401267248
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -1228,52 +1249,74 @@ for(i in 1:nrow(Future_Schedule)){
         html_nodes("table") %>% 
         html_table()
       
+      #### ADD INJURIES HERE USING Upcoming_Tables ####
+      
       if(any(str_detect(names(Upcoming_Tables[[1]]), "Money Line"))){
         Line_Table <- Upcoming_Tables[[1]]
         names(Line_Table) <- c("Team", "TeamRankings", "numberFire", "Spread_Consensus_Pick", "Spread", "Money_Line", "Over_Under")
         Line_Table <- Line_Table %>% select(Team, Spread, Money_Line, Over_Under)
         Line_Table <- Line_Table %>% separate(Team, c("Team", "Delete"), "\n") %>% select(-Delete)
         
-        line_favored <- ifelse(Line_Table$Spread[1] < 0 | Line_Table$Spread[2] < 0, "Not Even", "Even")
-        line_favored <- ifelse(line_favored == "Not Even" & Line_Table$Spread[1] < 0, Line_Table$Team[1], Line_Table$Team[2])
-        line_favored <- ifelse(line_favored == "Even", "Even", as.character(team_ids[team_ids$Team_Name == line_favored, "Short_Name"]))
-  
-        line_amount <- ifelse(line_favored == "Even", 0, as.numeric(-abs(Line_Table$Spread[1])))
-  
-        over_under <- Line_Table$Over_Under[1]
-        
-        away_ml <- Line_Table$Money_Line[1]
-        home_ml <- Line_Table$Money_Line[2]
-        
-        implied_odds_away <- ifelse(away_ml < 0, away_ml/(away_ml+100), 100/(away_ml+100))
-        implied_odds_home <- ifelse(home_ml < 0, -home_ml/(-home_ml+100), 100/(home_ml+100))
-        
-        Future_Schedule[i, "Line_Favored"] <- ifelse(is.null(line_favored), "No Line", line_favored)
-        Future_Schedule[i+1, "Line_Favored"] <- ifelse(is.null(line_favored), "No Line", line_favored)
-        
-        Future_Schedule[i, "Line_Amount"] <- ifelse(is.null(line_amount) | is.na(line_amount), "No Line", line_amount)
-        Future_Schedule[i+1, "Line_Amount"] <- ifelse(is.null(line_amount) | is.na(line_amount), "No Line", line_amount)
-        
-        Future_Schedule[i, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
-        Future_Schedule[i+1, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
-        
-        Future_Schedule[i, "Money_Line"] <- ifelse(Future_Schedule$Home[i], home_ml, away_ml)
-        Future_Schedule[i+1, "Money_Line_Opp"] <- ifelse(Future_Schedule$Home[i+1], away_ml, home_ml)
-        
-        Future_Schedule[i+1, "Money_Line"] <- ifelse(Future_Schedule$Home[i+1], home_ml, away_ml)
-        Future_Schedule[i, "Money_Line_Opp"] <- ifelse(Future_Schedule$Home[i], away_ml, home_ml)
-        
-        Future_Schedule[i, "Implied_Odds"] <-  ifelse(Future_Schedule$Home[i], implied_odds_home, implied_odds_away)
-        Future_Schedule[i+1, "Implied_Odds_Opp"] <- ifelse(Future_Schedule$Home[i+1], implied_odds_away, implied_odds_home)
-        
-        Future_Schedule[i+1, "Implied_Odds"] <- ifelse(Future_Schedule$Home[i+1], implied_odds_home, implied_odds_away)
-        Future_Schedule[i, "Implied_Odds_Opp"] <- ifelse(Future_Schedule$Home[i], implied_odds_away, implied_odds_home)
+        if(Line_Table$Spread[1] != "--"){
+          line_favored <- ifelse(Line_Table$Spread[1] < 0 | Line_Table$Spread[2] < 0, "Not Even", "Even")
+          line_favored <- ifelse(line_favored == "Not Even" & Line_Table$Spread[1] < 0, Line_Table$Team[1], Line_Table$Team[2])
+          line_favored <- ifelse(line_favored == "Even", "Even", as.character(team_ids[team_ids$Team_Name == line_favored, "Short_Name"]))
+          
+          line_amount <- ifelse(line_favored == "Even", 0, as.numeric(-abs(Line_Table$Spread[1])))
+          
+          over_under <- Line_Table$Over_Under[1]
+          
+          away_ml <- Line_Table$Money_Line[1]
+          home_ml <- Line_Table$Money_Line[2]
+          
+          implied_odds_away <- ifelse(away_ml < 0, -away_ml/(-away_ml+100), 100/(away_ml+100))
+          implied_odds_home <- ifelse(home_ml < 0, -home_ml/(-home_ml+100), 100/(home_ml+100))
+          
+          Future_Schedule[i, "Line_Favored"] <- ifelse(is.null(line_favored), "No Line", line_favored)
+          Future_Schedule[i+1, "Line_Favored"] <- ifelse(is.null(line_favored), "No Line", line_favored)
+          
+          Future_Schedule[i, "Line_Amount"] <- ifelse(is.null(line_amount) | is.na(line_amount), "No Line", line_amount)
+          Future_Schedule[i+1, "Line_Amount"] <- ifelse(is.null(line_amount) | is.na(line_amount), "No Line", line_amount)
+          
+          Future_Schedule[i, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
+          Future_Schedule[i+1, "Over_Under"] <- ifelse(is.null(over_under), "No Line", over_under)
+          
+          Future_Schedule[i, "Money_Line"] <- ifelse(Future_Schedule$Home[i], home_ml, away_ml)
+          Future_Schedule[i+1, "Money_Line_Opp"] <- ifelse(Future_Schedule$Home[i+1], away_ml, home_ml)
+          
+          Future_Schedule[i+1, "Money_Line"] <- ifelse(Future_Schedule$Home[i+1], home_ml, away_ml)
+          Future_Schedule[i, "Money_Line_Opp"] <- ifelse(Future_Schedule$Home[i], away_ml, home_ml)
+          
+          Future_Schedule[i, "Implied_Odds"] <-  ifelse(Future_Schedule$Home[i], implied_odds_home, implied_odds_away)
+          Future_Schedule[i+1, "Implied_Odds_Opp"] <- ifelse(Future_Schedule$Home[i+1], implied_odds_away, implied_odds_home)
+          
+          Future_Schedule[i+1, "Implied_Odds"] <- ifelse(Future_Schedule$Home[i+1], implied_odds_home, implied_odds_away)
+          Future_Schedule[i, "Implied_Odds_Opp"] <- ifelse(Future_Schedule$Home[i], implied_odds_away, implied_odds_home)
+        }
       }
     }
     
   }
   
 }
+
+if(nrow(Future_Schedule) > 0){
+  Schedule <- rbind(Schedule, Future_Schedule)
+}
+
+time_stamp = Sys.time()
+
+line_log <- Future_Schedule %>% 
+  select(Date, Team, Opponent, Season, Game_Id, Line_Favored, Line_Amount, Over_Under, Money_Line, Money_Line_Opp, Implied_Odds, Implied_Odds_Opp) %>% 
+  filter(!is.na(Money_Line)) %>% 
+  mutate(
+    Time_Stamp = time_stamp
+  )
+
+# write.csv(line_log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"), row.names = F)
+Line_Log <- read_csv(paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"))
+
+Line_Log <- rbind(Line_Log, line_log)
 
 #### Data testing ####
 
@@ -1313,8 +1356,6 @@ View(Box_Scores %>%
        arrange(desc(Points))
      
      )
-
-
 
 #### Write Data ####
 
