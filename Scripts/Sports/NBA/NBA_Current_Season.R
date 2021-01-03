@@ -7,6 +7,34 @@ library(lubridate)
 
 Season <- 2021
 
+Clean_Player_Id_Str <- function(pid){
+  
+  isJr <- ifelse(substr(pid, nchar(pid) - 2, nchar(pid)) == "-jr", 1, 0)
+  pid <- ifelse(isJr, substr(pid, 1, nchar(pid) - 3), pid)
+  pid <- str_remove(pid, "-ii")
+  
+  hypen_locations <- str_locate_all(pid, "-")
+  hypen_locations <- hypen_locations[[1]][, 1]
+  
+  if(length(hypen_locations) == 1){
+    names <- str_split(pid, "-")
+    names <- names[[1]]
+    names <- str_to_title(names)
+    
+    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], " ", "Jr."), paste0(names[1], " ", names[2]))
+  }
+  
+  if(length(hypen_locations) == 2){
+    names <- str_split(pid, "-")
+    names <- names[[1]]
+    names <- str_to_title(names)
+    
+    rtn_name <- ifelse(isJr, paste0(names[1], " ", names[2], "-", names[3], " ", "Jr."), paste0(names[1], " ", names[2], "-", names[3]))
+  }
+  
+  return(as.vector(rtn_name))
+}
+
 #### Get Schedule ####
 
 team_ids <- read_csv("~/GitHub/Open_Data/Scripts/Sports/NBA/team_ids.csv")
@@ -537,7 +565,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Box Scores ####
     
-    print("Box Scores TEST")
+    print("Box Scores")
     # game_id = 401265848
     
     ### TRY 3 TIMES
@@ -933,9 +961,121 @@ for(i in 1:Pages){
   Salaries <- rbind(Salaries, salaries)
 }
 
+### Update players not on the Salaries List ###
+
+missing_players <- Box_Scores %>% 
+  group_by(Player_Id) %>% 
+  summarize(Player_Id_Str = first(Player_Id_Str), Short_Name = last(Team), Position = first(Position)) %>% 
+  ungroup()
+
+missing_players <- missing_players %>% anti_join(Salaries, by = c("Player_Id" = "Player_Id"))
+missing_players <- missing_players %>% mutate(
+  Player = NA,
+  Salary = NA,
+  Season = Season     
+) %>% select("Player_Id", "Player_Id_Str", "Player", "Position", "Short_Name", "Salary", "Season" )
+
+missing_players <- missing_players %>% 
+  left_join(team_ids %>% select(Short_Name, Team_Id = Team_ID, Team = Team_Name), by = c("Short_Name" = "Short_Name"))
+
+missing_players <- missing_players %>% rowwise() %>% mutate(
+ Player = Clean_Player_Id_Str(Player_Id_Str) 
+) %>% select(names(Salaries)) %>% as.data.frame()
+
+Salaries <- rbind(Salaries, missing_players)
+
+Salaries <- Salaries %>% mutate(
+  Height = NA,
+  Feet = NA,
+  Inches = NA,
+  Weight = NA,
+  DOB = NA,
+  Draft_Year = NA,
+  Draft_Round = NA,
+  Draft_Pick = NA,
+  Draft_Team = NA
+)
+
+#### Update Player Bio ####
+
+for(i in 1:nrow(Salaries)){
+  # i = 51
+  print(i)
+  
+  player_id <- Salaries$Player_Id[i]
+  # player_id <- 4395628
+  
+  ### TRY 3 TIMES
+  end_while <- FALSE
+  
+  j <- 1
+  while(!end_while){
+    
+    if(j > 2){
+      Sys.sleep(300)
+      print("sleep")
+    }
+    
+    player_url <- try({read_html(paste0("https://www.espn.com/nba/player/_/id/", player_id))})
+    
+    update_data <- TRUE
+    
+    end_while <- ifelse(class(player_url) != "try-error" | j == 3, TRUE, FALSE)
+    j <- j + 1
+    
+  }
+  ###
+  
+  if(update_data){
+    Bio <- player_url %>% html_nodes('li')
+    
+   #### Get Height/Weight ####
+    
+    HT_WT <- try({Bio[str_detect(Bio, " lbs")]})
+    if(length(HT_WT) == 1){
+      HT <- str_extract(HT_WT, '(?<=<div>)(.*?)(?=, )')
+      HT <- str_remove(HT, "'") 
+      HT <- str_remove(HT, "\"")
+      HT <- str_split(HT, " ") %>% unlist()
+      WT <- str_extract(HT_WT, '(?<=", )(.*?)(?= lbs)')
+      
+      Salaries$Height[i] <- as.numeric(HT[1]) + as.numeric(HT[2])/12
+      Salaries$Feet[i] <- as.numeric(HT[1])
+      Salaries$Inches[i] <- as.numeric(HT[2])
+      Salaries$Weight[i] <- as.numeric(WT)
+    }
+
+    
+    #### Get DOB ####
+    
+    DOB <- try({Bio[str_detect(Bio, "DOB")]})
+    if(length(DOB) == 1){
+      DOB <- str_extract(DOB, '(?<=<div>)(.*?)(?= )') %>% as.Date(format = "%m/%d/%Y")
+      Salaries$DOB[i] <- DOB
+    }
+    
+    #### Get Draft Info ####
+    
+    Draft <- try({Bio[str_detect(Bio, "Draft Info")]})
+    if(length(Draft) == 1){
+      Draft_Year <- str_extract(Draft, '(?<=<div>)(.*?)(?=:)')
+      Draft_Round <- str_extract(Draft, '(?<=Rd )(.*?)(?=,)')
+      Draft_Pick <- str_extract(Draft, '(?<=Pk )(.*?)(?= )')
+      Draft_Team <- str_extract(Draft, '(?<=\\()(.*?)(?=\\))')
+      
+      Salaries$Draft_Year[i] <- Draft_Year
+      Salaries$Draft_Round[i] <- Draft_Round
+      Salaries$Draft_Pick[i] <- Draft_Pick
+      Salaries$Draft_Team[i] <- Draft_Team
+    }
+  }
+}
+
+Players <- Salaries
+
 #### Clean Objects ####
 
-rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Salaries", "Season", "Future_Schedule", "team_ids"))])
+rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Players", "Season", "Future_Schedule", "team_ids"))])
 
 #### Clean Schedule
 
@@ -1184,6 +1324,17 @@ write.csv(Play_by_Play, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Play_by_P
 write.csv(Game_Summary, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Game_Recaps_", Season,".csv"), row.names = F)
 write.csv(Shots, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Shots_", Season,".csv"), row.names = F)
 write.csv(Salaries, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Salaries_", Season,".csv"), row.names = F)
+
+#### GitHub Push ####
+
+termId <- rstudioapi::terminalCreate()
+rstudioapi::terminalSend(termId, paste0('
+                         cd GitHub/Open_Data\n
+                         git add .\n
+                         git commit -m "NBA Update ', Sys.Date(), '"\n
+                         git push origin master\n
+                         '))
+
 
 #### Get Teams ####
 
