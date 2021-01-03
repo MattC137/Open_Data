@@ -885,9 +885,9 @@ for(i in 1:nrow(Schedule)){
       
     }
   }
-  
-  
 }
+
+# names(Future_Schedule) == names(Schedule)
 
 #### Salaries ####
 
@@ -961,6 +961,24 @@ for(i in 1:Pages){
   Salaries <- rbind(Salaries, salaries)
 }
 
+#### Clean Box_Score ####
+
+Box_Scores_Raw <- Box_Scores
+
+Box_Scores[Box_Scores$FG == "-----", "FG"] <- "0-0"
+Box_Scores[Box_Scores$THREES == "-----", "THREES"] <- "0-0"
+Box_Scores[Box_Scores$FT == "-----", "FT"] <- "0-0"
+
+Box_Scores[is.na(Box_Scores)] <- 0
+Box_Scores <- Box_Scores %>% separate(FG, into = c("FG_Made", "FG_Att"), sep = "-")
+Box_Scores <- Box_Scores %>% separate(THREES, into = c("THREES_Made", "THREES_Att"), sep = "-")
+Box_Scores <- Box_Scores %>% separate(FT, into = c("FT_Made", "FT_Att"), sep = "-")
+Box_Scores <- Box_Scores %>% separate(Player_Ids, into = c("Player_Id", "Player_Id_Str"), sep = "/")
+
+Box_Scores <- Box_Scores %>% mutate(
+  PLUS_MINUS = str_replace_all(PLUS_MINUS, "\\+", "")
+)
+
 ### Update players not on the Salaries List ###
 
 missing_players <- Box_Scores %>% 
@@ -995,6 +1013,8 @@ Salaries <- Salaries %>% mutate(
   Draft_Pick = NA,
   Draft_Team = NA
 )
+
+# names(Future_Schedule) == names(Schedule)
 
 #### Update Player Bio ####
 
@@ -1077,6 +1097,8 @@ Players <- Players %>% mutate(
   DOB = as.Date(DOB, origin = "1970-01-01")
 )
 
+# names(Future_Schedule) == names(Schedule)
+
 #### Clean Objects ####
 
 rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Players", "Season", "Future_Schedule", "team_ids"))])
@@ -1117,25 +1139,9 @@ Future_Schedule <- Future_Schedule %>% select(-FG_For, -FG_Against, -Threes_For,
   FT_Att_For = NA,
   FT_Made_Against = NA,
   FT_Att_Against = NA
-)
+) %>% select(names(Schedule))
 
-#### Clean Box_Score ####
-
-Box_Scores_Raw <- Box_Scores
-
-Box_Scores[Box_Scores$FG == "-----", "FG"] <- "0-0"
-Box_Scores[Box_Scores$THREES == "-----", "THREES"] <- "0-0"
-Box_Scores[Box_Scores$FT == "-----", "FT"] <- "0-0"
-
-Box_Scores[is.na(Box_Scores)] <- 0
-Box_Scores <- Box_Scores %>% separate(FG, into = c("FG_Made", "FG_Att"), sep = "-")
-Box_Scores <- Box_Scores %>% separate(THREES, into = c("THREES_Made", "THREES_Att"), sep = "-")
-Box_Scores <- Box_Scores %>% separate(FT, into = c("FT_Made", "FT_Att"), sep = "-")
-Box_Scores <- Box_Scores %>% separate(Player_Ids, into = c("Player_Id", "Player_Id_Str"), sep = "/")
-
-Box_Scores <- Box_Scores %>% mutate(
-  PLUS_MINUS = str_replace_all(PLUS_MINUS, "\\+", "")
-)
+# names(Future_Schedule) == names(Schedule)
 
 #### Play by Play ####
 
@@ -1193,6 +1199,8 @@ for(i in 1:length(unique(play_by_play$Game_Id))){
   pbp <- pbp %>% select(Quarter, Time, Quarter_Time, Team, Play, Home_Points, Away_Points, Game_Id)
   Play_by_Play <- rbind(Play_by_Play, pbp)
 }
+
+#### Clean Objects ####
 
 rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Summary", "Shots", "Players", "Season", "Future_Schedule", "team_ids"))])
 
@@ -1300,6 +1308,8 @@ for(i in 1:nrow(Future_Schedule)){
   
 }
 
+length(unique(Schedule$Game_Id))
+
 if(nrow(Future_Schedule) > 0){
   Schedule <- rbind(Schedule, Future_Schedule)
 }
@@ -1357,14 +1367,19 @@ View(Box_Scores %>%
      
      )
 
+#### RENAME DFs ####
+
+Games <- Schedule
+
 #### Write Data ####
 
-write.csv(Schedule, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Schedule_", Season,".csv"), row.names = F)
+write.csv(Games, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Games_", Season,".csv"), row.names = F)
 write.csv(Box_Scores, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Box_Score_", Season,".csv"), row.names = F)
 write.csv(Play_by_Play, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Play_by_Play_", Season,".csv"), row.names = F)
 write.csv(Game_Summary, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Game_Recaps_", Season,".csv"), row.names = F)
 write.csv(Shots, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Shots_", Season,".csv"), row.names = F)
-write.csv(Salaries, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Salaries_", Season,".csv"), row.names = F)
+write.csv(Players, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Players_", Season,".csv"), row.names = F)
+write.csv(Line_Log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"), row.names = F)
 
 #### GitHub Push ####
 
