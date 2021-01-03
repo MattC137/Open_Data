@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2021
+Season <- 2020
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -58,7 +58,7 @@ for(i in 1:nrow(team_ids)){
     Schedule_Season <- as.data.frame(matrix(nrow = 0, ncol = 9))
     names(Schedule_Season) <- c("Date", "Team", "Opponent", "Result", "W_L", "Season", "Season_Type", "Playoff_Round", "Game_Id")
     
-    print(paste(team_name, season))
+    # print(paste(team_name, season))
     
     for(season_type in 1:3){
       # season_type = 2
@@ -415,7 +415,7 @@ for(i in 1:nrow(Schedule)){
   
   
   if(i %% 2 != 0){
-    print(i)
+    # print(i)
     
     game_id <- Schedule$Game_Id[i]
     
@@ -500,7 +500,7 @@ for(i in 1:nrow(Schedule)){
       
       #### Team Stats ####
       
-      print("Team Stats")
+      # print("Team Stats")
       
       # cols 32:51/52:71
       
@@ -565,7 +565,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Box Scores ####
     
-    print("Box Scores")
+    # print("Box Scores")
     # game_id = 401265848
     
     ### TRY 3 TIMES
@@ -576,7 +576,7 @@ for(i in 1:nrow(Schedule)){
       
       if(j > 2){
         Sys.sleep(300)
-        print("sleep")
+       # print("sleep")
       }
       
       box_score_url <- try({read_html(paste0("https://www.espn.com/nba/boxscore?gameId=", game_id))})
@@ -719,7 +719,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Play-by-play ####
     
-    print("Play-by-play")
+    # print("Play-by-play")
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -729,7 +729,7 @@ for(i in 1:nrow(Schedule)){
       
       if(j > 2){
         Sys.sleep(300)
-        print("sleep")
+        # print("sleep")
       }
       
       play_by_play_url <- try({read_html(paste0("https://www.espn.com/nba/playbyplay?gameId=", game_id))})
@@ -834,7 +834,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Game Summaries ####
     
-    print("Game Summaries")
+    # print("Game Summaries")
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -844,7 +844,7 @@ for(i in 1:nrow(Schedule)){
       
       if(j > 2){
         Sys.sleep(300)
-        print("sleep")
+        # print("sleep")
       }
       
       summary_url <- try({read_html(paste0("https://www.espn.com/nba/recap?gameId=", game_id))})
@@ -899,7 +899,7 @@ salary_url <- read_html(paste0('http://www.espn.com/nba/salaries/_/year/', Seaso
 Pages <- salary_url %>% str_extract('(?<=1 of )(.*?)(?=<)') %>% as.numeric()
 
 for(i in 1:Pages){
-  print(i)
+  # print(i)
   # i = 13
   
   salary_url <- read_html(paste0('http://www.espn.com/nba/salaries/_/year/', Season, '/page/', i,'/seasontype/1'))
@@ -1020,7 +1020,7 @@ Salaries <- Salaries %>% mutate(
 
 for(i in 1:nrow(Salaries)){
   # i = 51
-  print(i)
+  # print(i)
   
   player_id <- Salaries$Player_Id[i]
   # player_id <- 4395628
@@ -1033,7 +1033,7 @@ for(i in 1:nrow(Salaries)){
     
     if(j > 2){
       Sys.sleep(300)
-      print("sleep")
+      # print("sleep")
     }
     
     player_url <- try({read_html(paste0("https://www.espn.com/nba/player/_/id/", player_id))})
@@ -1211,7 +1211,7 @@ for(i in 1:nrow(Future_Schedule)){
   
   
   if(i %% 2 != 0){
-    print(i)
+    # print(i)
     
     game_id <- Future_Schedule$Game_Id[i]
     
@@ -1324,9 +1324,12 @@ line_log <- Future_Schedule %>%
   )
 
 # write.csv(line_log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"), row.names = F)
-Line_Log <- read_csv(paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"))
 
-Line_Log <- rbind(Line_Log, line_log)
+if(nrow(Future_Schedule) > 0){
+  Line_Log <- read_csv(paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"))
+  Line_Log <- rbind(Line_Log, line_log)
+}
+
 
 #### Data testing ####
 
