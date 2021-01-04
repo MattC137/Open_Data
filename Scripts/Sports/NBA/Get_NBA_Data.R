@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2018
+Season <- 2019
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -58,7 +58,7 @@ for(i in 1:nrow(team_ids)){
     Schedule_Season <- as.data.frame(matrix(nrow = 0, ncol = 9))
     names(Schedule_Season) <- c("Date", "Team", "Opponent", "Result", "W_L", "Season", "Season_Type", "Playoff_Round", "Game_Id")
     
-    # print(paste(team_name, season))
+    print(paste(team_name, season))
     
     for(season_type in 1:3){
       # season_type = 2
@@ -415,7 +415,7 @@ for(i in 1:nrow(Schedule)){
   
   
   if(i %% 2 != 0){
-    # print(i)
+    print(i)
     
     game_id <- Schedule$Game_Id[i]
     
@@ -426,7 +426,7 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(300)
+        Sys.sleep(3)
       }
       
       team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/matchup?gameId=", game_id))})
@@ -500,7 +500,7 @@ for(i in 1:nrow(Schedule)){
       
       #### Team Stats ####
       
-      # print("Team Stats")
+      print("Team Stats")
       
       # cols 32:51/52:71
       
@@ -565,7 +565,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Box Scores ####
     
-    # print("Box Scores")
+    print("Box Scores")
     # game_id = 401265848
     
     ### TRY 3 TIMES
@@ -575,14 +575,14 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(300)
+        Sys.sleep(3)
        # print("sleep")
       }
       
       box_score_url <- try({read_html(paste0("https://www.espn.com/nba/boxscore?gameId=", game_id))})
       box_score <- try({box_score_url %>% html_nodes("table") %>% html_table()})
       
-      if(class(box_score) != "try-error"){
+      if(class(box_score) != "try-error" | length(box_score != 0)){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
@@ -719,7 +719,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Play-by-play ####
     
-    # print("Play-by-play")
+    print("Play-by-play")
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -834,7 +834,7 @@ for(i in 1:nrow(Schedule)){
     
     #### Game Summaries ####
     
-    # print("Game Summaries")
+    print("Game Summaries")
     
     ### TRY 3 TIMES
     end_while <- FALSE

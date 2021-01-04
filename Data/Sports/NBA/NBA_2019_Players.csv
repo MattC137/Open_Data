@@ -303,229 +303,202 @@
 "4066328","jarrett-allen","Jarrett Allen","C","BKN","brooklyn-nets","Brooklyn Nets","2034120",2020,6.91666666666667,6,11,248,1998-04-21,"2017","1","22","BKN"
 "3191","corey-brewer","Corey Brewer","F","SAC","sacramento-kings","Sacramento Kings","2000000",2020,NA,NA,NA,NA,NA,"2007","1","7","MIN"
 "2528693","torrey-craig","Torrey Craig","SF","DEN","denver-nuggets","Denver Nuggets","2000000",2020,6.58333333333333,6,7,225,1990-12-19,NA,NA,NA,NA
-"3149010","chandler-hutchison","Chandler Hutchison","SF","CHI","chicago-bulls","Chicago Bulls","1990520",2020,6.58333333333333,6,7,208,1996-04-26,"2018","1","22","CHI"
-"4017838","ante-zizic","Ante Zizic","C","CLE","cleveland-cavaliers","Cleveland Cavaliers","1952760",2020,NA,NA,NA,NA,NA,"2016","1","23","BOS"
-"2530780","shabazz-napier","Shabazz Napier","G","BKN","brooklyn-nets","Brooklyn Nets","1942422",2020,NA,NA,NA,NA,NA,"2014","1","24","CHA"
-"3922230","aaron-holiday","Aaron Holiday","PG","IND","indiana-pacers","Indiana Pacers","1911960",2020,6.08333333333333,6,1,185,1996-09-30,"2018","1","23","IND"
-"3934662","tyler-lydon","Tyler Lydon","F","DEN","denver-nuggets","Denver Nuggets","1874640",2020,NA,NA,NA,NA,NA,"2017","1","24","UTAH"
-"6453","deandre-liggins","DeAndre Liggins","G","MIA","miami-heat","Miami Heat","1795015",2020,NA,NA,NA,NA,NA,"2011","2","53","ORL"
-"2579260","trey-burke","Trey Burke","PG","NY","new-york-knicks","New York Knicks","1795015",2020,6,6,0,185,1992-11-12,"2013","1","9","MIN"
-"3907822","malik-beasley","Malik Beasley","SG","DEN","denver-nuggets","Denver Nuggets","1773840",2020,6.33333333333333,6,4,196,1996-11-26,"2016","1","19","DEN"
-"3150844","moritz-wagner","Moritz Wagner","C","LAL","los-angeles-lakers","Los Angeles Lakers","1762080",2020,6.91666666666667,6,11,245,1997-04-26,"2018","1","25","LAL"
-"4351851","anfernee-simons","Anfernee Simons","SG","POR","portland-trail-blazers","Portland Trail Blazers","1760520",2020,6.25,6,3,181,1999-06-08,"2018","1","24","POR"
-"2991280","nerlens-noel","Nerlens Noel","C","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1757429",2020,6.91666666666667,6,11,201,1994-04-10,"2013","1","6","NO"
-"3906671","caleb-swanigan","Caleb Swanigan","F","SAC","sacramento-kings","Sacramento Kings","1740000",2020,NA,NA,NA,NA,NA,"2017","1","26","POR"
-"3929325","furkan-korkmaz","Furkan Korkmaz","SG","PHI","philadelphia-76ers","Philadelphia 76ers","1740000",2020,6.58333333333333,6,7,210,1997-07-24,"2016","1","26","PHI"
-"3914044","landry-shamet","Landry Shamet","SG","PHI","philadelphia-76ers","Philadelphia 76ers","1703649",2020,6.33333333333333,6,4,195,1997-03-13,"2018","1","26","PHI"
-"2991043","caris-levert","Caris LeVert","SG","BKN","brooklyn-nets","Brooklyn Nets","1702800",2020,6.5,6,6,205,1994-08-25,"2016","1","20","IND"
-"3155533","jonah-bolden","Jonah Bolden","PF","PHI","philadelphia-76ers","Philadelphia 76ers","1690000",2020,NA,NA,NA,NA,NA,"2017","2","36","PHI"
-"3134907","kyle-kuzma","Kyle Kuzma","PF","LAL","los-angeles-lakers","Los Angeles Lakers","1689840",2020,6.66666666666667,6,8,220,1995-07-24,"2017","1","27","BKN"
-"4065673","tony-bradley","Tony Bradley","C","UTAH","utah-jazz","Utah Jazz","1679520",2020,6.83333333333333,6,10,260,1998-01-08,"2017","1","28","LAL"
-"3078576","derrick-white","Derrick White","PG","SA","san-antonio-spurs","San Antonio Spurs","1667160",2020,6.33333333333333,6,4,195,1994-07-02,"2017","1","29","SA"
-"2580782","spencer-dinwiddie","Spencer Dinwiddie","PG","BKN","brooklyn-nets","Brooklyn Nets","1656092",2020,6.41666666666667,6,5,218,1993-04-06,"2014","2","38","DET"
+"3149010","chandler-hutchison","Chandler Hutchison","SF","CHI","chicago-bulls","Chicago Bulls","1990520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4017838","ante-zizic","Ante Zizic","C","CLE","cleveland-cavaliers","Cleveland Cavaliers","1952760",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2530780","shabazz-napier","Shabazz Napier","G","BKN","brooklyn-nets","Brooklyn Nets","1942422",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3922230","aaron-holiday","Aaron Holiday","PG","IND","indiana-pacers","Indiana Pacers","1911960",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3934662","tyler-lydon","Tyler Lydon","F","DEN","denver-nuggets","Denver Nuggets","1874640",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6453","deandre-liggins","DeAndre Liggins","G","MIA","miami-heat","Miami Heat","1795015",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2579260","trey-burke","Trey Burke","PG","NY","new-york-knicks","New York Knicks","1795015",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3907822","malik-beasley","Malik Beasley","SG","DEN","denver-nuggets","Denver Nuggets","1773840",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3150844","moritz-wagner","Moritz Wagner","C","LAL","los-angeles-lakers","Los Angeles Lakers","1762080",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4351851","anfernee-simons","Anfernee Simons","SG","POR","portland-trail-blazers","Portland Trail Blazers","1760520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2991280","nerlens-noel","Nerlens Noel","C","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1757429",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3906671","caleb-swanigan","Caleb Swanigan","F","SAC","sacramento-kings","Sacramento Kings","1740000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3929325","furkan-korkmaz","Furkan Korkmaz","SG","PHI","philadelphia-76ers","Philadelphia 76ers","1740000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3914044","landry-shamet","Landry Shamet","SG","PHI","philadelphia-76ers","Philadelphia 76ers","1703649",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2991043","caris-levert","Caris LeVert","SG","BKN","brooklyn-nets","Brooklyn Nets","1702800",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3155533","jonah-bolden","Jonah Bolden","PF","PHI","philadelphia-76ers","Philadelphia 76ers","1690000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3134907","kyle-kuzma","Kyle Kuzma","PF","LAL","los-angeles-lakers","Los Angeles Lakers","1689840",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4065673","tony-bradley","Tony Bradley","C","UTAH","utah-jazz","Utah Jazz","1679520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3078576","derrick-white","Derrick White","PG","SA","san-antonio-spurs","San Antonio Spurs","1667160",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2580782","spencer-dinwiddie","Spencer Dinwiddie","PG","BKN","brooklyn-nets","Brooklyn Nets","1656092",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "6543","julyan-stone","Julyan Stone","G","CHI","chicago-bulls","Chicago Bulls","1656092",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6428","marshon-brooks","MarShon Brooks","G","MEM","memphis-grizzlies","Memphis Grizzlies","1656092",2020,NA,NA,NA,NA,NA,"2011","1","25","BOS"
-"3062679","josh-hart","Josh Hart","SG","LAL","los-angeles-lakers","Los Angeles Lakers","1655160",2020,6.41666666666667,6,5,215,1995-03-06,"2017","1","30","UTAH"
-"4066211","robert-williams-iii","Robert Williams III","C","BOS","boston-celtics","Boston Celtics","1654440",2020,6.66666666666667,6,8,237,1997-10-17,"2018","1","27","BOS"
-"3934621","jacob-evans","Jacob Evans","G","GS","golden-state-warriors","Golden State Warriors","1644240",2020,NA,NA,NA,NA,NA,"2018","1","28","GS"
-"2578239","pat-connaughton","Pat Connaughton","SG","MIL","milwaukee-bucks","Milwaukee Bucks","1641000",2020,6.41666666666667,6,5,211,1993-01-06,"2015","2","41","BKN"
-"3062667","deandre'-bembry","DeAndre' Bembry","SF","ATL","atlanta-hawks","Atlanta Hawks","1634640",2020,6.41666666666667,6,5,210,1994-07-04,"2016","1","21","ATL"
-"4348696","dzanan-musa","Dzanan Musa","F","BKN","brooklyn-nets","Brooklyn Nets","1632240",2020,NA,NA,NA,NA,NA,"2018","1","29","BKN"
-"2579321","james-ennis-iii","James Ennis III","SF","PHI","philadelphia-76ers","Philadelphia 76ers","1621415",2020,6.5,6,6,215,1990-07-01,"2013","2","50","ATL"
-"4065836","omari-spellman","Omari Spellman","PF","ATL","atlanta-hawks","Atlanta Hawks","1620480",2020,6.75,6,9,284,1997-07-21,"2018","1","30","ATL"
-"3064560","luke-kornet","Luke Kornet","PF","NY","new-york-knicks","New York Knicks","1619260",2020,7.16666666666667,7,2,250,1995-07-15,NA,NA,NA,NA
-"4230548","rodions-kurucs","Rodions Kurucs","SF","BKN","brooklyn-nets","Brooklyn Nets","1618320",2020,6.75,6,9,230,1998-02-05,"2018","2","40","BKN"
-"2993370","richaun-holmes","Richaun Holmes","PF","PHX","phoenix-suns","Phoenix Suns","1600520",2020,6.83333333333333,6,10,240,1993-10-15,"2015","2","37","PHI"
-"2530530","t.j.-mcconnell","T.J. McConnell","PG","PHI","philadelphia-76ers","Philadelphia 76ers","1600520",2020,6.16666666666667,6,2,190,1992-03-25,NA,NA,NA,NA
+"6428","marshon-brooks","MarShon Brooks","G","MEM","memphis-grizzlies","Memphis Grizzlies","1656092",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3062679","josh-hart","Josh Hart","SG","LAL","los-angeles-lakers","Los Angeles Lakers","1655160",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4066211","robert-williams-iii","Robert Williams III","C","BOS","boston-celtics","Boston Celtics","1654440",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3934621","jacob-evans","Jacob Evans","G","GS","golden-state-warriors","Golden State Warriors","1644240",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2578239","pat-connaughton","Pat Connaughton","SG","MIL","milwaukee-bucks","Milwaukee Bucks","1641000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3062667","deandre'-bembry","DeAndre' Bembry","SF","ATL","atlanta-hawks","Atlanta Hawks","1634640",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4348696","dzanan-musa","Dzanan Musa","F","BKN","brooklyn-nets","Brooklyn Nets","1632240",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2579321","james-ennis-iii","James Ennis III","SF","PHI","philadelphia-76ers","Philadelphia 76ers","1621415",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4065836","omari-spellman","Omari Spellman","PF","ATL","atlanta-hawks","Atlanta Hawks","1620480",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064560","luke-kornet","Luke Kornet","PF","NY","new-york-knicks","New York Knicks","1619260",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4230548","rodions-kurucs","Rodions Kurucs","SF","BKN","brooklyn-nets","Brooklyn Nets","1618320",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2993370","richaun-holmes","Richaun Holmes","PF","PHX","phoenix-suns","Phoenix Suns","1600520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2530530","t.j.-mcconnell","T.J. McConnell","PG","PHI","philadelphia-76ers","Philadelphia 76ers","1600520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "6503","dwight-buycks","Dwight Buycks","G","DET","detroit-pistons","Detroit Pistons","1600520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3934663","malachi-richardson","Malachi Richardson","G","TOR","toronto-raptors","Toronto Raptors","1569360",2020,NA,NA,NA,NA,NA,"2016","1","22","CHA"
-"3135048","jahlil-okafor","Jahlil Okafor","C","NO","new-orleans-pelicans","New Orleans Pelicans","1567707",2020,6.91666666666667,6,11,275,1995-12-15,"2015","1","3","PHI"
-"3149673","pascal-siakam","Pascal Siakam","PF","TOR","toronto-raptors","Toronto Raptors","1544951",2020,6.75,6,9,230,1994-04-02,"2016","1","27","TOR"
-"3907497","dejounte-murray","Dejounte Murray","PG","SA","san-antonio-spurs","San Antonio Spurs","1544951",2020,6.41666666666667,6,5,180,1996-09-19,"2016","1","29","SA"
-"4017846","georgios-papagiannis","Georgios Papagiannis","C","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,"2016","1","13","PHX"
-"3147366","chinanu-onuaku","Chinanu Onuaku","C","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,"2016","2","37","HOU"
-"3919335","cheick-diallo","Cheick Diallo","F","NO","new-orleans-pelicans","New Orleans Pelicans","1544951",2020,NA,NA,NA,NA,NA,"2016","2","33","LAC"
-"3064559","damian-jones","Damian Jones","C","GS","golden-state-warriors","Golden State Warriors","1544951",2020,6.91666666666667,6,11,245,1995-06-30,"2016","1","30","GS"
-"3936296","skal-labissiere","Skal Labissiere","F","SAC","sacramento-kings","Sacramento Kings","1544951",2020,NA,NA,NA,NA,NA,"2016","1","28","PHX"
-"3893019","timothe-luwawu-cabarrot","Timothe Luwawu-Cabarrot","SG","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1544951",2020,6.58333333333333,6,7,210,1995-05-09,"2016","1","24","PHI"
-"2982268","jake-layman","Jake Layman","SF","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,6.66666666666667,6,8,212,1994-03-07,"2016","2","47","ORL"
-"2566745","quinn-cook","Quinn Cook","PG","GS","golden-state-warriors","Golden State Warriors","1544951",2020,6.08333333333333,6,1,180,1993-03-23,NA,NA,NA,NA
-"4017837","ivica-zubac","Ivica Zubac","C","LAL","los-angeles-lakers","Los Angeles Lakers","1544951",2020,7,7,0,240,1997-03-18,"2016","2","32","LAL"
-"3136696","wade-baldwin-iv","Wade Baldwin IV","G","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,"2016","1","17","MEM"
-"2566769","malcolm-brogdon","Malcolm Brogdon","PG","MIL","milwaukee-bucks","Milwaukee Bucks","1544951",2020,6.41666666666667,6,5,229,1992-12-11,"2016","2","36","MIL"
-"3064511","andrew-harrison","Andrew Harrison","G","MEM","memphis-grizzlies","Memphis Grizzlies","1544951",2020,NA,NA,NA,NA,NA,"2015","2","44","PHX"
-"2488826","rodney-mcgruder","Rodney McGruder","SG","MIA","miami-heat","Miami Heat","1544951",2020,6.33333333333333,6,4,205,1991-07-29,NA,NA,NA,NA
-"2578185","dorian-finney-smith","Dorian Finney-Smith","SF","DAL","dallas-mavericks","Dallas Mavericks","1544951",2020,6.58333333333333,6,7,220,1993-05-04,NA,NA,NA,NA
-"3893023","paul-zipser","Paul Zipser","F","CHI","chicago-bulls","Chicago Bulls","1544951",2020,NA,NA,NA,NA,NA,"2016","2","48","CHI"
+"3934663","malachi-richardson","Malachi Richardson","G","TOR","toronto-raptors","Toronto Raptors","1569360",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3135048","jahlil-okafor","Jahlil Okafor","C","NO","new-orleans-pelicans","New Orleans Pelicans","1567707",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3149673","pascal-siakam","Pascal Siakam","PF","TOR","toronto-raptors","Toronto Raptors","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3907497","dejounte-murray","Dejounte Murray","PG","SA","san-antonio-spurs","San Antonio Spurs","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4017846","georgios-papagiannis","Georgios Papagiannis","C","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3147366","chinanu-onuaku","Chinanu Onuaku","C","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3919335","cheick-diallo","Cheick Diallo","F","NO","new-orleans-pelicans","New Orleans Pelicans","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064559","damian-jones","Damian Jones","C","GS","golden-state-warriors","Golden State Warriors","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3936296","skal-labissiere","Skal Labissiere","F","SAC","sacramento-kings","Sacramento Kings","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3893019","timothe-luwawu-cabarrot","Timothe Luwawu-Cabarrot","SG","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2982268","jake-layman","Jake Layman","SF","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2566745","quinn-cook","Quinn Cook","PG","GS","golden-state-warriors","Golden State Warriors","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4017837","ivica-zubac","Ivica Zubac","C","LAL","los-angeles-lakers","Los Angeles Lakers","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3136696","wade-baldwin-iv","Wade Baldwin IV","G","POR","portland-trail-blazers","Portland Trail Blazers","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2566769","malcolm-brogdon","Malcolm Brogdon","PG","MIL","milwaukee-bucks","Milwaukee Bucks","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064511","andrew-harrison","Andrew Harrison","G","MEM","memphis-grizzlies","Memphis Grizzlies","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2488826","rodney-mcgruder","Rodney McGruder","SG","MIA","miami-heat","Miami Heat","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2578185","dorian-finney-smith","Dorian Finney-Smith","SF","DAL","dallas-mavericks","Dallas Mavericks","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3893023","paul-zipser","Paul Zipser","F","CHI","chicago-bulls","Chicago Bulls","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059316","wayne-selden","Wayne Selden","G","MEM","memphis-grizzlies","Memphis Grizzlies","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2999409","willy-hernangomez","Willy Hernangomez","C","CHA","charlotte-hornets","Charlotte Hornets","1544951",2020,6.91666666666667,6,11,250,1994-05-27,"2015","2","35","PHI"
+"2999409","willy-hernangomez","Willy Hernangomez","C","CHA","charlotte-hornets","Charlotte Hornets","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2991283","alex-poythress","Alex Poythress","F","ATL","atlanta-hawks","Atlanta Hawks","1544951",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6454","shelvin-mack","Shelvin Mack","G","CHA","charlotte-hornets","Charlotte Hornets","1512601",2020,NA,NA,NA,NA,NA,"2011","2","34","WSH"
-"3554","omri-casspi","Omri Casspi","F","MEM","memphis-grizzlies","Memphis Grizzlies","1512601",2020,NA,NA,NA,NA,NA,"2009","1","23","SAC"
-"2990969","georges-niang","Georges Niang","SF","UTAH","utah-jazz","Utah Jazz","1512601",2020,6.66666666666667,6,8,230,1993-06-17,"2016","2","50","IND"
-"2753","raymond-felton","Raymond Felton","G","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1512601",2020,NA,NA,NA,NA,NA,"2005","1","5","CHA"
-"4253","quincy-pondexter","Quincy Pondexter","F","SA","san-antonio-spurs","San Antonio Spurs","1512601",2020,NA,NA,NA,NA,NA,"2010","1","26","OKC"
+"6454","shelvin-mack","Shelvin Mack","G","CHA","charlotte-hornets","Charlotte Hornets","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3554","omri-casspi","Omri Casspi","F","MEM","memphis-grizzlies","Memphis Grizzlies","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2990969","georges-niang","Georges Niang","SF","UTAH","utah-jazz","Utah Jazz","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2753","raymond-felton","Raymond Felton","G","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4253","quincy-pondexter","Quincy Pondexter","F","SA","san-antonio-spurs","San Antonio Spurs","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3078286","troy-williams","Troy Williams","F","SAC","sacramento-kings","Sacramento Kings","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3936099","derrick-jones-jr.","Derrick Jones Jr.","SF","MIA","miami-heat","Miami Heat","1512601",2020,6.5,6,6,210,1997-02-15,NA,NA,NA,NA
-"1975","carmelo-anthony","Carmelo Anthony","PF","HOU","houston-rockets","Houston Rockets","1512601",2020,6.66666666666667,6,8,238,1984-05-29,"2003","1","3","DEN"
-"2769","amir-johnson","Amir Johnson","F","PHI","philadelphia-76ers","Philadelphia 76ers","1512601",2020,NA,NA,NA,NA,NA,"2005","2","56","DET"
-"3062744","david-nwaba","David Nwaba","SG","CLE","cleveland-cavaliers","Cleveland Cavaliers","1512601",2020,6.41666666666667,6,5,219,1993-01-14,NA,NA,NA,NA
-"3209","jeff-green","Jeff Green","PF","WSH","washington-wizards","Washington Wizards","1512601",2020,6.66666666666667,6,8,240,1986-08-28,"2007","1","5","BOS"
-"165","jamal-crawford","Jamal Crawford","G","PHX","phoenix-suns","Phoenix Suns","1512601",2020,NA,NA,NA,NA,NA,"2000","1","8","CLE"
-"2429","luol-deng","Luol Deng","F","MIN","minnesota-timberwolves","Minnesota Timberwolves","1512601",2020,NA,NA,NA,NA,NA,"2004","1","7","PHX"
+"3936099","derrick-jones-jr.","Derrick Jones Jr.","SF","MIA","miami-heat","Miami Heat","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"1975","carmelo-anthony","Carmelo Anthony","PF","HOU","houston-rockets","Houston Rockets","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2769","amir-johnson","Amir Johnson","F","PHI","philadelphia-76ers","Philadelphia 76ers","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3062744","david-nwaba","David Nwaba","SG","CLE","cleveland-cavaliers","Cleveland Cavaliers","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3209","jeff-green","Jeff Green","PF","WSH","washington-wizards","Washington Wizards","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"165","jamal-crawford","Jamal Crawford","G","PHX","phoenix-suns","Phoenix Suns","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2429","luol-deng","Luol Deng","F","MIN","minnesota-timberwolves","Minnesota Timberwolves","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2595231","treveon-graham","Treveon Graham","F","BKN","brooklyn-nets","Brooklyn Nets","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2490589","isaiah-canaan","Isaiah Canaan","G","PHX","phoenix-suns","Phoenix Suns","1512601",2020,NA,NA,NA,NA,NA,"2013","2","34","HOU"
-"2184","udonis-haslem","Udonis Haslem","PF","MIA","miami-heat","Miami Heat","1512601",2020,6.66666666666667,6,8,235,1980-06-09,NA,NA,NA,NA
-"1987","dwyane-wade","Dwyane Wade","G","MIA","miami-heat","Miami Heat","1512601",2020,NA,NA,NA,NA,NA,"2003","1","5","MIA"
-"6472","isaiah-thomas","Isaiah Thomas","PG","DEN","denver-nuggets","Denver Nuggets","1512601",2020,NA,NA,NA,NA,NA,"2011","2","60","SAC"
-"3058254","christian-wood","Christian Wood","PF","MIL","milwaukee-bucks","Milwaukee Bucks","1512601",2020,6.83333333333333,6,10,223,1995-09-27,NA,NA,NA,NA
-"2761","gerald-green","Gerald Green","G","HOU","houston-rockets","Houston Rockets","1512601",2020,NA,NA,NA,NA,NA,"2005","1","18","BOS"
-"3155535","kevon-looney","Kevon Looney","PF","GS","golden-state-warriors","Golden State Warriors","1512601",2020,6.75,6,9,250,1996-02-06,"2015","1","30","GS"
-"3998","jonas-jerebko","Jonas Jerebko","F","GS","golden-state-warriors","Golden State Warriors","1512601",2020,NA,NA,NA,NA,NA,"2009","2","39","DET"
-"3456","derrick-rose","Derrick Rose","PG","MIN","minnesota-timberwolves","Minnesota Timberwolves","1512601",2020,6.25,6,3,200,1988-10-04,"2008","1","1","CHI"
+"2490589","isaiah-canaan","Isaiah Canaan","G","PHX","phoenix-suns","Phoenix Suns","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2184","udonis-haslem","Udonis Haslem","PF","MIA","miami-heat","Miami Heat","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"1987","dwyane-wade","Dwyane Wade","G","MIA","miami-heat","Miami Heat","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6472","isaiah-thomas","Isaiah Thomas","PG","DEN","denver-nuggets","Denver Nuggets","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3058254","christian-wood","Christian Wood","PF","MIL","milwaukee-bucks","Milwaukee Bucks","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2761","gerald-green","Gerald Green","G","HOU","houston-rockets","Houston Rockets","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3155535","kevon-looney","Kevon Looney","PF","GS","golden-state-warriors","Golden State Warriors","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3998","jonas-jerebko","Jonas Jerebko","F","GS","golden-state-warriors","Golden State Warriors","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3456","derrick-rose","Derrick Rose","PG","MIN","minnesota-timberwolves","Minnesota Timberwolves","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2806","jose-calderon","Jose Calderon","G","DET","detroit-pistons","Detroit Pistons","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2016","zaza-pachulia","Zaza Pachulia","C","DET","detroit-pistons","Detroit Pistons","1512601",2020,NA,NA,NA,NA,NA,"2003","2","42","ORL"
-"2382","devin-harris","Devin Harris","G","DAL","dallas-mavericks","Dallas Mavericks","1512601",2020,NA,NA,NA,NA,NA,"2004","1","5","WSH"
-"3452","javale-mcgee","JaVale McGee","C","LAL","los-angeles-lakers","Los Angeles Lakers","1512601",2020,7,7,0,270,1988-01-19,"2008","1","18","WSH"
-"2754","channing-frye","Channing Frye","F","CLE","cleveland-cavaliers","Cleveland Cavaliers","1512601",2020,NA,NA,NA,NA,NA,"2005","1","8","NY"
-"3078284","noah-vonleh","Noah Vonleh","F","NY","new-york-knicks","New York Knicks","1512601",2020,NA,NA,NA,NA,NA,"2014","1","9","CHA"
+"2016","zaza-pachulia","Zaza Pachulia","C","DET","detroit-pistons","Detroit Pistons","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2382","devin-harris","Devin Harris","G","DAL","dallas-mavericks","Dallas Mavericks","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3452","javale-mcgee","JaVale McGee","C","LAL","los-angeles-lakers","Los Angeles Lakers","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2754","channing-frye","Channing Frye","F","CLE","cleveland-cavaliers","Cleveland Cavaliers","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3078284","noah-vonleh","Noah Vonleh","F","NY","new-york-knicks","New York Knicks","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2489785","ian-clark","Ian Clark","G","NO","new-orleans-pelicans","New Orleans Pelicans","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"136","vince-carter","Vince Carter","G","ATL","atlanta-hawks","Atlanta Hawks","1512601",2020,NA,NA,NA,NA,NA,"1998","1","5","GS"
-"3133602","svi-mykhailiuk","Svi Mykhailiuk","SG","LAL","los-angeles-lakers","Los Angeles Lakers","1487694",2020,6.66666666666667,6,8,205,1997-06-10,"2018","2","47","LAL"
-"4351852","mitchell-robinson","Mitchell Robinson","C","NY","new-york-knicks","New York Knicks","1485440",2020,7,7,0,252,1998-04-01,"2018","2","36","NY"
-"3915560","tyler-dorsey","Tyler Dorsey","G","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,"2017","2","41","ATL"
-"3155526","dillon-brooks","Dillon Brooks","SG","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,6.58333333333333,6,7,220,1996-01-22,"2017","2","45","HOU"
-"3064516","dakari-johnson","Dakari Johnson","C","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,"2015","2","48","OKC"
-"3934723","thomas-bryant","Thomas Bryant","C","WSH","washington-wizards","Washington Wizards","1378242",2020,6.83333333333333,6,10,248,1997-07-31,"2017","2","42","UTAH"
-"2583632","royce-o'neale","Royce O'Neale","SF","UTAH","utah-jazz","Utah Jazz","1378242",2020,6.5,6,6,226,1993-06-05,NA,NA,NA,NA
+"136","vince-carter","Vince Carter","G","ATL","atlanta-hawks","Atlanta Hawks","1512601",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3133602","svi-mykhailiuk","Svi Mykhailiuk","SG","LAL","los-angeles-lakers","Los Angeles Lakers","1487694",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4351852","mitchell-robinson","Mitchell Robinson","C","NY","new-york-knicks","New York Knicks","1485440",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3915560","tyler-dorsey","Tyler Dorsey","G","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3155526","dillon-brooks","Dillon Brooks","SG","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064516","dakari-johnson","Dakari Johnson","C","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3934723","thomas-bryant","Thomas Bryant","C","WSH","washington-wizards","Washington Wizards","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2583632","royce-o'neale","Royce O'Neale","SF","UTAH","utah-jazz","Utah Jazz","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3064237","antonius-cleveland","Antonius Cleveland","G","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2488911","brandon-paul","Brandon Paul","G","SA","san-antonio-spurs","San Antonio Spurs","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3912854","jawun-evans","Jawun Evans","G","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1378242",2020,NA,NA,NA,NA,NA,"2017","2","39","PHI"
-"2595435","abdel-nader","Abdel Nader","SF","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1378242",2020,6.41666666666667,6,5,225,1993-09-25,"2016","2","58","BOS"
-"3907821","dwayne-bacon","Dwayne Bacon","SG","CHA","charlotte-hornets","Charlotte Hornets","1378242",2020,6.5,6,6,221,1995-08-30,"2017","2","40","NO"
-"2578240","khem-birch","Khem Birch","C","ORL","orlando-magic","Orlando Magic","1378242",2020,6.75,6,9,230,1992-09-28,NA,NA,NA,NA
-"3917378","ivan-rabb","Ivan Rabb","PF","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,"2017","2","35","ORL"
+"3912854","jawun-evans","Jawun Evans","G","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2595435","abdel-nader","Abdel Nader","SF","OKC","oklahoma-city-thunder","Oklahoma City Thunder","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3907821","dwayne-bacon","Dwayne Bacon","SG","CHA","charlotte-hornets","Charlotte Hornets","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2578240","khem-birch","Khem Birch","C","ORL","orlando-magic","Orlando Magic","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3917378","ivan-rabb","Ivan Rabb","PF","MEM","memphis-grizzlies","Memphis Grizzlies","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3952343","jaylen-morris","Jaylen Morris","G","MIL","milwaukee-bucks","Milwaukee Bucks","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3059315","frank-mason-iii","Frank Mason III","G","SAC","sacramento-kings","Sacramento Kings","1378242",2020,NA,NA,NA,NA,NA,"2017","2","34","SAC"
+"3059315","frank-mason-iii","Frank Mason III","G","SAC","sacramento-kings","Sacramento Kings","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2982332","rodney-purvis","Rodney Purvis","G","MIA","miami-heat","Miami Heat","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3064427","jordan-bell","Jordan Bell","F","GS","golden-state-warriors","Golden State Warriors","1378242",2020,NA,NA,NA,NA,NA,"2017","2","38","CHI"
+"3064427","jordan-bell","Jordan Bell","F","GS","golden-state-warriors","Golden State Warriors","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2489664","david-stockton","David Stockton","G","LAL","los-angeles-lakers","Los Angeles Lakers","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3892894","zhou-qi","Zhou Qi","C","HOU","houston-rockets","Houston Rockets","1378242",2020,NA,NA,NA,NA,NA,"2016","2","43","HOU"
-"3057187","sterling-brown","Sterling Brown","SG","MIL","milwaukee-bucks","Milwaukee Bucks","1378242",2020,6.41666666666667,6,5,219,1995-02-10,"2017","2","46","PHI"
-"4065651","frank-jackson","Frank Jackson","PG","NO","new-orleans-pelicans","New Orleans Pelicans","1378242",2020,6.25,6,3,205,1998-05-04,"2017","2","31","CHA"
-"3074797","wes-iwundu","Wes Iwundu","SF","ORL","orlando-magic","Orlando Magic","1378242",2020,6.58333333333333,6,7,195,1994-12-20,"2017","2","33","ORL"
-"2960236","maxi-kleber","Maxi Kleber","PF","DAL","dallas-mavericks","Dallas Mavericks","1378242",2020,6.83333333333333,6,10,240,1992-01-29,NA,NA,NA,NA
-"2991149","damyean-dotson","Damyean Dotson","SG","NY","new-york-knicks","New York Knicks","1378242",2020,6.41666666666667,6,5,205,1994-05-06,"2017","2","44","NY"
-"4066424","ike-anigbogu","Ike Anigbogu","C","IND","indiana-pacers","Indiana Pacers","1378242",2020,NA,NA,NA,NA,NA,"2017","2","47","IND"
-"3064539","sindarius-thornwell","Sindarius Thornwell","SG","LAC","la-clippers","LA Clippers","1378242",2020,6.33333333333333,6,4,215,1994-11-15,"2017","2","48","MIL"
-"3056602","semi-ojeleye","Semi Ojeleye","PF","BOS","boston-celtics","Boston Celtics","1378242",2020,6.5,6,6,240,1994-12-05,"2017","2","37","BOS"
-"2451037","daniel-theis","Daniel Theis","C","BOS","boston-celtics","Boston Celtics","1378242",2020,6.66666666666667,6,8,245,1992-04-04,NA,NA,NA,NA
-"3064308","jabari-bird","Jabari Bird","G","ATL","atlanta-hawks","Atlanta Hawks","1349464",2020,NA,NA,NA,NA,NA,"2017","2","56","BOS"
+"3892894","zhou-qi","Zhou Qi","C","HOU","houston-rockets","Houston Rockets","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3057187","sterling-brown","Sterling Brown","SG","MIL","milwaukee-bucks","Milwaukee Bucks","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4065651","frank-jackson","Frank Jackson","PG","NO","new-orleans-pelicans","New Orleans Pelicans","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3074797","wes-iwundu","Wes Iwundu","SF","ORL","orlando-magic","Orlando Magic","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2960236","maxi-kleber","Maxi Kleber","PF","DAL","dallas-mavericks","Dallas Mavericks","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2991149","damyean-dotson","Damyean Dotson","SG","NY","new-york-knicks","New York Knicks","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4066424","ike-anigbogu","Ike Anigbogu","C","IND","indiana-pacers","Indiana Pacers","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064539","sindarius-thornwell","Sindarius Thornwell","SG","LAC","la-clippers","LA Clippers","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3056602","semi-ojeleye","Semi Ojeleye","PF","BOS","boston-celtics","Boston Celtics","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2451037","daniel-theis","Daniel Theis","C","BOS","boston-celtics","Boston Celtics","1378242",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064308","jabari-bird","Jabari Bird","G","ATL","atlanta-hawks","Atlanta Hawks","1349464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3057189","ben-moore","Ben Moore","F","SA","san-antonio-spurs","San Antonio Spurs","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2530923","alfonzo-mckinnie","Alfonzo McKinnie","SF","GS","golden-state-warriors","Golden State Warriors","1349383",2020,6.66666666666667,6,8,215,1992-09-17,NA,NA,NA,NA
-"3059310","monte-morris","Monte Morris","PG","DEN","denver-nuggets","Denver Nuggets","1349383",2020,6.16666666666667,6,2,183,1995-06-27,"2017","2","51","DEN"
-"3147351","daniel-hamilton","Daniel Hamilton","F","ATL","atlanta-hawks","Atlanta Hawks","1349383",2020,NA,NA,NA,NA,NA,"2016","2","56","DEN"
+"2530923","alfonzo-mckinnie","Alfonzo McKinnie","SF","GS","golden-state-warriors","Golden State Warriors","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3059310","monte-morris","Monte Morris","PG","DEN","denver-nuggets","Denver Nuggets","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3147351","daniel-hamilton","Daniel Hamilton","F","ATL","atlanta-hawks","Atlanta Hawks","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3907386","antonio-blakeney","Antonio Blakeney","G","CHI","chicago-bulls","Chicago Bulls","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2991047","ryan-arcidiacono","Ryan Arcidiacono","PG","CHI","chicago-bulls","Chicago Bulls","1349383",2020,6.25,6,3,200,1994-03-26,NA,NA,NA,NA
-"3002137","tyrone-wallace","Tyrone Wallace","SG","LAC","la-clippers","LA Clippers","1349383",2020,NA,NA,NA,NA,NA,"2016","2","60","UTAH"
-"984","tyson-chandler","Tyson Chandler","C","PHX","phoenix-suns","Phoenix Suns","1333140",2020,NA,NA,NA,NA,NA,"2001","1","2","LAC"
-"2991274","shaquille-harrison","Shaquille Harrison","PG","CHI","chicago-bulls","Chicago Bulls","1311265",2020,6.33333333333333,6,4,190,1993-10-06,NA,NA,NA,NA
-"4230550","elie-okobo","Elie Okobo","G","PHX","phoenix-suns","Phoenix Suns","1238464",2020,NA,NA,NA,NA,NA,"2018","2","31","PHX"
-"3934672","jalen-brunson","Jalen Brunson","PG","DAL","dallas-mavericks","Dallas Mavericks","1230000",2020,6.08333333333333,6,1,190,1996-08-31,"2018","2","33","DAL"
+"2991047","ryan-arcidiacono","Ryan Arcidiacono","PG","CHI","chicago-bulls","Chicago Bulls","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3002137","tyrone-wallace","Tyrone Wallace","SG","LAC","la-clippers","LA Clippers","1349383",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"984","tyson-chandler","Tyson Chandler","C","PHX","phoenix-suns","Phoenix Suns","1333140",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2991274","shaquille-harrison","Shaquille Harrison","PG","CHI","chicago-bulls","Chicago Bulls","1311265",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4230550","elie-okobo","Elie Okobo","G","PHX","phoenix-suns","Phoenix Suns","1238464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3934672","jalen-brunson","Jalen Brunson","PG","DAL","dallas-mavericks","Dallas Mavericks","1230000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2528473","okaro-white","Okaro White","F","WSH","washington-wizards","Washington Wizards","1187862",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3224","joakim-noah","Joakim Noah","C","MEM","memphis-grizzlies","Memphis Grizzlies","1093858",2020,NA,NA,NA,NA,NA,"2007","1","9","CHI"
-"3913546","melvin-frazier-jr.","Melvin Frazier Jr.","G","ORL","orlando-magic","Orlando Magic","1050000",2020,NA,NA,NA,NA,NA,"2018","2","35","ORL"
-"3243","nick-young","Nick Young","G","DEN","denver-nuggets","Denver Nuggets","1042584",2020,NA,NA,NA,NA,NA,"2007","1","16","WSH"
-"4348697","isaac-bonga","Isaac Bonga","SF","LAL","los-angeles-lakers","Los Angeles Lakers","1000000",2020,6.66666666666667,6,8,180,1999-11-08,"2018","2","39","PHI"
-"3133601","devonte'-graham","Devonte' Graham","PG","CHA","charlotte-hornets","Charlotte Hornets","988464",2020,6.16666666666667,6,2,185,1995-02-22,"2018","2","34","ATL"
-"4066436","de'anthony-melton","De'Anthony Melton","SG","PHX","phoenix-suns","Phoenix Suns","949000",2020,6.16666666666667,6,2,200,1998-05-28,"2018","2","46","HOU"
+"3224","joakim-noah","Joakim Noah","C","MEM","memphis-grizzlies","Memphis Grizzlies","1093858",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3913546","melvin-frazier-jr.","Melvin Frazier Jr.","G","ORL","orlando-magic","Orlando Magic","1050000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3243","nick-young","Nick Young","G","DEN","denver-nuggets","Denver Nuggets","1042584",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4348697","isaac-bonga","Isaac Bonga","SF","LAL","los-angeles-lakers","Los Angeles Lakers","1000000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3133601","devonte'-graham","Devonte' Graham","PG","CHA","charlotte-hornets","Charlotte Hornets","988464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4066436","de'anthony-melton","De'Anthony Melton","SG","PHX","phoenix-suns","Phoenix Suns","949000",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2580349","ron-baker","Ron Baker","G","WSH","washington-wizards","Washington Wizards","948580",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6617","austin-rivers","Austin Rivers","PG","WSH","washington-wizards","Washington Wizards","922943",2020,6.33333333333333,6,4,204,1992-08-01,"2012","1","10","NO"
+"6617","austin-rivers","Austin Rivers","PG","WSH","washington-wizards","Washington Wizards","922943",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2580898","chasson-randle","Chasson Randle","G","WSH","washington-wizards","Washington Wizards","869094",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"4067045","alize-johnson","Alize Johnson","F","IND","indiana-pacers","Indiana Pacers","838464",2020,NA,NA,NA,NA,NA,"2018","2","50","IND"
-"4080610","hamidou-diallo","Hamidou Diallo","SG","OKC","oklahoma-city-thunder","Oklahoma City Thunder","838464",2020,6.41666666666667,6,5,202,1998-07-31,"2018","2","45","BKN"
-"3133626","kenrich-williams","Kenrich Williams","SG","NO","new-orleans-pelicans","New Orleans Pelicans","838464",2020,6.58333333333333,6,7,210,1994-12-02,NA,NA,NA,NA
-"3912334","khyri-thomas","Khyri Thomas","G","DET","detroit-pistons","Detroit Pistons","838464",2020,NA,NA,NA,NA,NA,"2018","2","38","PHI"
-"3136779","keita-bates-diop","Keita Bates-Diop","SF","MIN","minnesota-timberwolves","Minnesota Timberwolves","838464",2020,6.66666666666667,6,8,230,1996-01-23,"2018","2","48","MIN"
-"3914283","chimezie-metu","Chimezie Metu","PF","SA","san-antonio-spurs","San Antonio Spurs","838464",2020,6.75,6,9,225,1997-03-22,"2018","2","49","SA"
-"4277843","gary-trent-jr.","Gary Trent Jr.","SG","POR","portland-trail-blazers","Portland Trail Blazers","838464",2020,6.41666666666667,6,5,209,1999-01-18,"2018","2","37","SAC"
-"3133635","jevon-carter","Jevon Carter","PG","MEM","memphis-grizzlies","Memphis Grizzlies","838464",2020,6.08333333333333,6,1,200,1995-09-14,"2018","2","32","MEM"
+"4067045","alize-johnson","Alize Johnson","F","IND","indiana-pacers","Indiana Pacers","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4080610","hamidou-diallo","Hamidou Diallo","SG","OKC","oklahoma-city-thunder","Oklahoma City Thunder","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3133626","kenrich-williams","Kenrich Williams","SG","NO","new-orleans-pelicans","New Orleans Pelicans","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3912334","khyri-thomas","Khyri Thomas","G","DET","detroit-pistons","Detroit Pistons","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3136779","keita-bates-diop","Keita Bates-Diop","SF","MIN","minnesota-timberwolves","Minnesota Timberwolves","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3914283","chimezie-metu","Chimezie Metu","PF","SA","san-antonio-spurs","San Antonio Spurs","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4277843","gary-trent-jr.","Gary Trent Jr.","SG","POR","portland-trail-blazers","Portland Trail Blazers","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3133635","jevon-carter","Jevon Carter","PG","MEM","memphis-grizzlies","Memphis Grizzlies","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2489693","ryan-broekhoff","Ryan Broekhoff","G","DAL","dallas-mavericks","Dallas Mavericks","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3936294","isaiah-briscoe","Isaiah Briscoe","G","ORL","orlando-magic","Orlando Magic","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"4065670","bruce-brown","Bruce Brown","SG","DET","detroit-pistons","Detroit Pistons","838464",2020,6.33333333333333,6,4,202,1996-08-15,"2018","2","42","DET"
-"4278077","jarred-vanderbilt","Jarred Vanderbilt","PF","DEN","denver-nuggets","Denver Nuggets","838464",2020,6.66666666666667,6,8,214,1999-04-03,"2018","2","41","ORL"
-"6507","brad-wanamaker","Brad Wanamaker","PG","BOS","boston-celtics","Boston Celtics","838464",2020,6.25,6,3,222,1989-07-25,NA,NA,NA,NA
-"4222252","isaiah-hartenstein","Isaiah Hartenstein","C","HOU","houston-rockets","Houston Rockets","838464",2020,7,7,0,249,1998-05-05,"2017","2","43","HOU"
-"3137730","patrick-mccaw","Patrick McCaw","SF","TOR","toronto-raptors","Toronto Raptors","777665",2020,6.58333333333333,6,7,185,1995-10-25,"2016","2","38","MIL"
-"6433","kenneth-faried","Kenneth Faried","F","BKN","brooklyn-nets","Brooklyn Nets","683661",2020,NA,NA,NA,NA,NA,"2011","1","22","DEN"
-"3057198","brandon-goodwin","Brandon Goodwin","PG","DEN","denver-nuggets","Denver Nuggets","630032",2020,6,6,0,180,1995-10-02,NA,NA,NA,NA
-"3132042","gary-clark","Gary Clark","PF","HOU","houston-rockets","Houston Rockets","596873",2020,6.5,6,6,225,1994-11-16,NA,NA,NA,NA
-"3113297","bruno-caboclo","Bruno Caboclo","SF","MEM","memphis-grizzlies","Memphis Grizzlies","522151",2020,6.75,6,9,218,1995-09-21,"2014","1","20","TOR"
-"4032","wesley-matthews","Wesley Matthews","SG","NY","new-york-knicks","New York Knicks","512746",2020,6.33333333333333,6,4,221,1986-10-14,NA,NA,NA,NA
+"4065670","bruce-brown","Bruce Brown","SG","DET","detroit-pistons","Detroit Pistons","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4278077","jarred-vanderbilt","Jarred Vanderbilt","PF","DEN","denver-nuggets","Denver Nuggets","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6507","brad-wanamaker","Brad Wanamaker","PG","BOS","boston-celtics","Boston Celtics","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4222252","isaiah-hartenstein","Isaiah Hartenstein","C","HOU","houston-rockets","Houston Rockets","838464",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3137730","patrick-mccaw","Patrick McCaw","SF","TOR","toronto-raptors","Toronto Raptors","777665",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6433","kenneth-faried","Kenneth Faried","F","BKN","brooklyn-nets","Brooklyn Nets","683661",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3057198","brandon-goodwin","Brandon Goodwin","PG","DEN","denver-nuggets","Denver Nuggets","630032",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3132042","gary-clark","Gary Clark","PF","HOU","houston-rockets","Houston Rockets","596873",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3113297","bruno-caboclo","Bruno Caboclo","SF","MEM","memphis-grizzlies","Memphis Grizzlies","522151",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4032","wesley-matthews","Wesley Matthews","SG","NY","new-york-knicks","New York Knicks","512746",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2968458","salah-mejri","Salah Mejri","C","DAL","dallas-mavericks","Dallas Mavericks","512746",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2991042","nik-stauskas","Nik Stauskas","G","POR","portland-trail-blazers","Portland Trail Blazers","504200",2020,NA,NA,NA,NA,NA,"2014","1","8","SAC"
+"2991042","nik-stauskas","Nik Stauskas","G","POR","portland-trail-blazers","Portland Trail Blazers","504200",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4299","jeremy-lin","Jeremy Lin","G","TOR","toronto-raptors","Toronto Raptors","487109",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6447","enes-kanter","Enes Kanter","C","POR","portland-trail-blazers","Portland Trail Blazers","487109",2020,6.83333333333333,6,10,250,1992-05-20,"2011","1","3","UTAH"
-"6594","john-jenkins","John Jenkins","G","WSH","washington-wizards","Washington Wizards","486520",2020,NA,NA,NA,NA,NA,"2012","1","23","ATL"
-"3948153","chris-boucher","Chris Boucher","PF","TOR","toronto-raptors","Toronto Raptors","457418",2020,6.83333333333333,6,10,200,1993-01-11,NA,NA,NA,NA
+"6447","enes-kanter","Enes Kanter","C","POR","portland-trail-blazers","Portland Trail Blazers","487109",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6594","john-jenkins","John Jenkins","G","WSH","washington-wizards","Washington Wizards","486520",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3948153","chris-boucher","Chris Boucher","PF","TOR","toronto-raptors","Toronto Raptors","457418",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2580980","malcolm-miller","Malcolm Miller","F","TOR","toronto-raptors","Toronto Raptors","457418",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6461","markieff-morris","Markieff Morris","PF","WSH","washington-wizards","Washington Wizards","427288",2020,6.83333333333333,6,10,245,1989-09-02,"2011","1","13","PHX"
-"3906522","henry-ellenson","Henry Ellenson","C","NY","new-york-knicks","New York Knicks","341831",2020,NA,NA,NA,NA,NA,"2016","1","18","DET"
-"996","pau-gasol","Pau Gasol","PF","SA","san-antonio-spurs","San Antonio Spurs","333285",2020,NA,NA,NA,NA,NA,"2001","1","3","ATL"
-"2747","andrew-bogut","Andrew Bogut","C","GS","golden-state-warriors","Golden State Warriors","307648",2020,NA,NA,NA,NA,NA,"2005","1","1","MIL"
-"3133874","jaylen-adams","Jaylen Adams","PG","ATL","atlanta-hawks","Atlanta Hawks","270014",2020,6.16666666666667,6,2,191,1996-05-04,NA,NA,NA,NA
-"2991155","danuel-house-jr.","Danuel House Jr.","SF","HOU","houston-rockets","Houston Rockets","247827",2020,6.5,6,6,215,1993-06-07,NA,NA,NA,NA
-"6434","jimmer-fredette","Jimmer Fredette","G","PHX","phoenix-suns","Phoenix Suns","208509",2020,NA,NA,NA,NA,NA,"2011","1","10","MIL"
+"6461","markieff-morris","Markieff Morris","PF","WSH","washington-wizards","Washington Wizards","427288",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3906522","henry-ellenson","Henry Ellenson","C","NY","new-york-knicks","New York Knicks","341831",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"996","pau-gasol","Pau Gasol","PF","SA","san-antonio-spurs","San Antonio Spurs","333285",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2747","andrew-bogut","Andrew Bogut","C","GS","golden-state-warriors","Golden State Warriors","307648",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3133874","jaylen-adams","Jaylen Adams","PG","ATL","atlanta-hawks","Atlanta Hawks","270014",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2991155","danuel-house-jr.","Danuel House Jr.","SF","HOU","houston-rockets","Houston Rockets","247827",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6434","jimmer-fredette","Jimmer Fredette","G","PHX","phoenix-suns","Phoenix Suns","208509",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2488945","tim-frazier","Tim Frazier","PG","MIL","milwaukee-bucks","Milwaukee Bucks","196553",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2585637","dairis-bertans","Dairis Bertans","G","NO","new-orleans-pelicans","New Orleans Pelicans","194220",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3908806","ray-spalding","Ray Spalding","F","PHX","phoenix-suns","Phoenix Suns","184746",2020,NA,NA,NA,NA,NA,"2018","2","56","PHI"
+"3908806","ray-spalding","Ray Spalding","F","PHX","phoenix-suns","Phoenix Suns","184746",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059358","deonte-burton","Deonte Burton","G","OKC","oklahoma-city-thunder","Oklahoma City Thunder","151587",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3057240","cameron-reynolds","Cameron Reynolds","G","MIN","minnesota-timberwolves","Minnesota Timberwolves","108953",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3137795","chris-chiozza","Chris Chiozza","PG","HOU","houston-rockets","Houston Rockets","90005",2020,5.91666666666667,5,11,176,1995-11-21,NA,NA,NA,NA
-"2608891","jakarr-sampson","JaKarr Sampson","SF","CHI","chicago-bulls","Chicago Bulls","85458",2020,6.75,6,9,214,1993-03-20,NA,NA,NA,NA
-"6464","donatas-motiejunas","Donatas Motiejunas","F","SA","san-antonio-spurs","San Antonio Spurs","59820",2020,7,7,0,220,1990-09-20,"2011","1","20","MIN"
-"4260","greg-monroe","Greg Monroe","C","TOR","toronto-raptors","Toronto Raptors","59820",2020,NA,NA,NA,NA,NA,"2010","1","7","DET"
-"2596108","michael-carter-williams","Michael Carter-Williams","PG","ORL","orlando-magic","Orlando Magic","59820",2020,6.5,6,6,195,1991-10-10,"2013","1","11","PHI"
-"6631","tyler-zeller","Tyler Zeller","C","MEM","memphis-grizzlies","Memphis Grizzlies","59820",2020,NA,NA,NA,NA,NA,"2012","1","17","DAL"
+"3137795","chris-chiozza","Chris Chiozza","PG","HOU","houston-rockets","Houston Rockets","90005",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2608891","jakarr-sampson","JaKarr Sampson","SF","CHI","chicago-bulls","Chicago Bulls","85458",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6464","donatas-motiejunas","Donatas Motiejunas","F","SA","san-antonio-spurs","San Antonio Spurs","59820",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4260","greg-monroe","Greg Monroe","C","TOR","toronto-raptors","Toronto Raptors","59820",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2596108","michael-carter-williams","Michael Carter-Williams","PG","ORL","orlando-magic","Orlando Magic","59820",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6631","tyler-zeller","Tyler Zeller","C","MEM","memphis-grizzlies","Memphis Grizzlies","59820",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4067469","jemerrio-jones","Jemerrio Jones","F","LAL","los-angeles-lakers","Los Angeles Lakers","52108",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3926491","isaac-humphries","Isaac Humphries","C","ATL","atlanta-hawks","Atlanta Hawks","47371",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4236300","mitchell-creek","Mitchell Creek","G","BKN","brooklyn-nets","Brooklyn Nets","47371",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059356","billy-garrett-jr.","Billy Garrett Jr.","G","NY","new-york-knicks","New York Knicks","42634",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059280","bj-johnson","BJ Johnson","F","SAC","sacramento-kings","Sacramento Kings","42634",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3937101","deyonta-davis","Deyonta Davis","F","ATL","atlanta-hawks","Atlanta Hawks","25367",2020,NA,NA,NA,NA,NA,"2016","2","31","BOS"
+"3937101","deyonta-davis","Deyonta Davis","F","ATL","atlanta-hawks","Atlanta Hawks","25367",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2991255","michael-frazier","Michael Frazier","G","HOU","houston-rockets","Houston Rockets","23685",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3136183","yante-maten","Yante Maten","F","MIA","miami-heat","Miami Heat","18948",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2531352","eric-moreland","Eric Moreland","C","TOR","toronto-raptors","Toronto Raptors","17092",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2531797","jordan-mcrae","Jordan McRae","G","WSH","washington-wizards","Washington Wizards","17092",2020,NA,NA,NA,NA,NA,"2014","2","58","SA"
+"2531797","jordan-mcrae","Jordan McRae","G","WSH","washington-wizards","Washington Wizards","17092",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2234666","jonathan-gibson","Jonathan Gibson","G","BOS","boston-celtics","Boston Celtics","17092",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3133638","tarik-phillip","Tarik Phillip","G","WSH","washington-wizards","Washington Wizards","9474",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3157465","duncan-robinson","Duncan Robinson","F","MIA","miami-heat","Miami Heat","9474",2020,6.58333333333333,6,7,215,1994-04-22,NA,NA,NA,NA
-"3138154","theo-pinson","Theo Pinson","SG","BKN","brooklyn-nets","Brooklyn Nets","4737",2020,6.5,6,6,210,1995-11-05,NA,NA,NA,NA
-"3056247","kendrick-nunn","Kendrick Nunn","SG","MIA","miami-heat","Miami Heat","4737",2020,6.16666666666667,6,2,190,1995-08-03,NA,NA,NA,NA
-"2282117","john-holland","John Holland","G","CLE","cleveland-cavaliers","Cavaliers",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2325499","cj-williams","Cj Williams","G","MIN","minnesota-timberwolves","Timberwolves",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2326411","james-nunnally","James Nunnally","G","MIN","minnesota-timberwolves","Timberwolves",NA,2019,6.5,6,6,210,1990-07-14,NA,NA,NA,NA
-"2489563","dj-stephens","Dj Stephens","G","MEM","memphis-grizzlies","Grizzlies",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2528787","lorenzo-brown","Lorenzo Brown","G","TOR","toronto-raptors","Raptors",NA,2019,6.41666666666667,6,5,189,1990-08-26,"2013","2","52","MIN"
-"2579492","julian-washburn","Julian Washburn","F","MEM","memphis-grizzlies","Grizzlies",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2595209","damion-lee","Damion Lee","G","GS","golden-state-warriors","Warriors",NA,2019,6.41666666666667,6,5,203,1992-10-21,NA,NA,NA,NA
-"2595592","jordan-loyd","Jordan Loyd","G","TOR","toronto-raptors","Raptors",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2990968","naz-mitrou-long","Naz Mitrou-Long","G","UTAH","utah-jazz","Jazz",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2991350","alex-caruso","Alex Caruso","G","LAL","los-angeles-lakers","Lakers",NA,2019,6.41666666666667,6,5,186,1994-02-28,NA,NA,NA,NA
-"3059273","demetrius-jackson","Demetrius Jackson","G","PHI","philadelphia-76ers","76ers",NA,2019,NA,NA,NA,NA,NA,"2016","2","45","BOS"
-"3059430","zach-lofton","Zach Lofton","G","DET","detroit-pistons","Pistons",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3064528","johnathan-williams","Johnathan Williams","F","LAL","los-angeles-lakers","Lakers",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3133838","yuta-watanabe","Yuta Watanabe","F","MEM","memphis-grizzlies","Grizzlies",NA,2019,6.75,6,9,205,1994-10-13,NA,NA,NA,NA
-"3133843","jared-terrell","Jared Terrell","G","MIN","minnesota-timberwolves","Timberwolves",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3136194","tyler-ulis","Tyler Ulis","G","CHI","chicago-bulls","Bulls",NA,2019,NA,NA,NA,NA,NA,"2016","2","34","PHX"
-"3136485","edmond-sumner","Edmond Sumner","G","IND","indiana-pacers","Pacers",NA,2019,6.5,6,6,196,1995-12-31,"2017","2","52","NO"
-"3136989","vincent-edwards","Vincent Edwards","F","HOU","houston-rockets","Rockets",NA,2019,NA,NA,NA,NA,NA,"2018","2","52","UTAH"
-"3138256","devaughn-akoon-purcell","Devaughn Akoon-Purcell","G","DEN","denver-nuggets","Nuggets",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3155536","thomas-welsh","Thomas Welsh","C","DEN","denver-nuggets","Nuggets",NA,2019,NA,NA,NA,NA,NA,"2018","2","58","DEN"
-"3914285","drew-eubanks","Drew Eubanks","F","SA","san-antonio-spurs","Spurs",NA,2019,6.83333333333333,6,10,245,1997-02-01,NA,NA,NA,NA
-"3915195","shake-milton","Shake Milton","G","PHI","philadelphia-76ers","76ers",NA,2019,6.41666666666667,6,5,210,1996-09-26,"2018","2","54","DAL"
-"4066243","daryl-macon","Daryl Macon","G","DAL","dallas-mavericks","Mavericks",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"4066264","wenyen-gabriel","Wenyen Gabriel","F","SAC","sacramento-kings","Kings",NA,2019,6.75,6,9,205,1997-03-26,NA,NA,NA,NA
-"4066334","rawle-alkins","Rawle Alkins","G","CHI","chicago-bulls","Bulls",NA,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"4412182","isaiah-canaan","Isaiah Canaan","F","PHX","phoenix-suns","Suns",NA,2019,NA,NA,NA,NA,NA,"2013","2","34","HOU"
-"4415554","corey-brewer","Corey Brewer","F","PHI","philadelphia-76ers","76ers",NA,2019,NA,NA,NA,NA,NA,"2007","1","7","MIN"
+"3157465","duncan-robinson","Duncan Robinson","F","MIA","miami-heat","Miami Heat","9474",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3138154","theo-pinson","Theo Pinson","SG","BKN","brooklyn-nets","Brooklyn Nets","4737",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3056247","kendrick-nunn","Kendrick Nunn","SG","MIA","miami-heat","Miami Heat","4737",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
