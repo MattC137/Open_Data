@@ -582,7 +582,7 @@ for(i in 1:nrow(Schedule)){
       box_score_url <- try({read_html(paste0("https://www.espn.com/nba/boxscore?gameId=", game_id))})
       box_score <- try({box_score_url %>% html_nodes("table") %>% html_table()})
       
-      if(class(box_score) != "try-error" | length(box_score != 0)){
+      if(class(box_score) != "try-error" | length(box_score) != 0){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
