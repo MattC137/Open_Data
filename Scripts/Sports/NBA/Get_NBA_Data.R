@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2017
+Season <- 2020
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -304,6 +304,10 @@ Schedule <- Schedule %>% mutate(
   Points_Against = ifelse(W_L == "TBD", 0, Points_Against)
 )
 
+## Make sure opponent is NBA opponent. This can screw up the loop because some preseason games are against outside teams
+
+Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
+
 Schedule <- Schedule %>% select(
   Date, Team, Opponent, Result, Points_For, Points_Against, Home, Neutral, OT_Rounds, Season, Season_Type, Playoff_Round, Game_Id
 )
@@ -311,7 +315,7 @@ Schedule <- Schedule %>% select(
 opp_team_ids <- team_ids
 names(opp_team_ids) <- paste0("Opp_", names(opp_team_ids))
 
-#### Update Level Two Data ####
+#### MAIN LOOP: Update Level Two Data ####
 
 Schedule <- Schedule %>% mutate(
   Q1_Points_For = 0,
@@ -411,7 +415,7 @@ Shots <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left", "Top", "Made", "Game_Id")
 
 for(i in 1:nrow(Schedule)){
-  # i = 401
+  # i = 27
   
   
   if(i %% 2 != 0){
@@ -717,6 +721,8 @@ for(i in 1:nrow(Schedule)){
       
       home_result <- Schedule[Schedule$Home == T & Schedule$Game_Id == game_id, "Result"]
       away_result <- Schedule[Schedule$Home == F & Schedule$Game_Id == game_id, "Result"]
+      
+      
       
       away_stats <- away_stats %>% mutate(
         Team = away_team,
