@@ -438,10 +438,10 @@ for(i in 1:nrow(Schedule)){
       if(length(team_stats_tables) == 0){
         t1 <- FALSE
         t2 <- FALSE
-      } else(
+      } else{
         t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
         t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
-      )
+      }
       
 
       
@@ -592,7 +592,7 @@ for(i in 1:nrow(Schedule)){
       box_score_url <- try({read_html(paste0("https://www.espn.com/nba/boxscore?gameId=", game_id))})
       box_score <- try({box_score_url %>% html_nodes("table") %>% html_table()})
       
-      if(class(box_score) != "try-error" | length(box_score) != 0){
+      if(class(box_score) != "try-error" & length(box_score) != 0){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
@@ -738,7 +738,7 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(300)
+        Sys.sleep(20)
         # print("sleep")
       }
       
@@ -746,7 +746,7 @@ for(i in 1:nrow(Schedule)){
       play_by_play <- try({play_by_play_url %>% html_nodes("table") %>% html_table(fill = TRUE)})
       shots <- try({play_by_play_url %>% str_extract_all('(?<=<li id="shot)(.*?)(?=</li>)')})
       
-      if(class(play_by_play) != "try-error" & class(shots) != "try-error"){
+      if(class(play_by_play) != "try-error" & class(shots) != "try-error" & length(play_by_play) != 0 & length(shots) != 1){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
@@ -858,14 +858,17 @@ for(i in 1:nrow(Schedule)){
       }
       
       summary_url <- try({read_html(paste0("https://www.espn.com/nba/recap?gameId=", game_id))})
+      # summary_url <- read_html(paste0("https://www.espn.com/nba/recap?gameId=401267397"))
       
-      if(class(summary_url) != "try-error"){
+      scoreboard <- summary_url %>% str_extract_all('(?<=<title>)(.*?)(?=</title>)') %>% unlist()
+      
+      if(any(class(summary_url) != "try-error") & scoreboard != "NBA Basketball Scores - NBA Scoreboard - ESPN"){
         update_data <- TRUE
       }else{
         update_data <- FALSE
       }
       
-      end_while <- ifelse(class(summary_url) != "try-error" | j == 3, TRUE, FALSE)
+      end_while <- ifelse(any(class(summary_url) != "try-error") | j == 3, TRUE, FALSE)
       j <- j + 1
       
     }
