@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2021
+Season <- 2019
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -411,7 +411,7 @@ Shots <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left", "Top", "Made", "Game_Id")
 
 for(i in 1:nrow(Schedule)){
-  # i = 49
+  # i = 365
   
   
   if(i %% 2 != 0){
@@ -432,8 +432,18 @@ for(i in 1:nrow(Schedule)){
       team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/matchup?gameId=", game_id))})
       team_stats_tables <- try({team_stats_url %>% html_nodes("table") %>% html_table()})
       
-      t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
-      t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
+      length(team_stats_tables)
+      
+      # Handle for missing games eg: https://www.espn.com/nba/matchup?gameId=401070856
+      if(length(team_stats_tables) == 0){
+        t1 <- FALSE
+        t2 <- FALSE
+      } else(
+        t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
+        t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
+      )
+      
+
       
       if(t1 & t2){
         if(nrow(team_stats_tables[[1]]) > 0 & nrow(team_stats_tables[[2]]) > 0){
