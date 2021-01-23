@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2021
+Season <- 2018
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -432,8 +432,6 @@ for(i in 1:nrow(Schedule)){
       team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/matchup?gameId=", game_id))})
       team_stats_tables <- try({team_stats_url %>% html_nodes("table") %>% html_table()})
       
-      length(team_stats_tables)
-      
       # Handle for missing games eg: https://www.espn.com/nba/matchup?gameId=401070856
       if(length(team_stats_tables) == 0){
         t1 <- FALSE
@@ -516,6 +514,32 @@ for(i in 1:nrow(Schedule)){
       
       team_stats <- team_stats_tables[[2]]
       names(team_stats) <- c("Stat", "Away_Stats", "Home_Stats")
+      
+      ## Check to make sure all rows ar present
+      ## Example https://www.espn.com/nba/matchup?gameId=400974444 is missing largest lead
+      
+      
+      
+      team_stats_order <- c("FG", "Field Goal %", "3PT", "Three Point %", "FT", "Free Throw %", "Rebounds", "Offensive Rebounds",
+                            "Defensive Rebounds", "Assists", "Steals", "Blocks", "Total Turnovers", "Points Off Turnovers", 
+                            "Fast Break Points", "Points in Paint", "Fouls", "Technical Fouls", "Flagrant Fouls", "Largest Lead")
+      
+      if(any(team_stats$Stat != team_stats_order)){
+        team_stats_df <- data.frame(Stat = team_stats_order)
+        team_stats_df <- team_stats_df %>% left_join(team_stats, by = c("Stat" = "Stat"))
+        
+        team_stats_df$missing_fill_away <- c("0-0", "0", "0-0", "0", "0-0", "0", "0", "0", "0", "0", "0", "0", 
+                                             "0", "0", "0", "0", "0", "0", "0", "0")
+        
+        team_stats_df$missing_fill_home <- c("0-0", "0", "0-0", "0", "0-0", "0", "0", "0", "0", "0", "0", "0", 
+                                             "0", "0", "0", "0", "0", "0", "0", "0")
+        
+        team_stats_df[is.na(team_stats_df$Away_Stats), "Away_Stats"] <- team_stats_df[is.na(team_stats_df$Away_Stats), "missing_fill_away"]
+        team_stats_df[is.na(team_stats_df$Home_Stats), "Home_Stats"] <- team_stats_df[is.na(team_stats_df$Home_Stats), "missing_fill_home"]
+        
+        team_stats <- team_stats_df %>% select(-missing_fill_away, -missing_fill_home)
+      }
+
       
       if(Schedule$Home[i] == TRUE){
         Schedule[i, c(which(names(Schedule) == "FG_For"):which(names(Schedule) == "Largest_Lead_For"))] <- team_stats$Home_Stats
