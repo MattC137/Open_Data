@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2019
+Season <- 2021
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -411,7 +411,7 @@ Shots <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left", "Top", "Made", "Game_Id")
 
 for(i in 1:nrow(Schedule)){
-  # i = 365
+  # i = 401
   
   
   if(i %% 2 != 0){
@@ -746,7 +746,7 @@ for(i in 1:nrow(Schedule)){
       play_by_play <- try({play_by_play_url %>% html_nodes("table") %>% html_table(fill = TRUE)})
       shots <- try({play_by_play_url %>% str_extract_all('(?<=<li id="shot)(.*?)(?=</li>)')})
       
-      if(class(play_by_play) != "try-error" & class(shots) != "try-error" & length(play_by_play) != 0 & length(shots) != 1){
+      if(class(play_by_play) != "try-error" & class(shots) != "try-error" & length(play_by_play) != 0){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
