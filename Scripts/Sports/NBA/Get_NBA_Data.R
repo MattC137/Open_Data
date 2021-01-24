@@ -415,7 +415,7 @@ names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left",
 Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
 
 for(i in 1:nrow(Schedule)){
-  # i = 1661
+  # i = 1
   
   
   if(i %% 2 != 0){
@@ -443,7 +443,7 @@ for(i in 1:nrow(Schedule)){
       } else{
         t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
         t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
-        t2 <- ifelse(try({any(str_detect(names(team_stats_tables[[2]]), "Stat"))}), t2, FALSE)
+        t2 <- ifelse(try({any(str_detect(names(team_stats_tables[[2]]), "Matchup"))}), t2, FALSE)
       }
       
 
