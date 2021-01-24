@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2017
+Season <- 2018
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -415,8 +415,7 @@ names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left",
 Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
 
 for(i in 1:nrow(Schedule)){
-  # i = 1
-  
+  # i = 1739
   
   if(i %% 2 != 0){
     print(i)
@@ -777,7 +776,7 @@ for(i in 1:nrow(Schedule)){
       play_by_play <- try({play_by_play_url %>% html_nodes("table") %>% html_table(fill = TRUE)})
       shots <- try({play_by_play_url %>% str_extract_all('(?<=<li id="shot)(.*?)(?=</li>)')})
       
-      if(class(play_by_play) != "try-error" & class(shots) != "try-error" & length(play_by_play) != 0){
+      if(class(play_by_play) != "try-error" & class(shots) != "try-error" & length(play_by_play) != 0 & length(shots[[1]]) != 0){
         if(nrow(box_score[[2]]) > 0){
           update_data <- TRUE
         }else{
@@ -802,36 +801,54 @@ for(i in 1:nrow(Schedule)){
       
       ot_rounds <- Schedule$OT_Rounds[i]
       
+      ### BETTER WAY TO RUN THE PBP Data
+      
+      # pbp_ids <- c()
+      #
+      # for(i in 1:length(play_by_play)){
+      #   pbp_ids <- c(pbp_ids, ifelse(any(str_detect(names(play_by_play[[i]]), "PLAY")), TRUE, FALSE))
+      # }
+      #
+      # pbp <- play_by_play[pbp_ids]
+      #
+      # play_by_play = pbp[1]
+      #
+      # for(i in 2:length(pbp)){
+      #   play_by_play = rbind(play_by_play, pbp[[i]])
+      # }
+
+      ### END BETTER WAY
+
       if(ot_rounds == 0){
         play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]])
-        
+
       }else if(ot_rounds == 1){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]])
-        
+
       }else if(ot_rounds == 2){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]], play_by_play[[7]])
       }else if(ot_rounds == 3){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]], play_by_play[[7]], play_by_play[[8]])
       }else if(ot_rounds == 4){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]])
       }else if(ot_rounds == 5){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
                               play_by_play[[10]])
       }else if(ot_rounds == 6){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
                               play_by_play[[10]], play_by_play[[11]])
       }else if(ot_rounds == 7){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
-                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
+                              play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
                               play_by_play[[10]], play_by_play[[11]], play_by_play[[12]])
       }else if(ot_rounds == 8){
-        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]], 
+        play_by_play <- rbind(play_by_play[[2]], play_by_play[[3]], play_by_play[[4]], play_by_play[[5]],
                               play_by_play[[6]], play_by_play[[7]], play_by_play[[8]], play_by_play[[9]],
                               play_by_play[[10]], play_by_play[[11]], play_by_play[[12]], play_by_play[[13]])
       }

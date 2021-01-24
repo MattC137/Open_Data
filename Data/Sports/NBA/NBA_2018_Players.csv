@@ -40,7 +40,7 @@
 "6430","jimmy-butler","Jimmy Butler","SF","MIN","minnesota-timberwolves","Minnesota Timberwolves","19301070",2020,6.58333333333333,6,7,230,1989-09-14,"2011","1","30","CHI"
 "2530276","tyler-johnson","Tyler Johnson","SG","MIA","miami-heat","Miami Heat","19245370",2020,6.25,6,3,194,1992-05-07,NA,NA,NA,NA
 "4237","john-wall","John Wall","PG","WSH","washington-wizards","Washington Wizards","19169800",2020,6.25,6,3,210,1990-09-06,"2010","1","1","WSH"
-"3438","george-hill","George Hill","PG","SAC","sacramento-kings","Sacramento Kings","19000000",2020,6.33333333333333,6,4,187,1986-05-04,"2008","1","26","SA"
+"3438","george-hill","George Hill","G","SAC","sacramento-kings","Sacramento Kings","19000000",2020,6.33333333333333,6,4,188,1986-05-04,"2008","1","26","SA"
 "4015","jeff-teague","Jeff Teague","PG","MIN","minnesota-timberwolves","Minnesota Timberwolves","19000000",2020,6.25,6,3,195,1988-06-10,"2009","1","19","ATL"
 "6442","kyrie-irving","Kyrie Irving","PG","BOS","boston-celtics","Boston Celtics","18868626",2020,6.16666666666667,6,2,199,1992-03-23,"2011","1","1","CLE"
 "6450","kawhi-leonard","Kawhi Leonard","SF","SA","san-antonio-spurs","San Antonio Spurs","18868626",2020,6.58333333333333,6,7,225,1991-06-29,"2011","1","15","IND"
@@ -151,7 +151,7 @@
 "2167","boris-diaw","Boris Diaw","C","UTAH","utah-jazz","Utah Jazz","7500000",2020,NA,NA,NA,NA,NA,"2003","1","21","ATL"
 "6603","jeremy-lamb","Jeremy Lamb","SG","CHA","charlotte-hornets","Charlotte Hornets","7488372",2020,6.41666666666667,6,5,185,1992-05-30,"2012","1","12","HOU"
 "3413","darrell-arthur","Darrell Arthur","F","DEN","denver-nuggets","Denver Nuggets","7464912",2020,NA,NA,NA,NA,NA,"2008","1","27","NO"
-"2426","trevor-ariza","Trevor Ariza","SF","HOU","houston-rockets","Houston Rockets","7420912",2020,6.66666666666667,6,8,215,1985-06-30,"2004","2","43","NY"
+"2426","trevor-ariza","Trevor Ariza","F","HOU","houston-rockets","Houston Rockets","7420912",2020,6.66666666666667,6,8,215,1985-06-30,"2004","2","43","NY"
 "2754","channing-frye","Channing Frye","F","LAL","los-angeles-lakers","Los Angeles Lakers","7420912",2020,NA,NA,NA,NA,NA,"2005","1","8","NY"
 "6587","festus-ezeli","Festus Ezeli","C","POR","portland-trail-blazers","Portland Trail Blazers","7400000",2020,NA,NA,NA,NA,NA,"2012","1","30","GS"
 "4248","al-farouq-aminu","Al-Farouq Aminu","PF","POR","portland-trail-blazers","Portland Trail Blazers","7319035",2020,6.66666666666667,6,8,220,1990-09-21,"2010","1","8","LAC"
@@ -281,7 +281,7 @@
 "2018","kendrick-perkins","Kendrick Perkins","C","CLE","cleveland-cavaliers","Cleveland Cavaliers","2445085",2020,NA,NA,NA,NA,NA,"2003","1","27","MEM"
 "3136196","trey-lyles","Trey Lyles","PF","DEN","denver-nuggets","Denver Nuggets","2441400",2020,6.75,6,9,235,1995-11-05,"2015","1","12","UTAH"
 "4066425","t.j.-leaf","T.J. Leaf","F","IND","indiana-pacers","Indiana Pacers","2407560",2020,NA,NA,NA,NA,NA,"2017","1","18","IND"
-"3138156","justin-jackson","Justin Jackson","SF","SAC","sacramento-kings","Sacramento Kings","2365560",2020,6.66666666666667,6,8,220,1995-03-28,"2017","1","15","POR"
+"3138156","justin-jackson","Justin Jackson","F","SAC","sacramento-kings","Sacramento Kings","2365560",2020,6.66666666666667,6,8,220,1995-03-28,"2017","1","15","POR"
 "2530780","shabazz-napier","Shabazz Napier","G","POR","portland-trail-blazers","Portland Trail Blazers","2361360",2020,NA,NA,NA,NA,NA,"2014","1","24","CHA"
 "3102529","clint-capela","Clint Capela","C","HOU","houston-rockets","Houston Rockets","2334528",2020,6.83333333333333,6,10,240,1994-05-18,"2014","1","25","HOU"
 "3136193","devin-booker","Devin Booker","SG","PHX","phoenix-suns","Phoenix Suns","2319360",2020,6.41666666666667,6,5,206,1996-10-30,"2015","1","13","PHX"
@@ -589,7 +589,7 @@
 "6428","marshon-brooks","MarShon Brooks","G","MEM","memphis-grizzlies","Memphis Grizzlies","60283",2020,NA,NA,NA,NA,NA,"2011","1","25","BOS"
 "4243","jordan-crawford","Jordan Crawford","G","NO","new-orleans-pelicans","New Orleans Pelicans","58190",2020,NA,NA,NA,NA,NA,"2010","1","27","NJ"
 "6438","justin-harper","Justin Harper","PF","PHI","philadelphia-76ers","Philadelphia 76ers","57672",2020,NA,NA,NA,NA,NA,"2011","2","32","CLE"
-"4232","alonzo-gee","Alonzo Gee","SF","DEN","denver-nuggets","Denver Nuggets","57672",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4232","alonzo-gee","Alonzo Gee","SG","NO","new-orleans-pelicans","New Orleans Pelicans","57672",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059409","nigel-hayes","Nigel Hayes","F","TOR","toronto-raptors","Toronto Raptors","55296",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2489664","david-stockton","David Stockton","G","UTAH","utah-jazz","Utah Jazz","44495",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2234666","jonathan-gibson","Jonathan Gibson","G","BOS","boston-celtics","Boston Celtics","44495",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -598,38 +598,50 @@
 "2198243","aaron-jackson","Aaron Jackson","F","HOU","houston-rockets","Houston Rockets","4608",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2982249","amile-jefferson","Amile Jefferson","F","BOS","boston-celtics","Boston Celtics","4608",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "1966","lebron-james","Lebron James","F","CLE","cleveland-cavaliers","Cavaliers",NA,2018,6.75,6,9,250,1984-12-30,"2003","1","1","CLE"
-"1987","dwyane-wade","Dwyane Wade","G","MIA","miami-heat","Heat",NA,2018,NA,NA,NA,NA,NA,"2003","1","5","MIA"
+"1987","dwyane-wade","Dwyane Wade","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,NA,NA,NA,NA,NA,"2003","1","5","MIA"
 "2184","udonis-haslem","Udonis Haslem","F","MIA","miami-heat","Heat",NA,2018,6.66666666666667,6,8,235,1980-06-09,NA,NA,NA,NA
 "2282117","john-holland","John Holland","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2282205","malcolm-delaney","Malcolm Delaney","G","ATL","atlanta-hawks","Hawks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2282622","jacob-pullen","Jacob Pullen","G","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2325495","larry-drew-ii","Larry Drew","G","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2439","jameer-nelson","Jameer Nelson","G","DET","detroit-pistons","Pistons",NA,2018,NA,NA,NA,NA,NA,"2004","1","20","DEN"
+"2284046","omari-johnson","Omari Johnson","F","MEM","memphis-grizzlies","Grizzlies",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2325495","larry-drew-ii","Larry Drew","G","NO","new-orleans-pelicans","Pelicans",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2327832","trey-mckinney-jones","Trey Mckinney-Jones","G","IND","indiana-pacers","Pacers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2328418","scotty-hopson","Scotty Hopson","G","DAL","dallas-mavericks","Mavericks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2439","jameer-nelson","Jameer Nelson","G","DEN","denver-nuggets","Nuggets",NA,2018,NA,NA,NA,NA,NA,"2004","1","20","DEN"
+"2488669","durand-scott","Durand Scott","G","MEM","memphis-grizzlies","Grizzlies",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2488713","jack-cooley","Jack Cooley","F","SAC","sacramento-kings","Kings",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2488938","reggie-hearn","Reggie Hearn","G","DET","detroit-pistons","Pistons",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2488938","reggie-hearn","Reggie Hearn","G","SAC","sacramento-kings","Kings",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2488945","tim-frazier","Tim Frazier","G","WSH","washington-wizards","Wizards",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2488977","jamil-wilson","Jamil Wilson","F","LAC","la-clippers","Clippers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2488999","cj-wilcox","Cj Wilcox","G","POR","portland-trail-blazers","Trail Blazers",NA,2018,NA,NA,NA,NA,NA,"2014","1","28","LAC"
+"2489010","tony-mitchell","Tony Mitchell","F","MIA","miami-heat","Heat",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2490242","taylor-braun","Taylor Braun","G","UTAH","utah-jazz","Jazz",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2491079","nate-wolters","Nate Wolters","G","UTAH","utah-jazz","Jazz",NA,2018,NA,NA,NA,NA,NA,"2013","2","38","WSH"
-"2528096","mike-james","Mike James","G","NO","new-orleans-pelicans","Pelicans",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2496916","davion-berry","Davion Berry","G","TOR","toronto-raptors","Raptors",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2528096","mike-james","Mike James","G","PHX","phoenix-suns","Suns",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2528327","kyle-collinsworth","Kyle Collinsworth","G","DAL","dallas-mavericks","Mavericks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2528386","joe-young","Joe Young","G","IND","indiana-pacers","Pacers",NA,2018,NA,NA,NA,NA,NA,"2015","2","43","IND"
+"2528586","walt-lemon-jr","Walt Lemon Jr.","G","NO","new-orleans-pelicans","Pelicans",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2528646","eric-griffin","Eric Griffin","F","UTAH","utah-jazz","Jazz",NA,2018,6.66666666666667,6,8,205,1990-05-26,NA,NA,NA,NA
 "2528693","torrey-craig","Torrey Craig","F","DEN","denver-nuggets","Nuggets",NA,2018,6.58333333333333,6,7,225,1990-12-19,NA,NA,NA,NA
 "2528787","lorenzo-brown","Lorenzo Brown","G","TOR","toronto-raptors","Raptors",NA,2018,6.41666666666667,6,5,189,1990-08-26,"2013","2","52","MIN"
 "2528794","joe-harris","Joe Harris","F","BKN","brooklyn-nets","Nets",NA,2018,6.5,6,6,220,1991-09-06,"2014","2","33","CLE"
-"2528803","jarell-eddie","Jarell Eddie","F","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2530750","markel-brown","Markel Brown","G","HOU","houston-rockets","Rockets",NA,2018,NA,NA,NA,NA,NA,"2014","2","44","MIN"
+"2528797","akil-mitchell","Akil Mitchell","G","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2528803","jarell-eddie","Jarell Eddie","F","CHI","chicago-bulls","Bulls",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2530750","markel-brown","Markel Brown","G","OKC","oklahoma-city-thunder","Thunder",NA,2018,NA,NA,NA,NA,NA,"2014","2","44","MIN"
 "2531039","vander-blue","Vander Blue","G","LAL","los-angeles-lakers","Lakers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2531100","adreian-payne","Adreian Payne","F","ORL","orlando-magic","Magic",NA,2018,NA,NA,NA,NA,NA,"2014","1","15","ATL"
 "2531362","anthony-brown","Anthony Brown","F","MIN","minnesota-timberwolves","Timberwolves",NA,2018,6.58333333333333,6,7,224,1992-10-10,"2015","2","34","LAL"
-"2566748","marshall-plumlee","Marshall Plumlee","C","MIL","milwaukee-bucks","Bucks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2566748","marshall-plumlee","Marshall Plumlee","C","LAC","la-clippers","Clippers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2578259","darrun-hilliard","Darrun Hilliard","G","SA","san-antonio-spurs","Spurs",NA,2018,NA,NA,NA,NA,NA,"2015","2","38","DET"
 "2579251","myke-henry","Myke Henry","F","MEM","memphis-grizzlies","Grizzlies",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2579321","james-ennis-iii","James Ennisi","F","DET","detroit-pistons","Pistons",NA,2018,6.5,6,6,215,1990-07-01,"2013","2","50","ATL"
-"2579476","jalen-jones","Jalen Jones","F","DAL","dallas-mavericks","Mavericks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2579321","james-ennis-iii","James Ennisi","F","MEM","memphis-grizzlies","Grizzlies",NA,2018,6.5,6,6,215,1990-07-01,"2013","2","50","ATL"
+"2579476","jalen-jones","Jalen Jones","F","NO","new-orleans-pelicans","Pelicans",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2580980","malcolm-miller","Malcolm Miller","F","TOR","toronto-raptors","Raptors",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2581177","rodney-hood","Rodney Hood","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,6.66666666666667,6,8,208,1992-10-20,"2014","1","23","UTAH"
+"2581177","rodney-hood","Rodney Hood","G","UTAH","utah-jazz","Jazz",NA,2018,6.66666666666667,6,8,208,1992-10-20,"2014","1","23","UTAH"
 "2594818","james-michael-mcadoo","James Michael-Mcadoo","F","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2595229","briante-weber","Briante Weber","G","HOU","houston-rockets","Rockets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2595209","damion-lee","Damion Lee","G","ATL","atlanta-hawks","Hawks",NA,2018,6.41666666666667,6,5,203,1992-10-21,NA,NA,NA,NA
+"2595229","briante-weber","Briante Weber","G","LAL","los-angeles-lakers","Lakers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2595231","treveon-graham","Treveon Graham","F","CHA","charlotte-hornets","Hornets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2596108","michael-carter-williams","Michael Carter-Williams","G","CHA","charlotte-hornets","Hornets",NA,2018,6.41666666666667,6,5,195,1991-10-10,"2013","1","11","PHI"
 "2596158","shane-larkin","Shane Larkin","G","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,"2013","1","18","ATL"
@@ -639,18 +651,20 @@
 "2769","amir-johnson","Amir Johnson","F","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,"2005","2","56","DET"
 "2806","jose-calderon","Jose Calderon","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2968439","aron-baynes","Aron Baynes","C","BOS","boston-celtics","Celtics",NA,2018,6.83333333333333,6,10,260,1986-12-09,NA,NA,NA,NA
+"2982243","landry-nnoko","Landry Nnoko","C","DET","detroit-pistons","Pistons",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2982329","marcus-paige","Marcus Paige","G","CHA","charlotte-hornets","Hornets",NA,2018,NA,NA,NA,NA,NA,"2016","2","55","BKN"
 "2983512","xavier-munford","Xavier Munford","G","MIL","milwaukee-bucks","Bucks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2983551","joel-bolomboy","Joel Bolomboy","F","MIL","milwaukee-bucks","Bucks",NA,2018,NA,NA,NA,NA,NA,"2016","2","52","UTAH"
+"2983551","joel-bolomboy","Joel Bolomboy","F","UTAH","utah-jazz","Jazz",NA,2018,NA,NA,NA,NA,NA,"2016","2","52","UTAH"
 "2983727","rj-hunter","Rj Hunter","G","HOU","houston-rockets","Rockets",NA,2018,NA,NA,NA,NA,NA,"2015","1","28","BOS"
 "2988387","charles-cooke","Charles Cooke","G","NO","new-orleans-pelicans","Pelicans",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2990969","georges-niang","Georges Niang","F","UTAH","utah-jazz","Jazz",NA,2018,6.58333333333333,6,7,230,1993-06-17,"2016","2","50","IND"
-"2990972","andrew-white-iii","Andrew Whitei","F","ATL","atlanta-hawks","Hawks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2990969","georges-niang","Georges Niang","F","GS","golden-state-warriors","Warriors",NA,2018,6.58333333333333,6,7,230,1993-06-17,"2016","2","50","IND"
+"2990972","andrew-white-iii","Andrew Whitei","F","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2990992","marcus-smart","Marcus Smart","G","BOS","boston-celtics","Celtics",NA,2018,6.25,6,3,220,1994-03-06,"2014","1","6","BOS"
-"2991042","nik-stauskas","Nik Stauskas","G","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,"2014","1","8","SAC"
+"2991039","glenn-robinson-iii","Glenn Robinsoni","F","IND","indiana-pacers","Pacers",NA,2018,6.5,6,6,222,1994-01-08,"2014","2","40","MIN"
+"2991042","nik-stauskas","Nik Stauskas","G","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,"2014","1","8","SAC"
 "2991047","ryan-arcidiacono","Ryan Arcidiacono","G","CHI","chicago-bulls","Bulls",NA,2018,6.25,6,3,200,1994-03-26,NA,NA,NA,NA
 "2991054","mangok-mathiang","Mangok Mathiang","F","CHA","charlotte-hornets","Hornets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2991155","danuel-house-jr","Danuel House Jr.","F","PHX","phoenix-suns","Suns",NA,2018,6.5,6,6,215,1993-06-07,NA,NA,NA,NA
+"2991155","danuel-house-jr","Danuel House Jr.","F","HOU","houston-rockets","Rockets",NA,2018,6.5,6,6,215,1993-06-07,NA,NA,NA,NA
 "2991230","fred-vanvleet","Fred Vanvleet","G","TOR","toronto-raptors","Raptors",NA,2018,6.08333333333333,6,1,195,1994-02-25,NA,NA,NA,NA
 "2991295","matt-williams-jr","Matt Williams Jr.","G","MIA","miami-heat","Heat",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2991350","alex-caruso","Alex Caruso","G","LAL","los-angeles-lakers","Lakers",NA,2018,6.33333333333333,6,4,186,1994-02-28,NA,NA,NA,NA
@@ -663,56 +677,75 @@
 "3002137","tyrone-wallace","Tyrone Wallace","G","LAC","la-clippers","Clippers",NA,2018,NA,NA,NA,NA,NA,"2016","2","60","UTAH"
 "3024","jj-redick","Jj Redick","G","PHI","philadelphia-76ers","76ers",NA,2018,6.25,6,3,200,1984-06-24,"2006","1","11","ORL"
 "3032980","lucas-nogueira","Lucas Nogueira","C","TOR","toronto-raptors","Raptors",NA,2018,NA,NA,NA,NA,NA,"2013","1","16","BOS"
+"3039","marcus-williams","Marcus Williams","G","SAC","sacramento-kings","Kings",NA,2018,NA,NA,NA,NA,NA,"2006","1","22","NJ"
 "3056273","derrick-walton-jr","Derrick Walton Jr.","G","MIA","miami-heat","Heat",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3056600","jabari-parker","Jabari Parker","F","MIL","milwaukee-bucks","Bucks",NA,2018,6.66666666666667,6,8,245,1995-03-15,"2014","1","2","MIL"
 "3057189","ben-moore","Ben Moore","F","IND","indiana-pacers","Pacers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3057304","vince-shamar-hunter","Vince Shamar-Hunter","F","MEM","memphis-grizzlies","Grizzlies",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059273","demetrius-jackson","Demetrius Jackson","G","HOU","houston-rockets","Rockets",NA,2018,NA,NA,NA,NA,NA,"2016","2","45","BOS"
-"3059276","jamel-artis","Jamel Artis","F","ORL","orlando-magic","Magic",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3059276","jamel-artis","Jamel Artis","F","NY","new-york-knicks","Knicks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059279","mike-young","Mike Young","F","WSH","washington-wizards","Wizards",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3059286","london-perrantes","London Perrantes","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3059286","london-perrantes","London Perrantes","G","SA","san-antonio-spurs","Spurs",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3059291","trevor-thompson","Trevor Thompson","C","GS","golden-state-warriors","Warriors",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059306","johnathan-motley","Johnathan Motley","F","DAL","dallas-mavericks","Mavericks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059310","monte-morris","Monte Morris","G","DEN","denver-nuggets","Nuggets",NA,2018,6.16666666666667,6,2,183,1995-06-27,"2017","2","51","DEN"
+"3059484","jeremy-morgan","Jeremy Morgan","G","MEM","memphis-grizzlies","Grizzlies",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3062704","jeremy-senglin","Jeremy Senglin","G","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3062744","david-nwaba","David Nwaba","G","CHI","chicago-bulls","Bulls",NA,2018,6.41666666666667,6,5,219,1993-01-14,NA,NA,NA,NA
-"3062892","kay-felder","Kay Felder","G","DET","detroit-pistons","Pistons",NA,2018,NA,NA,NA,NA,NA,"2016","2","54","ATL"
+"3062798","daniel-dixon","Daniel Dixon","G","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3062892","kay-felder","Kay Felder","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,NA,NA,NA,NA,NA,"2016","2","54","ATL"
 "3062897","alec-peters","Alec Peters","F","PHX","phoenix-suns","Suns",NA,2018,NA,NA,NA,NA,NA,"2017","2","54","PHX"
 "3064290","aaron-gordon","Aaron Gordon","F","ORL","orlando-magic","Magic",NA,2018,6.66666666666667,6,8,235,1995-09-16,"2014","1","4","ORL"
 "3064308","jabari-bird","Jabari Bird","G","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,"2017","2","56","BOS"
 "3064440","zach-lavine","Zach Lavine","G","CHI","chicago-bulls","Bulls",NA,2018,6.41666666666667,6,5,202,1995-03-10,"2014","1","13","MIN"
-"3064509","james-young","James Young","G","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,"2014","1","17","BOS"
+"3064479","ike-iroegbu","Ike Iroegbu","G","LAC","la-clippers","Clippers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3064509","james-young","James Young","G","MIL","milwaukee-bucks","Bucks",NA,2018,NA,NA,NA,NA,NA,"2014","1","17","BOS"
+"3064515","derek-willis","Derek Willis","F","DET","detroit-pistons","Pistons",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3064520","jordan-mickey","Jordan Mickey","F","MIA","miami-heat","Heat",NA,2018,NA,NA,NA,NA,NA,"2015","2","33","BOS"
 "3064560","luke-kornet","Luke Kornet","C","NY","new-york-knicks","Knicks",NA,2018,7.16666666666667,7,2,250,1995-07-15,NA,NA,NA,NA
-"3074765","isaiah-hicks","Isaiah Hicks","F","NY","new-york-knicks","Knicks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3078284","noah-vonleh","Noah Vonleh","F","CHI","chicago-bulls","Bulls",NA,2018,NA,NA,NA,NA,NA,"2014","1","9","CHA"
+"3074748","amida-brimah","Amida Brimah","C","SA","san-antonio-spurs","Spurs",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3074765","isaiah-hicks","Isaiah Hicks","F","CHA","charlotte-hornets","Hornets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3077960","isaac-hamilton","Isaac Hamilton","G","CLE","cleveland-cavaliers","Cavaliers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3078268","devin-williams","Devin Williams","F","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3078284","noah-vonleh","Noah Vonleh","F","POR","portland-trail-blazers","Trail Blazers",NA,2018,NA,NA,NA,NA,NA,"2014","1","9","CHA"
 "3079021","james-webb-iii","James Webbi","F","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3132044","torian-graham","Torian Graham","G","UTAH","utah-jazz","Jazz",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3134880","kadeem-allen","Kadeem Allen","G","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,"2017","2","53","BOS"
-"3134903","gary-payton-ii","Gary Payton","G","LAL","los-angeles-lakers","Lakers",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3135048","jahlil-okafor","Jahlil Okafor","C","BKN","brooklyn-nets","Nets",NA,2018,6.83333333333333,6,10,275,1995-12-15,"2015","1","3","PHI"
+"3134903","gary-payton-ii","Gary Payton","G","MIL","milwaukee-bucks","Bucks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3135048","jahlil-okafor","Jahlil Okafor","C","PHI","philadelphia-76ers","76ers",NA,2018,6.83333333333333,6,10,275,1995-12-15,"2015","1","3","PHI"
+"3136485","edmond-sumner","Edmond Sumner","G","IND","indiana-pacers","Pacers",NA,2018,6.33333333333333,6,4,196,1995-12-31,"2017","2","52","NO"
 "3137694","gian-clavell","Gian Clavell","G","DAL","dallas-mavericks","Mavericks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3137798","devin-robinson","Devin Robinson","F","WSH","washington-wizards","Wizards",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3147351","daniel-hamilton","Daniel Hamilton","F","OKC","oklahoma-city-thunder","Thunder",NA,2018,NA,NA,NA,NA,NA,"2016","2","56","DEN"
 "3187","arron-afflalo","Arron Afflalo","G","ORL","orlando-magic","Magic",NA,2018,NA,NA,NA,NA,NA,"2007","1","27","DET"
-"3190","marco-belinelli","Marco Belinelli","G","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,"2007","1","18","GS"
+"3190","marco-belinelli","Marco Belinelli","G","ATL","atlanta-hawks","Hawks",NA,2018,NA,NA,NA,NA,NA,"2007","1","18","GS"
 "3202","kevin-durant","Kevin Durant","F","GS","golden-state-warriors","Warriors",NA,2018,6.83333333333333,6,10,225,1988-09-29,"2007","1","2","SEA"
 "3209","jeff-green","Jeff Green","F","CLE","cleveland-cavaliers","Cavaliers",NA,2018,6.66666666666667,6,8,240,1986-08-28,"2007","1","5","BOS"
 "3231","ramon-sessions","Ramon Sessions","G","NY","new-york-knicks","Knicks",NA,2018,NA,NA,NA,NA,NA,"2007","2","56","MIL"
 "3418","michael-beasley","Michael Beasley","F","NY","new-york-knicks","Knicks",NA,2018,NA,NA,NA,NA,NA,"2008","1","2","MIA"
+"3457","brandon-rush","Brandon Rush","F","MIL","milwaukee-bucks","Bucks",NA,2018,6.5,6,6,225,1985-07-07,"2008","1","13","POR"
 "3460","marreese-speights","Marreese Speights","F","ORL","orlando-magic","Magic",NA,2018,6.83333333333333,6,10,255,1987-08-04,"2008","1","16","PHI"
 "3472","bobby-brown","Bobby Brown","G","HOU","houston-rockets","Rockets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3893017","george-de-paula","George De-Paula","G","HOU","houston-rockets","Rockets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3899663","dimitrios-agravanis","Dimitrios Agravanis","F","SAC","sacramento-kings","Kings",NA,2018,NA,NA,NA,NA,NA,"2015","2","59","ATL"
 "3907386","antonio-blakeney","Antonio Blakeney","G","CHI","chicago-bulls","Bulls",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3911666","luis-montero","Luis Montero","G","DET","detroit-pistons","Pistons",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3923250","pj-dozier","Pj Dozier","G","OKC","oklahoma-city-thunder","Thunder",NA,2018,6.5,6,6,205,1996-10-25,NA,NA,NA,NA
-"3936099","derrick-jones-jr","Derrick Jones Jr.","F","MIA","miami-heat","Heat",NA,2018,6.41666666666667,6,5,210,1997-02-15,NA,NA,NA,NA
-"3974","dante-cunningham","Dante Cunningham","F","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,"2009","2","33","POR"
+"3923250","pj-dozier","Pj Dozier","G","DAL","dallas-mavericks","Mavericks",NA,2018,6.5,6,6,205,1996-10-25,NA,NA,NA,NA
+"3936099","derrick-jones-jr","Derrick Jones Jr.","F","PHX","phoenix-suns","Suns",NA,2018,6.41666666666667,6,5,210,1997-02-15,NA,NA,NA,NA
+"3948153","chris-boucher","Chris Boucher","F","GS","golden-state-warriors","Warriors",NA,2018,6.75,6,9,200,1993-01-11,NA,NA,NA,NA
+"3974","dante-cunningham","Dante Cunningham","F","NO","new-orleans-pelicans","Pelicans",NA,2018,NA,NA,NA,NA,NA,"2009","2","33","POR"
 "3981","wayne-ellington","Wayne Ellington","G","MIA","miami-heat","Heat",NA,2018,6.33333333333333,6,4,207,1987-11-29,"2009","1","28","MIN"
 "4064727","josh-magette","Josh Magette","G","ATL","atlanta-hawks","Hawks",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4066335","kobi-simmons","Kobi Simmons","G","MEM","memphis-grizzlies","Grizzlies",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4241228","yakuba-ouattara","Yakuba Ouattara","G","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4244","lance-stephenson","Lance Stephenson","G","IND","indiana-pacers","Pacers",NA,2018,NA,NA,NA,NA,NA,"2010","2","40","IND"
-"4250","luke-babbitt","Luke Babbitt","F","MIA","miami-heat","Heat",NA,2018,NA,NA,NA,NA,NA,"2010","1","16","MIN"
-"4260","greg-monroe","Greg Monroe","C","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,"2010","1","7","DET"
-"4270","trevor-booker","Trevor Booker","F","PHI","philadelphia-76ers","76ers",NA,2018,NA,NA,NA,NA,NA,"2010","1","23","MIN"
+"4250","luke-babbitt","Luke Babbitt","F","ATL","atlanta-hawks","Hawks",NA,2018,NA,NA,NA,NA,NA,"2010","1","16","MIN"
+"4260","greg-monroe","Greg Monroe","C","MIL","milwaukee-bucks","Bucks",NA,2018,NA,NA,NA,NA,NA,"2010","1","7","DET"
+"4270","trevor-booker","Trevor Booker","F","IND","indiana-pacers","Pacers",NA,2018,NA,NA,NA,NA,NA,"2010","1","23","MIN"
+"4277156","bronson-koenig","Bronson Koenig","G","CHI","chicago-bulls","Bulls",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"4285","andy-rautins","Andy Rautins","G","TOR","toronto-raptors","Raptors",NA,2018,NA,NA,NA,NA,NA,"2010","2","38","NY"
+"6480","derrick-williams","Derrick Williams","F","LAL","los-angeles-lakers","Lakers",NA,2018,NA,NA,NA,NA,NA,"2011","1","2","MIN"
+"6499","xavier-silas","Xavier Silas","G","BOS","boston-celtics","Celtics",NA,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "6576","quincy-acy","Quincy Acy","F","BKN","brooklyn-nets","Nets",NA,2018,NA,NA,NA,NA,NA,"2012","2","37","TOR"
 "6615","kyle-oquinn","Kyle Oquinn","C","NY","new-york-knicks","Knicks",NA,2018,NA,NA,NA,NA,NA,"2012","2","49","ORL"
 "6622","mike-scott","Mike Scott","F","WSH","washington-wizards","Wizards",NA,2018,6.58333333333333,6,7,237,1988-07-16,"2012","2","43","ATL"
