@@ -304,10 +304,6 @@ Schedule <- Schedule %>% mutate(
   Points_Against = ifelse(W_L == "TBD", 0, Points_Against)
 )
 
-## Make sure opponent is NBA opponent. This can screw up the loop because some preseason games are against outside teams
-
-Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
-
 Schedule <- Schedule %>% select(
   Date, Team, Opponent, Result, Points_For, Points_Against, Home, Neutral, OT_Rounds, Season, Season_Type, Playoff_Round, Game_Id
 )
@@ -414,8 +410,12 @@ names(Game_Summary) <- c("Summary", "Game_Id")
 Shots <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left", "Top", "Made", "Game_Id")
 
+## Make sure opponent is NBA opponent. This can screw up the loop because some preseason games are against outside teams
+
+Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
+
 for(i in 1:nrow(Schedule)){
-  # i = 27
+  # i = 1661
   
   
   if(i %% 2 != 0){
@@ -443,6 +443,7 @@ for(i in 1:nrow(Schedule)){
       } else{
         t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
         t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
+        t2 <- ifelse(try({any(str_detect(names(team_stats_tables[[2]]), "Stat"))}), t2, FALSE)
       }
       
 
