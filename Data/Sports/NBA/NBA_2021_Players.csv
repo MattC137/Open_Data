@@ -472,7 +472,7 @@
 "4065635","ky-bowman","Ky Bowman","G","LAC","la-clippers","LA Clippers","1517981",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3907823","terance-mann","Terance Mann","SG","LAC","la-clippers","LA Clippers","1517981",2020,6.41666666666667,6,5,215,1996-10-18,"2019","2","48","LAC"
 "4423887","jalen-lecque","Jalen Lecque","PG","IND","indiana-pacers","Indiana Pacers","1517981",2020,6.33333333333333,6,4,185,2000-06-13,NA,NA,NA,NA
-"3906603","chris-clemons","Chris Clemons","PG","HOU","houston-rockets","Houston Rockets","1517981",2020,5.75,5,9,180,1997-07-23,NA,NA,NA,NA
+"3906603","chris-clemons","Chris Clemons","G","HOU","houston-rockets","Houston Rockets","1517981",2020,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "4401416","juan-toscano-anderson","Juan Toscano-Anderson","SF","GS","golden-state-warriors","Golden State Warriors","1517981",2020,6.5,6,6,213,1993-04-10,NA,NA,NA,NA
 "4401415","alen-smailagic","Alen Smailagic","PF","GS","golden-state-warriors","Golden State Warriors","1517981",2020,6.83333333333333,6,10,241,2000-08-18,"2019","2","39","NO"
 "3936298","mychal-mulder","Mychal Mulder","SG","GS","golden-state-warriors","Golden State Warriors","1517981",2020,6.25,6,3,193,1994-06-12,NA,NA,NA,NA
@@ -559,6 +559,7 @@
 "3059280","bj-johnson","Bj Johnson","F","MIA","miami-heat","Heat",NA,2021,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3059306","johnathan-motley","Johnathan Motley","F","PHX","phoenix-suns","Suns",NA,2021,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3064291","rondae-hollis-jefferson","Rondae Hollis-Jefferson","F","MIN","minnesota-timberwolves","Timberwolves",NA,2021,NA,NA,NA,NA,NA,"2015","1","23","POR"
+"3064427","jordan-bell","Jordan Bell","F","WSH","washington-wizards","Wizards",NA,2021,6.66666666666667,6,8,216,1995-01-07,"2017","2","38","CHI"
 "3074748","amida-brimah","Amida Brimah","C","IND","indiana-pacers","Pacers",NA,2021,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "3078284","noah-vonleh","Noah Vonleh","F","CHI","chicago-bulls","Bulls",NA,2021,NA,NA,NA,NA,NA,"2014","1","9","CHA"
 "3133838","yuta-watanabe","Yuta Watanabe","F","TOR","toronto-raptors","Raptors",NA,2021,6.75,6,9,205,1994-10-13,NA,NA,NA,NA
