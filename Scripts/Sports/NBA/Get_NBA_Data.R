@@ -1394,9 +1394,9 @@ line_log <- Future_Schedule %>%
 # write.csv(line_log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_LIne_Log_", Season,".csv"), row.names = F)
 
 if(nrow(Future_Schedule) > 0){
-  Line_Log <- read_csv(paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_Line_Log_", Season,".csv"))
+  Line_Log <- read_csv(paste0("C:/Users/Matt C137/Documents/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Line_Log.csv"))
   Line_Log <- rbind(Line_Log, line_log)
-  write.csv(Line_Log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_LIne_Log.csv"), row.names = F)
+  write.csv(Line_Log, file = paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Line_Log.csv"), row.names = F)
 }
 
 
