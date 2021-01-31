@@ -10,6 +10,12 @@ games_2018 <- read_csv("https://raw.githubusercontent.com/MattC137/Open_Data/mas
 games <- rbind(games_2021, games_2020, games_2019, games_2018)
 
 View(games_2021 %>% filter(Result == "TBD"))
+apply(is.na(games_2021 %>% filter(Result == "TBD")), 2, sum)
+
+games_2021[games_2021$Result == "TBD", c("Threes_Made_For", "Threes_Att_For", "FG_Made_For", "FG_Att_For", "FT_Made_For", "FT_Att_For", 
+                                         "FG_Made_Against", "FG_Att_Against", "Threes_Made_Against", "Threes_Att_Against", "FT_Made_Against", 
+                                         "FT_Att_Against")] <- 0
+
 
 #### Standings Table ####
 

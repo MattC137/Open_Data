@@ -1270,7 +1270,6 @@ rm(list = ls()[!(ls() %in% c("Schedule", "Box_Scores", "Play_by_Play", "Game_Sum
 for(i in 1:nrow(Future_Schedule)){
   # i = 1
   
-  
   if(i %% 2 != 0){
     # print(i)
     
@@ -1285,14 +1284,22 @@ for(i in 1:nrow(Future_Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(300)
+        Sys.sleep(3)
+        print(paste0(j, "sleep"))
       }
       
       team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/game/_/gameId/", game_id))})
       team_stats_tables <- try({team_stats_url %>% html_nodes("table") %>% html_table()})
       
-      t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
-      t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
+      if(length(team_stats_tables) < 2){
+        t1 <- FALSE
+        t2 <- FALSE
+      } else{
+        t1 <- ifelse(try({is.data.frame(team_stats_tables[[1]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[1]])}), FALSE)
+        t2 <- ifelse(try({is.data.frame(team_stats_tables[[2]])}) %in% c(TRUE, FALSE), try({is.data.frame(team_stats_tables[[2]])}), FALSE)
+        # t2 <- ifelse(try({any(str_detect(names(team_stats_tables[[2]]), "Matchup"))}), t2, FALSE)
+      }
+      
       
       if(t1 & t2){
         if(nrow(team_stats_tables[[1]]) > 0 & nrow(team_stats_tables[[2]]) > 0){
@@ -1433,6 +1440,10 @@ View(Box_Scores %>%
      )
 
 #### RENAME DFs ####
+
+Schedule[Schedule$Result == "TBD", c("Threes_Made_For", "Threes_Att_For", "FG_Made_For", "FG_Att_For", "FT_Made_For", "FT_Att_For", 
+                                         "FG_Made_Against", "FG_Att_Against", "Threes_Made_Against", "Threes_Att_Against", "FT_Made_Against", 
+                                         "FT_Att_Against")] <- 0
 
 Games <- Schedule
 

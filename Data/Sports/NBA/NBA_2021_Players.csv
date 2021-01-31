@@ -60,7 +60,7 @@
 "2528210","tim-hardaway-jr.","Tim Hardaway Jr.","SF","DAL","dallas-mavericks","Dallas Mavericks","18975000",2020,6.41666666666667,6,5,205,1992-03-16,"2013","1","24","NY"
 "3074752","terry-rozier","Terry Rozier","SG","CHA","charlotte-hornets","Charlotte Hornets","18900000",2020,6.08333333333333,6,1,190,1994-03-17,"2015","1","16","BOS"
 "3064514","julius-randle","Julius Randle","PF","NY","new-york-knicks","New York Knicks","18900000",2020,6.66666666666667,6,8,254,1994-11-29,"2014","1","7","LAL"
-"2531210","allen-crabbe","Allen Crabbe","SG","ATL","atlanta-hawks","Atlanta Hawks","18500000",2020,NA,NA,NA,NA,NA,"2013","2","31","CLE"
+"2531210","allen-crabbe","Allen Crabbe","G","MIN","minnesota-timberwolves","Minnesota Timberwolves","18500000",2020,NA,NA,NA,NA,NA,"2013","2","31","CLE"
 "3064290","aaron-gordon","Aaron Gordon","PF","ORL","orlando-magic","Orlando Magic","18136364",2020,6.66666666666667,6,8,235,1995-09-16,"2014","1","4","ORL"
 "3423","goran-dragic","Goran Dragic","PG","MIA","miami-heat","Miami Heat","18000000",2020,6.25,6,3,190,1986-05-06,"2008","2","45","SA"
 "3133628","myles-turner","Myles Turner","C","IND","indiana-pacers","Indiana Pacers","18000000",2020,6.91666666666667,6,11,250,1996-03-24,"2015","1","11","IND"
@@ -277,7 +277,7 @@
 "2530530","t.j.-mcconnell","T.J. McConnell","PG","IND","indiana-pacers","Indiana Pacers","3500000",2020,6.08333333333333,6,1,190,1992-03-25,NA,NA,NA,NA
 "4376","boban-marjanovic","Boban Marjanovic","C","DAL","dallas-mavericks","Dallas Mavericks","3500000",2020,7.33333333333333,7,4,290,1988-08-15,NA,NA,NA,NA
 "3062679","josh-hart","Josh Hart","SG","NO","new-orleans-pelicans","New Orleans Pelicans","3491159",2020,6.41666666666667,6,5,215,1995-03-06,"2017","1","30","UTAH"
-"4396909","aaron-nesmith","Aaron Nesmith","SF","BOS","boston-celtics","Boston Celtics","3458400",2020,6.41666666666667,6,5,215,1999-10-16,"2020","1","14","BOS"
+"4396909","aaron-nesmith","Aaron Nesmith","F","BOS","boston-celtics","Boston Celtics","3458400",2020,6.41666666666667,6,5,215,1999-10-16,"2020","1","14","BOS"
 "4423314","sekou-doumbouya","Sekou Doumbouya","SF","DET","detroit-pistons","Detroit Pistons","3449400",2020,6.66666666666667,6,8,230,2000-12-23,"2019","1","15","DET"
 "2596108","michael-carter-williams","Michael Carter-Williams","PG","ORL","orlando-magic","Orlando Magic","3300000",2020,6.41666666666667,6,5,195,1991-10-10,"2013","1","11","PHI"
 "2579321","james-ennis-iii","James Ennis III","SF","ORL","orlando-magic","Orlando Magic","3300000",2020,6.5,6,6,215,1990-07-01,"2013","2","50","ATL"
