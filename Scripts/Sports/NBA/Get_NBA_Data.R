@@ -604,7 +604,7 @@ for(i in 1:nrow(Schedule)){
     #### Box Scores ####
     
     print("Box Scores")
-    # game_id = 401265848
+    # game_id = 401266805
     
     ### TRY 3 TIMES
     end_while <- FALSE
@@ -1448,6 +1448,115 @@ Schedule[Schedule$Result == "TBD", c("Threes_Made_For", "Threes_Att_For", "FG_Ma
 Games <- Schedule
 
 #### Write Data ####
+
+Games <- Games %>% mutate(
+  Points_For = as.numeric(as.character(Points_For)),
+  Points_Against = as.numeric(as.character(Points_Against)),
+  FG_Made_For = as.numeric(as.character(FG_Made_For)),
+  FG_Att_For = as.numeric(as.character(FG_Att_For)),
+  FG_Per_For = as.numeric(as.character(FG_Per_For)),
+  Threes_Made_For = as.numeric(as.character(Threes_Made_For)),
+  Threes_Att_For = as.numeric(as.character(Threes_Att_For)),              
+  Threes_Per_For = as.numeric(as.character(Threes_Per_For)),               
+  FT_Made_For = as.numeric(as.character(FT_Made_For)),                  
+  FT_Att_For = as.numeric(as.character(FT_Att_For)),                   
+  FT_Per_For = as.numeric(as.character(FT_Per_For)),                  
+  Rebounds_For = as.numeric(as.character(Rebounds_For)),                 
+  Offensive_Rebounds_For = as.numeric(as.character(Offensive_Rebounds_For)),       
+  Defensive_Rebounds_For = as.numeric(as.character(Defensive_Rebounds_For)),       
+  Assists_For = as.numeric(as.character(Assists_For)),                 
+  Steals_For = as.numeric(as.character(Steals_For)),                   
+  Blocks_For = as.numeric(as.character(Blocks_For)),                   
+  Total_Turnovers_For = as.numeric(as.character(Total_Turnovers_For)),          
+  Points_Off_Turnovers_For = as.numeric(as.character(Points_Off_Turnovers_For)),    
+  Fast_Break_Points_For = as.numeric(as.character(Fast_Break_Points_For)),        
+  Points_in_Paint_For = as.numeric(as.character(Points_in_Paint_For)),          
+  Fouls_For = as.numeric(as.character(Fouls_For)),                    
+  Technical_Fouls_For = as.numeric(as.character(Technical_Fouls_For)),         
+  Flagrant_Fouls_For = as.numeric(as.character(Flagrant_Fouls_For)),           
+  Largest_Lead_For = as.numeric(as.character(Largest_Lead_For)),             
+  FG_Made_Against = as.numeric(as.character(FG_Made_Against)),              
+  FG_Att_Against = as.numeric(as.character(FG_Att_Against)),             
+  FG_Per_Against = as.numeric(as.character(FG_Per_Against)),               
+  Threes_Made_Against = as.numeric(as.character(Threes_Made_Against)),
+  Threes_Att_Against = as.numeric(as.character(Threes_Att_Against)),
+  Threes_Per_Against = as.numeric(as.character(Threes_Per_Against)),
+  FT_Made_Against = as.numeric(as.character(FT_Made_Against)),
+  FT_Att_Against = as.numeric(as.character(FT_Att_Against)),
+  FT_Per_Against = as.numeric(as.character(FT_Per_Against)),
+  Rebounds_Against = as.numeric(as.character(Rebounds_Against)),
+  Offensive_Rebounds_Against = as.numeric(as.character(Offensive_Rebounds_Against)),
+  Defensive_Rebounds_Against = as.numeric(as.character(Defensive_Rebounds_Against)),
+  Assists_Against = as.numeric(as.character(Assists_Against)),
+  Steals_Against = as.numeric(as.character(Steals_Against)),
+  Blocks_Against = as.numeric(as.character(Blocks_Against)),
+  Total_Turnovers_Against = as.numeric(as.character(Total_Turnovers_Against)),
+  Points_Off_Turnovers_Against = as.numeric(as.character(Points_Off_Turnovers_Against)),
+  Fast_Break_Points_Against = as.numeric(as.character(Fast_Break_Points_Against)),
+  Points_in_Paint_Against = as.numeric(as.character(Points_in_Paint_Against)),
+  Fouls_Against = as.numeric(as.character(Fouls_Against)),
+  Technical_Fouls_Against = as.numeric(as.character(Technical_Fouls_Against)),
+  Flagrant_Fouls_Against = as.numeric(as.character(Flagrant_Fouls_Against)),
+  Largest_Lead_Against = as.numeric(as.character(Largest_Lead_Against)),
+  Line_Amount = as.numeric(as.character(Line_Amount)),
+  Over_Under = as.numeric(as.character(Over_Under)),
+  Correct_Line = as.numeric(as.character(Correct_Line)),
+  Spread_Winner = as.numeric(as.character(Spread_Winner)),
+  Over_Under_Winner = as.numeric(as.character(Over_Under_Winner)),
+  Money_Line = as.numeric(as.character(Money_Line)),
+  Money_Line_Opp = as.numeric(as.character(Money_Line_Opp)),
+  Implied_Odds = as.numeric(as.character(Implied_Odds)),
+  Implied_Odds_Opp = as.numeric(as.character(Implied_Odds_Opp))
+)
+
+Box_Scores <- Box_Scores %>% rename(
+  Minutes = MIN,
+  FG_Made = FG_Made,
+  FG_Att = FG_Att,
+  Threes_Made = THREES_Made,
+  Threes_Att = THREES_Att,
+  FT_Made = FT_Made,
+  FT_Att = FT_Att,
+  Offensive_Rebounds = OREB,
+  Defensive_Rebounds = DREB,
+  Rebounds = REB,
+  Assits = AST,
+  Steals = STL,
+  Blocks = BLK,
+  Turnovers = TO,
+  Fouls = PF,
+  Plus_Minus = PLUS_MINUS,
+  Points = PTS
+) %>% mutate(
+  Minutes = as.numeric(as.character(Minutes)),
+  FG_Made = as.numeric(as.character(FG_Made)),
+  FG_Att = as.numeric(as.character(FG_Att)),
+  Threes_Made = as.numeric(as.character(Threes_Made)),
+  Threes_Att = as.numeric(as.character(Threes_Att)),
+  FT_Made = as.numeric(as.character(FT_Made)),
+  FT_Att = as.numeric(as.character(FT_Att)),
+  Offensive_Rebounds = as.numeric(as.character(Offensive_Rebounds)),
+  Defensive_Rebounds = as.numeric(as.character(Defensive_Rebounds)),
+  Rebounds = as.numeric(as.character(Rebounds)),
+  Assits = as.numeric(as.character(Assits)),
+  Steals = as.numeric(as.character(Steals)),
+  Blocks = as.numeric(as.character(Blocks)),
+  Turnovers = as.numeric(as.character(Turnovers)),
+  Fouls = as.numeric(as.character(Fouls)),
+  Plus_Minus = as.numeric(as.character(Plus_Minus)),
+  Points = as.numeric(as.character(Points)),
+)
+
+glimpse(Box_Scores)
+
+
+
+
+
+glimpse(Play_by_Play)
+glimpse(Game_Summary)
+glimpse(Shots)
+glimpse(Players)
 
 write.csv(Games, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Games.csv"), row.names = F)
 write.csv(Box_Scores, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Box_Score.csv"), row.names = F)
