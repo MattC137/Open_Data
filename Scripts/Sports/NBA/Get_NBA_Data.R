@@ -1538,7 +1538,7 @@ Box_Scores <- Box_Scores %>% rename(
   Offensive_Rebounds = as.numeric(as.character(Offensive_Rebounds)),
   Defensive_Rebounds = as.numeric(as.character(Defensive_Rebounds)),
   Rebounds = as.numeric(as.character(Rebounds)),
-  Assits = as.numeric(as.character(Assits)),
+  Assists = as.numeric(as.character(Assists)),
   Steals = as.numeric(as.character(Steals)),
   Blocks = as.numeric(as.character(Blocks)),
   Turnovers = as.numeric(as.character(Turnovers)),
