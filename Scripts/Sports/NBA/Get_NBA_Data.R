@@ -1547,16 +1547,22 @@ Box_Scores <- Box_Scores %>% rename(
   Points = as.numeric(as.character(Points)),
 )
 
-glimpse(Box_Scores)
+Play_by_Play <- Play_by_Play %>% mutate(
+  Home_Points = as.numeric(as.character(Home_Points)),
+  Away_Points = as.numeric(as.character(Away_Points))
+)
 
+Shots <- Shots %>% mutate(
+  Shot = as.numeric(as.character(str_remove_all(Shot, '" '))),
+  Left = as.numeric(as.character(Left)),
+  Top = as.numeric(as.character(Top))
+)
 
-
-
-
-glimpse(Play_by_Play)
-glimpse(Game_Summary)
-glimpse(Shots)
-glimpse(Players)
+Players <- Players %>% mutate(
+  Draft_Year = as.numeric(as.character(Draft_Year)),
+  Draft_Round = as.numeric(as.character(Draft_Round)),
+  Draft_Pick = as.numeric(as.character(Draft_Pick))
+)
 
 write.csv(Games, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Games.csv"), row.names = F)
 write.csv(Box_Scores, paste0("~/GitHub/Open_Data/Data/Sports/NBA/NBA_", Season,"_Box_Score.csv"), row.names = F)
