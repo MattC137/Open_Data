@@ -133,10 +133,8 @@ View(
 
 ## ADD TO CORE CODE ##
 
-box_2021$PTS <- as.numeric(box_2021$PTS)
-
 View(
-  box_2021 %>% filter(Season_Type == "Regular-Season", Home == T) %>% group_by(Team) %>% summarize(
+  box_2021 %>% filter(Season_Type == "Regular-Season") %>% group_by(Team) %>% summarize(
     bs_Total_Points = sum(PTS, na.rm = T)
   ) %>% arrange(desc(bs_Total_Points))
 )
