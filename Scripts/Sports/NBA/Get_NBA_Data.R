@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2021
+Season <- 2020
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -1520,7 +1520,7 @@ Box_Scores <- Box_Scores %>% rename(
   Offensive_Rebounds = OREB,
   Defensive_Rebounds = DREB,
   Rebounds = REB,
-  Assits = AST,
+  Assists = AST,
   Steals = STL,
   Blocks = BLK,
   Turnovers = TO,
