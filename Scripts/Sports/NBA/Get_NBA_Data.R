@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2020
+Season <- 2019
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -415,7 +415,8 @@ names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left",
 Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
 
 for(i in 1:nrow(Schedule)){
-  # i = 1739
+  # i = 1451
+  # i = 489
   
   if(i %% 2 != 0){
     print(i)
@@ -429,7 +430,7 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(3)
+        Sys.sleep(300)
       }
       
       team_stats_url <- try({read_html(paste0("https://www.espn.com/nba/matchup?gameId=", game_id))})
@@ -613,7 +614,7 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(3)
+        Sys.sleep(300)
        # print("sleep")
       }
       
@@ -768,7 +769,7 @@ for(i in 1:nrow(Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(20)
+        Sys.sleep(300)
         # print("sleep")
       }
       
@@ -1284,7 +1285,7 @@ for(i in 1:nrow(Future_Schedule)){
     while(!end_while){
       
       if(j > 2){
-        Sys.sleep(3)
+        Sys.sleep(300)
         print(paste0(j, "sleep"))
       }
       
