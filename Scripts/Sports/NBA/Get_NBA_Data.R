@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2019
+Season <- 2020
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -43,7 +43,7 @@ Schedule <- as.data.frame(matrix(nrow = 0, ncol = 9))
 names(Schedule) <- c("Date", "Team", "Opponent", "Result", "W_L", "Season", "Season_Type", "Playoff_Round", "Game_Id")
 
 for(i in 1:nrow(team_ids)){
-  # i = 21
+  # i = 3
   team_name <- as.character(team_ids[i, "Team_Name"])
   short_name <- as.character(team_ids[i, "Short_Name"])
   team_id <- as.character(team_ids[i, "Team_ID"])
@@ -53,7 +53,7 @@ for(i in 1:nrow(team_ids)){
   # current_year <- year(Sys.Date())
   
   for(season in Season:Season){
-    # season = 2021
+    # season = 2020
     
     Schedule_Season <- as.data.frame(matrix(nrow = 0, ncol = 9))
     names(Schedule_Season) <- c("Date", "Team", "Opponent", "Result", "W_L", "Season", "Season_Type", "Playoff_Round", "Game_Id")
@@ -61,46 +61,53 @@ for(i in 1:nrow(team_ids)){
     print(paste(team_name, season))
     
     for(season_type in 1:3){
-      # season_type = 2
-      
-      if(season_type != 3){
+      # season_type = 3
         
-        ### TRY 3 TIMES
-        end_while <- FALSE
-        j <- 1
-        while(!end_while){
-          
-          if(j > 2){
-            Sys.sleep(300)
-          }
-          
-          team_schedule_url <- try({read_html(paste0("https://www.espn.com/nba/team/schedule/_/name/", short_name, "/season/", season, "/seasontype/", season_type))})
-          schedule <- try({team_schedule_url %>% html_node("table") %>% html_table(fill = TRUE)}, silent = T)
-          
-          if(is.data.frame(schedule)){
-            if(nrow(schedule) > 0){
-              update_data <- TRUE
-            }else{
-              ## I'll leave this as true for now. Change to false to avoid looping through games that haven't been played. Currently working this way but code isn't clean.
-              update_data <- TRUE
-            }
-            
-          }else{
-            update_data <- FALSE
-          }
-          
-          end_while <- ifelse(is.data.frame(schedule) | j == 3, TRUE, FALSE)
-          j <- j + 1
-          
+      ### TRY 3 TIMES
+      end_while <- FALSE
+      j <- 1
+      while(!end_while){
+        
+        if(j > 2){
+          Sys.sleep(300)
         }
-        ###
         
-        if(update_data){
+        team_schedule_url <- try({read_html(paste0("https://www.espn.com/nba/team/schedule/_/name/", short_name, "/season/", season, "/seasontype/", season_type))})
+        schedule <- try({team_schedule_url %>% html_node("table") %>% html_table(fill = TRUE)}, silent = T)
+        
+        if(is.data.frame(schedule)){
+          if(nrow(schedule) > 0){
+            update_data <- TRUE
+          }else{
+            ## I'll leave this as true for now. Change to false to avoid looping through games that haven't been played. Currently working this way but code isn't clean.
+            update_data <- TRUE
+          }
+          
+        }else{
+          update_data <- FALSE
+        }
+        
+        end_while <- ifelse(is.data.frame(schedule) | j == 3, TRUE, FALSE)
+        j <- j + 1
+        
+      }
+      ###
+      
+      if(update_data){
+          if(season_type != 3){
           
           game_ids <- team_schedule_url %>% str_extract_all('(?<=gameId=)(.*?)(?=")') %>% unlist() %>% unique()
           
           if(class(schedule) != 'try-error'){
-            names(schedule) <- c("Date", "Opponent", "Result", "W_L", "Hi_Points", "Hi_Rebounds", "Hi_Assists")
+            if(season_type == 3){
+              schedule <- schedule %>% mutate(
+                W_L = "0-0"
+              ) %>% select()
+              names(schedule) <- c("Date", "Opponent", "Result", "W_L", "Hi_Points", "Hi_Rebounds", "Hi_Assists")
+            }else{
+              names(schedule) <- c("Date", "Opponent", "Result", "W_L", "Hi_Points", "Hi_Rebounds", "Hi_Assists")
+            }
+
             schedule <- schedule %>% 
               select(Date, Opponent, Result, W_L) %>% filter(Date != "DATE") %>% 
               mutate(
