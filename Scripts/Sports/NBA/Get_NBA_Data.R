@@ -627,7 +627,7 @@ for(i in 1:nrow(Schedule)){
       # Schedule[i+1, "Spread_Winner"] <- line_amount
       
       total_points <- as.numeric(Schedule[i, "Points_For"]) + as.numeric(Schedule[i, "Points_Against"])
-      over_under_winner <- ifelse(as.numeric(Schedule[i, "Over_Under"] ) == total_points | is.na(Schedule[i, "Over_Under"]), "No Bet", "Bet")
+      over_under_winner <- ifelse(as.numeric(Schedule[i, "Over_Under"]) == total_points | is.na(Schedule[i, "Over_Under"]), "No Bet", "Bet")
       
       if(over_under_winner == "Bet"){
         over_under_winner <- ifelse(total_points > Schedule[i, "Over_Under"] , "Over", "Under")
