@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2019
+Season <- 2021
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -424,6 +424,7 @@ Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
 for(i in 1:nrow(Schedule)){
   # i = 1451
   # i = 489
+  # i = 671
   
   if(i %% 2 != 0){
     print(i)
@@ -600,11 +601,39 @@ for(i in 1:nrow(Schedule)){
       Schedule[i, "Correct_Line"] <- ifelse((Schedule[i, "Short_Name"] == line_favored & Schedule[i, "Result"] == "W") | (Schedule[i, "Short_Name"] != line_favored & Schedule[i, "Result"] == "L"), 1, 0)
       Schedule[i+1, "Correct_Line"] <- ifelse((Schedule[i+1, "Short_Name"] == line_favored & Schedule[i+1, "Result"] == "W") | (Schedule[i+1, "Short_Name"] != line_favored & Schedule[i+1, "Result"] == "L"), 1, 0)
       
+      winner <- ifelse(Schedule[i, "Result"] == "W", Schedule[i, "Short_Name"], Schedule[i, "Opp_Short_Name"])
+      loser <- ifelse(Schedule[i, "Result"] == "L", Schedule[i, "Short_Name"], Schedule[i, "Opp_Short_Name"])
+      
+      winner_points <- as.numeric(ifelse(Schedule[i, "Result"] == "W", Schedule[i, "Points_For"], Schedule[i, "Points_Against"]))
+      loser_points <- as.numeric(ifelse(Schedule[i, "Result"] == "L", Schedule[i, "Points_For"], Schedule[i, "Points_Against"]))
+      win_amount <- winner_points - loser_points
+      
+      if(line_favored == "EVEN"){
+        Schedule[i, "Spread_Winner"] <- winner
+        Schedule[i+1, "Spread_Winner"] <- winner
+      }else if(win_amount == -as.numeric(Schedule[i, "Line_Amount"])){
+        Schedule[i, "Spread_Winner"] <- "No Bet"
+        Schedule[i+1, "Spread_Winner"] <- "No Bet"
+      }else if(line_favored == winner){
+        Schedule[i, "Spread_Winner"] <- ifelse(win_amount > -as.numeric(Schedule[i, "Line_Amount"]), winner, loser)
+        Schedule[i+1, "Spread_Winner"] <- ifelse(win_amount > -as.numeric(Schedule[i, "Line_Amount"]), winner, loser)
+      }else if(line_favored != winner){
+        Schedule[i, "Spread_Winner"] <- winner
+        Schedule[i+1, "Spread_Winner"] <- winner
+      }
+      
       # Schedule[i, "Spread_Winner"] <- ifelse((Schedule[i, "Short_Name"] == tolower(line_favored) & Schedule[i, "Result"] == "W") | (Schedule[i, "Short_Name"] != tolower(line_favored) & Schedule[i, "Result"] == "L"), 1, 0)
       # Schedule[i+1, "Spread_Winner"] <- line_amount
-      # 
-      # Schedule[i, "Over_Under_Winner"] <- over_under
-      # Schedule[i+1, "Over_Under_Winner"] <- over_under
+      
+      total_points <- as.numeric(Schedule[i, "Points_For"]) + as.numeric(Schedule[i, "Points_Against"])
+      over_under_winner <- ifelse(over_under == total_points, "No Bet", "Bet")
+      
+      if(over_under_winner == "Bet"){
+        over_under_winner <- ifelse(total_points > over_under, "Over", "Under")
+      }
+      
+      Schedule[i, "Over_Under_Winner"] <- over_under_winner
+      Schedule[i+1, "Over_Under_Winner"] <- over_under_winner
       
     }
     
