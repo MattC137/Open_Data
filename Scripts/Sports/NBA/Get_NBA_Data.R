@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2020
+Season <- 2019
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -69,7 +69,7 @@ for(i in 1:nrow(team_ids)){
       while(!end_while){
         
         if(j > 2){
-          Sys.sleep(300)
+          Sys.sleep(3)
         }
         
         team_schedule_url <- try({read_html(paste0("https://www.espn.com/nba/team/schedule/_/name/", short_name, "/season/", season, "/seasontype/", season_type))})
@@ -1415,37 +1415,68 @@ length(unique(Schedule$Game_Id))*2 == nrow(Schedule)
 length(unique(Schedule$Game_Id))
 length(unique(Box_Scores$Game_Id))
 length(unique(Play_by_Play$Game_Id))
-
-View(Schedule %>% filter(Season_Type == "Regular-Season") %>% 
-       group_by(Team) %>% 
-       summarize(W = sum(Result == "W"), L = sum(Result == "L"), ppg = mean(as.numeric(Points_For)), opp_ppg = mean(as.numeric(Points_Against))) %>% 
-       arrange(desc(W))
-)
-
-View(Box_Scores %>%
-       filter(Season_Type == "Regular-Season") %>% 
-       group_by(Player_Id_Str) %>% 
-       summarize(
-          Games = sum(Played), 
-          Points = sum(as.numeric(PTS)), 
-          Assists = sum(as.numeric(AST)), 
-          Rebounds = sum(as.numeric(REB)), 
-          Blocks = sum(as.numeric(BLK)),
-          Threes_Made = sum(as.numeric(THREES_Made)),
-          Steals = sum(as.numeric(STL))
-          ) %>% 
-       ungroup() %>% 
-       mutate(
-         Points = Points/Games,
-         Assists = Assists/Games,
-         Rebounds = Rebounds/Games,
-         Blocks = Blocks/Games,
-         Threes_Made = Threes_Made/Games,
-         Steals = Steals/Games
-         ) %>% 
-       arrange(desc(Points))
-     
-     )
+# 
+# View(Schedule %>% filter(Season_Type == "Regular-Season") %>% 
+#        group_by(Team) %>% 
+#        summarize(W = sum(Result == "W"), L = sum(Result == "L"), ppg = mean(as.numeric(Points_For)), opp_ppg = mean(as.numeric(Points_Against))) %>% 
+#        arrange(desc(W))
+# )
+# 
+# View(Schedule %>% filter(Season_Type == "Post-Season") %>% 
+#        group_by(Team) %>% 
+#        summarize(W = sum(Result == "W"), L = sum(Result == "L"), ppg = mean(as.numeric(Points_For)), opp_ppg = mean(as.numeric(Points_Against))) %>% 
+#        arrange(desc(W))
+# )
+# 
+# View(Box_Scores %>%
+#        filter(Season_Type == "Regular-Season") %>% 
+#        group_by(Player_Id_Str) %>% 
+#        summarize(
+#           Games = sum(Played), 
+#           Points = sum(as.numeric(PTS)), 
+#           Assists = sum(as.numeric(AST)), 
+#           Rebounds = sum(as.numeric(REB)), 
+#           Blocks = sum(as.numeric(BLK)),
+#           Threes_Made = sum(as.numeric(THREES_Made)),
+#           Steals = sum(as.numeric(STL))
+#           ) %>% 
+#        ungroup() %>% 
+#        mutate(
+#          Points = Points/Games,
+#          Assists = Assists/Games,
+#          Rebounds = Rebounds/Games,
+#          Blocks = Blocks/Games,
+#          Threes_Made = Threes_Made/Games,
+#          Steals = Steals/Games
+#          ) %>% 
+#        arrange(desc(Points))
+#      
+#      )
+# 
+# View(Box_Scores %>%
+#        filter(Season_Type == "Post-Season") %>% 
+#        group_by(Player_Id_Str) %>% 
+#        summarize(
+#          Games = sum(Played), 
+#          Points = sum(as.numeric(PTS)), 
+#          Assists = sum(as.numeric(AST)), 
+#          Rebounds = sum(as.numeric(REB)), 
+#          Blocks = sum(as.numeric(BLK)),
+#          Threes_Made = sum(as.numeric(THREES_Made)),
+#          Steals = sum(as.numeric(STL))
+#        ) %>% 
+#        ungroup() %>% 
+#        mutate(
+#          Points = Points/Games,
+#          Assists = Assists/Games,
+#          Rebounds = Rebounds/Games,
+#          Blocks = Blocks/Games,
+#          Threes_Made = Threes_Made/Games,
+#          Steals = Steals/Games
+#        ) %>% 
+#        arrange(desc(Points))
+#      
+# )
 
 #### RENAME DFs ####
 
