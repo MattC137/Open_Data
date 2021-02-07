@@ -135,7 +135,9 @@ View(
 
 View(
   box_2021 %>% filter(Season_Type == "Regular-Season") %>% group_by(Team) %>% summarize(
-    bs_Total_Points = sum(PTS, na.rm = T)
+    bs_Total_Points = sum(Points, na.rm = T),
+    bs_Assists = sum(Assists, na.rm = T),
+    bs_Steals = sum(Steals, na.rm = T),
   ) %>% arrange(desc(bs_Total_Points))
 )
 
