@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2021
+Season <- 2020
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -197,7 +197,7 @@ for(i in 1:nrow(team_ids)){
               schedule <- schedule %>% 
                 select(Date, Opponent, Result) %>% 
                 mutate(
-                  Team = team_name,
+                  Team = team_city,
                   W_L = "NA-NA",
                   Season = season,
                   Season_Type = case_when(
