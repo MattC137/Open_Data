@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2019
+Season <- 2018
 
 Clean_Player_Id_Str <- function(pid){
   
