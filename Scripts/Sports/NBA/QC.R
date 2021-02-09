@@ -161,8 +161,11 @@ View(games_2020 %>% filter(Season_Type == "Regular-Season"))
 
 games_2020 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2020_Games.csv")
 box_2020 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2020_Box_Score.csv")
-View(qc(games_2020, box_2020, "Regular-Season"))
+View(qc(games_2020, box_2020, "Post-Season"))
 
 games_2019 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2019_Games.csv")
 box_2019 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2019_Box_Score.csv")
 View(qc(games_2019, box_2019, "Post-Season"))
+
+
+View(games_2020 %>% filter(Game_Id %in% c("401236287", "401224778")))
