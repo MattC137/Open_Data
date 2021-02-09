@@ -422,8 +422,8 @@ names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left",
 Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
 
 for(i in 1:nrow(Schedule)){
-  # i = 1451
-  # i = 489
+  # i = 2077
+  # i = 1943
   # i = 671
   # i = 1
   
@@ -610,18 +610,20 @@ for(i in 1:nrow(Schedule)){
       loser_points <- as.numeric(ifelse(Schedule[i, "Result"] == "L", Schedule[i, "Points_For"], Schedule[i, "Points_Against"]))
       win_amount <- winner_points - loser_points
       
-      if(line_favored == "EVEN"){
-        Schedule[i, "Spread_Winner"] <- winner
-        Schedule[i+1, "Spread_Winner"] <- winner
-      }else if(win_amount == -as.numeric(Schedule[i, "Line_Amount"])){
-        Schedule[i, "Spread_Winner"] <- "No Bet"
-        Schedule[i+1, "Spread_Winner"] <- "No Bet"
-      }else if(line_favored == winner){
-        Schedule[i, "Spread_Winner"] <- ifelse(win_amount > -as.numeric(Schedule[i, "Line_Amount"]), winner, loser)
-        Schedule[i+1, "Spread_Winner"] <- ifelse(win_amount > -as.numeric(Schedule[i, "Line_Amount"]), winner, loser)
-      }else if(line_favored != winner){
-        Schedule[i, "Spread_Winner"] <- winner
-        Schedule[i+1, "Spread_Winner"] <- winner
+      if(Schedule[i, "Line_Amount"] != "No Line"){
+        if(line_favored == "EVEN"){
+          Schedule[i, "Spread_Winner"] <- winner
+          Schedule[i+1, "Spread_Winner"] <- winner
+        }else if(win_amount == -as.numeric(Schedule[i, "Line_Amount"])){
+          Schedule[i, "Spread_Winner"] <- "No Bet"
+          Schedule[i+1, "Spread_Winner"] <- "No Bet"
+        }else if(line_favored == winner){
+          Schedule[i, "Spread_Winner"] <- ifelse(win_amount > -as.numeric(Schedule[i, "Line_Amount"]), winner, loser)
+          Schedule[i+1, "Spread_Winner"] <- ifelse(win_amount > -as.numeric(Schedule[i, "Line_Amount"]), winner, loser)
+        }else if(line_favored != winner){
+          Schedule[i, "Spread_Winner"] <- winner
+          Schedule[i+1, "Spread_Winner"] <- winner
+        }
       }
       
       # Schedule[i, "Spread_Winner"] <- ifelse((Schedule[i, "Short_Name"] == tolower(line_favored) & Schedule[i, "Result"] == "W") | (Schedule[i, "Short_Name"] != tolower(line_favored) & Schedule[i, "Result"] == "L"), 1, 0)
@@ -1518,6 +1520,11 @@ Schedule[Schedule$Result == "TBD", c("Threes_Made_For", "Threes_Att_For", "FG_Ma
 Games <- Schedule
 
 #### Write Data ####
+
+players_team_recon <- Players %>% group_by(Team_Id, Team) %>% tally()
+players_team_recon_max <- players_team_recon %>% group_by(Team_Id) %>% summarize(n_max = max(n))
+players_team_recon <- players_team_recon %>% left_join(players_team_recon_max) %>% filter(n == n_max)
+Players <- Players %>% select(-Team) %>% left_join(players_team_recon %>% select(Team_Id, Team))
 
 Games <- Games %>% mutate(
   Points_For = as.numeric(as.character(Points_For)),
