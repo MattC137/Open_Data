@@ -41,10 +41,7 @@ View(shots_2021 %>% filter(Game_Id == "401267173"))
 
 #### Delete Me ####
 
-players_team_recon <- players_2021 %>% group_by(Team_Id, Team) %>% tally()
-players_team_recon_max <- players_team_recon %>% group_by(Team_Id) %>% summarize(n_max = max(n))
-players_team_recon <- players_team_recon %>% left_join(players_team_recon_max) %>% filter(n == n_max)
-players_2021 <- players_2021 %>% select(-Team) %>% left_join(players_team_recon %>% select(Team_Id, Team))
+
 
 
 

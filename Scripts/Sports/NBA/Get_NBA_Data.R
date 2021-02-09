@@ -5,7 +5,7 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-Season <- 2020
+Season <- 2019
 
 Clean_Player_Id_Str <- function(pid){
   
@@ -422,7 +422,7 @@ names(Shots) <- c("Shot", "Description", "Home", "Quarter", "Player_Id", "Left",
 Schedule <- Schedule %>% filter(!is.na(Opp_Short_Name))
 
 for(i in 1:nrow(Schedule)){
-  # i = 2077
+  # i = 1909
   # i = 1943
   # i = 671
   # i = 1
