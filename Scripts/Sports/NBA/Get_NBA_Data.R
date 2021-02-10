@@ -431,7 +431,7 @@ for(i in 1:nrow(Schedule)){
     print(i)
     
     game_id <- Schedule$Game_Id[i]
-    # game_id <- 401236282
+    # game_id <- 400975426
     
     ### TRY 3 TIMES
     end_while <- FALSE
