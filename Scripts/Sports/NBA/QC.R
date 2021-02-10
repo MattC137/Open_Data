@@ -154,6 +154,33 @@ qc <- function(games, box_scores, season_type){
   return(qc)
 }
 
+qc_games <- function(games, box_scores, season_type){
+  
+  #### Stat Leaders ####
+  
+  games_summary <- games %>% filter(Season_Type == season_type, Result != "TBD") %>% group_by(Game_Id) %>% summarize(
+    games_Total_Points = sum(Points_For, na.rm = T),
+    games_Assists = sum(Assists_For, na.rm = T),
+    games_Steals = sum(Steals_For, na.rm = T),
+  )
+  
+  ## ADD TO CORE CODE ##
+  bs_summary <- box_scores %>% filter(Season_Type == season_type) %>% group_by(Game_Id) %>% summarize(
+    bs_Total_Points = sum(Points, na.rm = T),
+    bs_Assists = sum(Assists, na.rm = T),
+    bs_Steals = sum(Steals, na.rm = T)
+  ) %>% arrange(desc(bs_Total_Points))
+  
+  qc <- games_summary %>%
+    left_join(bs_summary, by = c("Game_Id" = "Game_Id")) %>% mutate(
+      tf_Total_Points = bs_Total_Points == games_Total_Points,
+      tf_Assists = bs_Assists == games_Assists,
+      tf_Steals = bs_Steals == games_Steals
+    )
+  
+  return(qc)
+}
+
 View(qc(games_2021, box_2021, "Regular-Season"))
 
 View(games_2020 %>% filter(Season_Type == "Post-Season"))
@@ -168,10 +195,14 @@ games_2019 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/mas
 box_2019 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2019_Box_Score.csv")
 View(qc(games_2019, box_2019, "Post-Season"))
 View(qc(games_2019, box_2019, "Regular-Season"))
+View(qc_games(games_2019, box_2019, "Regular-Season"))
 
 games_2018 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2018_Games.csv")
 box_2018 <- read.csv("https://raw.githubusercontent.com/MattC137/Open_Data/master/Data/Sports/NBA/NBA_2018_Box_Score.csv")
 View(qc(games_2018, box_2018, "Post-Season"))
 View(qc(games_2018, box_2018, "Regular-Season"))
+View(qc_games(games_2018, box_2018, "Regular-Season"))
+
+games_summary_2018 <- games_2018 %>% 
 
 View(games_2020 %>% filter(Game_Id %in% c("401236287", "401224778")))
